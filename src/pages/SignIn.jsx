@@ -78,7 +78,8 @@ const SignIn = () => {
               <input
                 id="email"
                 name="email"
-                type="email"
+                type="text"
+                placeholder='Enter email or phone number'
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -94,6 +95,7 @@ const SignIn = () => {
                 id="password"
                 name="password"
                 type="password"
+                placeholder='password'
                 value={formData.password}
                 onChange={handleChange}
                 required
