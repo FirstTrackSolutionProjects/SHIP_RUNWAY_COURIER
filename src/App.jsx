@@ -19,6 +19,7 @@ import Verify from './pages/Verify';
 import FAQs from './components/FAQs';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
+import TicketRaise from './pages/TicketRaise';
 import { ToastContainer } from 'react-toastify';
 
 // ✅ Scroll to top on route change
@@ -66,6 +67,7 @@ const App = () => {
           <Route path="/faq" element={<FAQs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfUse />} />
+          <Route path="/ticket-raise" element={<TicketRaise />} />
           <Route path='/dashboard/*' element={<Dashboard/>}></Route>
           <Route path='/verify' element={<Verify/>}></Route>
         </Routes>

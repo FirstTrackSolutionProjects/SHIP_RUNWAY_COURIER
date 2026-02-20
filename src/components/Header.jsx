@@ -47,10 +47,14 @@ return (
     <>
     {showRecharge ? <WalletRechargeModal onClose={closeRechargeModal} /> : null}
     <header className="w-full bg-gray-100 sticky top-0 z-50 h-16 flex items-center px-4 shadow">
-    <div className="flex items-center justify-between w-full mx-auto px-4">
+    <div className="flex items-center justify-between w-full">
         {/* Logo */}
-        <Link to="/" className="h-20 flex items-center">
-        <img src="/logo.png" alt="Logo" className="h-16 w-auto sm:h-18" />
+        <Link to="/" className="h-24 flex items-center ">
+          <img 
+            src="/logo 1.png" 
+            alt="Logo" 
+            className="h-20 w-auto sm:h-24 object-contain" 
+          />
         </Link>
 
         {/* Desktop Navigation */}

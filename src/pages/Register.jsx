@@ -10,11 +10,12 @@ const Register = () => {
   const { isAuthenticated, login, verified, emailVerified } = useAuth();
   const [emailModalOpen, setEmailModalOpen] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     reg_email: "",
-    reg_password: "",
+    create_password: "",
     confirm_password: "",
     business_name: "",
     mobile: "",
@@ -69,6 +70,11 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+  if (!acceptTerms) {
+    toast.error("Please accept Terms & Conditions");
+    return;
+  }
       setLoading(true);
       if (!validate()) {
         setLoading(false);
@@ -142,9 +148,9 @@ const Register = () => {
 
             <input
               type="password"
-              placeholder="Password"
-              name="reg_password"
-              value={formData.reg_password}
+              placeholder="Create Password"
+              name="create_password"
+              value={formData.create_password}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
@@ -167,12 +173,39 @@ const Register = () => {
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
 
-            <button
+         {/* Terms & Conditions Checkbox */}
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="terms"
+                  type="checkbox"
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                  className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                  required
+                />
+              </div>
+              <div className="ml-2 text-sm">
+                <label htmlFor="terms" className="text-gray-600">
+                  I agree to the{" "}
+                  <Link to="/terms" className="text-blue-600 hover:underline">
+                    Terms & Conditions
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/privacy" className="text-blue-600 hover:underline">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+            </div>
+
+           <button
               type="submit"
-              disabled={loading}
-              className="w-full bg-blue-900 text-white font-semibold py-3 rounded-md hover:bg-blue-950 transition"
+              disabled={!acceptTerms}
+              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white 
+              ${acceptTerms ? "bg-black hover:bg-green-600" : "bg-gray-400 cursor-not-allowed"}`}
             >
-              {loading ? 'Registering...' : 'Register'}
+              Register
             </button>
           </form>
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '/logo1.png'; // Adjust the path as needed
+import logo from '/logo 1.png'; // Adjust the path as needed
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -16,9 +16,9 @@ const Footer = () => {
           {/* Company Info */}
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             {/* Optional Logo */}
-            {/* <div className="mb-4">
+            <div className="mb-4">
               <img src={logo} alt="Ship Runway Logo" className="w-28 h-auto" />
-            </div> */}
+            </div>
             <h2 className="text-xl font-serif mb-2 hover:underline font-extrabold">
                <span className="text-blue-700"> Ship</span>
               <span className="text-orange-600"> Runway</span> Courier
@@ -36,6 +36,7 @@ const Footer = () => {
               <li><Link to="/faq" onClick={scrollToTop} className="hover:underline">FAQs</Link></li>
               <li><Link to="/about-us" onClick={scrollToTop} className="hover:underline">About Us</Link></li>
               <li><Link to="/contact-us" onClick={scrollToTop} className="hover:underline">Contact Us</Link></li>
+              <li><Link to="/ticket-raise" onClick={scrollToTop} className="hover:underline">Raise a Ticket</Link></li>
               <li><Link to="/privacy" onClick={scrollToTop} className="hover:underline">Privacy & Policy</Link></li>
               <li><Link to="/terms" onClick={scrollToTop} className="hover:underline">Terms of Use</Link></li>
             </ul>
