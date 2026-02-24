@@ -65,7 +65,7 @@ const Footer = () => {
      
 
         <div className="mt-8 text-center">
-          <p>Copyright©2025, Developed by First Track Solution Technologies</p>
+          <p>Copyright©2026, Developed by First Track Solution Technologies</p>
         </div>
       </div>
     </footer>
