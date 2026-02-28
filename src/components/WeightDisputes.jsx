@@ -37,6 +37,8 @@ const Listing = () => {
   const [reports, setReports] = useState([])
   const {role} = useAuth();
   const admin = role === USER_ROLES.ADMIN;
+  const brandGreen = "#145A32";
+  const brandDarkGreen = "#0E3F2D";
   const [filteredReports, setFilteredReports] = useState([]);
   const [filters, setFilters] = useState({
     orderId: ""
@@ -89,14 +91,14 @@ const Listing = () => {
       <div
         className={`w-full p-4 flex flex-col items-center space-y-6`}
       >
-        <div className="w-full h-16 px-4  relative flex justify-between">
-          <div className="text-2xl font-medium">WEIGHT DISPUTES</div>
-          {admin ? <div><button type='button' onClick={toggleCreateDisputePopup} className="mx-2 px-5 py-1 border rounded bg-red-500 text-white">Create</button></div> : null}
+        <div className="w-full h-16 px-4  relative flex justify-between items-center">
+          <div className="text-2xl font-bold text-[#145A32]">WEIGHT DISPUTES</div>
+          {admin ? <div><button type='button' onClick={toggleCreateDisputePopup} className="mx-2 px-5 py-2 border rounded bg-[#145A32] hover:bg-[#0E3F2D] text-white transition-colors">Create</button></div> : null}
         </div>
 
-        <details className="w-full p-2 bg-red-500 rounded-xl text-white">
-          <summary>Filters</summary>
-          <div className="grid space-y-2 lg:grid-rows-1 lg:grid-cols-4 lg:space-y-0 lg:space-x-4 p-2 rounded-xl w-full bg-red-500 text-black justify-evenly">
+        <details className="w-full p-2 bg-[#145A32] rounded-xl text-white shadow-md">
+          <summary className="cursor-pointer font-medium p-2">Filters</summary>
+          <div className="grid space-y-2 lg:grid-rows-1 lg:grid-cols-4 lg:space-y-0 lg:space-x-4 p-4 rounded-xl w-full bg-[#145A32] text-black justify-evenly">
             <input
               className="p-1 rounded-xl bg-white"
               type="text"

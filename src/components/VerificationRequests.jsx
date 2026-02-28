@@ -87,13 +87,13 @@ const View = ({request, reqId, uid ,fullName, email, phone, gst, setView, busine
                             <p>Bank Name : {bank}</p>
                             <p>A/C No. : {accountNumber}</p>
                             <p>IFSC : {ifsc}</p>
-                            <p>Cancelled Cheque : <span className='cursor-pointer' onClick={()=>handleDownload('cancelledCheque')}>[PDF]</span></p>
+                            <p>Cancelled Cheque : <span className='cursor-pointer text-[#145A32] font-bold' onClick={()=>handleDownload('cancelledCheque')}>[PDF]</span></p>
                         </div>
                     </div>
-                    <button onClick={handleApprove} className=" bg-blue-500 text-white mx-2  py-2 px-4 rounded-3xl">
+                    <button onClick={handleApprove} className=" bg-[#145A32] hover:bg-[#0E3F2D] text-white mx-2  py-2 px-6 rounded-3xl transition-colors">
                         Approve
                     </button>
-                    <button onClick={handleReject} className=" bg-red-500 text-white mx-2  py-2 px-6 rounded-3xl">
+                    <button onClick={handleReject} className=" bg-red-600 hover:bg-red-700 text-white mx-2  py-2 px-6 rounded-3xl transition-colors">
                         Reject
                     </button>
                 </div>

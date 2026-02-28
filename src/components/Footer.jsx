@@ -10,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-300 font-bold text-black p-8">
+    <footer className="bg-brand-gray font-bold text-gray-800 p-8">
       <div className="container mx-auto px-2">
         <div className="flex flex-wrap">
           {/* Company Info */}
@@ -20,8 +20,8 @@ const Footer = () => {
               <img src={logo} alt="Ship Runway Logo" className="w-28 h-auto" />
             </div>
             <h2 className="text-xl font-serif mb-2 hover:underline font-extrabold">
-               <span className="text-blue-700"> Ship</span>
-              <span className="text-orange-600"> Runway</span> Courier
+               <span className="text-brand-green"> Ship</span>
+              <span className="text-brand-orange"> Runway</span> Courier
             </h2>
             <p className="pr-4 font-normal">
               Delivering excellence in logistics solutions entire PAN India.

@@ -2,11 +2,11 @@ import React from 'react';
 
 const AboutSection = () => {
   return (
-    <div className="bg-[#f0fffe] py-16 px-4">
+    <div className="bg-brand-gray py-16 px-4">
       {/* Mission */}
       <div className="flex flex-col md:flex-row items-center mb-12 gap-6">
         <div className="w-full md:w-1/2">
-          <h2 className="text-green-600 font-bold text-xl mb-2">Our Mission</h2>
+          <h2 className="text-brand-green font-bold text-xl mb-2">Our Mission</h2>
           <p className="text-base">
             To revolutionize logistics with innovative technology, offering scalable and intelligent delivery
             solutions tailored for global businesses.

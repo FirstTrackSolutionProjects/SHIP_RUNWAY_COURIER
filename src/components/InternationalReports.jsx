@@ -507,7 +507,7 @@ const Listing = () => {
           sx={{
             mb: 3,
             p: 2,
-            bgcolor: "red",
+            bgcolor: "#145A32",
             borderRadius: 2,
             "& .MuiTextField-root": { bgcolor: "background.paper", borderRadius: 1 },
             overflowX: "auto",
@@ -681,11 +681,11 @@ const Listing = () => {
               borderRadius: 0,
               '& .MuiDataGrid-columnHeaders': {
                 borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 color: '#FFF',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 fontWeight: 'bold',
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
@@ -807,15 +807,15 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages > 1) addPageNumber(totalPages);
   return (
     <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
-      <Button size="small" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} variant={currentPage === 1 ? "outlined" : "contained"}>
+      <Button size="small" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} variant={currentPage === 1 ? "outlined" : "contained"} sx={{ bgcolor: currentPage === 1 ? 'transparent' : '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}>
         Previous
       </Button>
       {pages.map((p, idx) => (
-        <Button key={idx} size="small" onClick={() => p.number !== "..." && onPageChange(p.number)} variant={p.number === "..." ? "outlined" : p.isCurrent ? "contained" : "outlined"}>
+        <Button key={idx} size="small" onClick={() => p.number !== "..." && onPageChange(p.number)} variant={p.number === "..." ? "outlined" : p.isCurrent ? "contained" : "outlined"} sx={p.isCurrent ? { bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } } : {}}>
           {p.number}
         </Button>
       ))}
-      <Button size="small" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} variant={currentPage === totalPages ? "outlined" : "contained"}>
+      <Button size="small" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} variant={currentPage === totalPages ? "outlined" : "contained"} sx={{ bgcolor: currentPage === totalPages ? 'transparent' : '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}>
         Next
       </Button>
     </div>

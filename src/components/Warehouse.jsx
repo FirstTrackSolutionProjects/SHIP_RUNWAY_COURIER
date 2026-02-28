@@ -372,7 +372,7 @@ const Warehouse = () => {
 				<div className="w-full flex items-center justify-between">
 					<div className="text-2xl font-medium">WAREHOUSES</div>
 					{role !== USER_ROLES.ADMIN ? (
-						<Button variant="contained" onClick={openCreate} sx={{ borderRadius: '4px' }}>
+						<Button variant="contained" onClick={openCreate} sx={{ borderRadius: '4px', bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}>
 							Create Warehouse
 						</Button>
 					) : null}
@@ -425,15 +425,15 @@ const Warehouse = () => {
 					getRowId={(row) => row.WAREHOUSE_ID}
 					rowHeight={56}
 					sx={{
-						border: '1px solid #000',
-						borderRadius: 0,
+						border: '1px solid #e0e0e0',
+						borderRadius: '4px',
 						'& .MuiDataGrid-columnHeaders': {
-							borderBottom: '1px solid #000',
-							backgroundColor: '#A34757',
+							borderBottom: '1px solid #e0e0e0',
+							backgroundColor: '#145A32',
 							color: '#FFF',
 						},
 						'& .MuiDataGrid-columnHeader': {
-							backgroundColor: '#A34757',
+							backgroundColor: '#145A32',
 							fontWeight: 'bold',
 						},
 						'& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {

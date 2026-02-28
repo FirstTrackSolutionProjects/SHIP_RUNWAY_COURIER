@@ -116,7 +116,7 @@ export default function TicketDetail() {
                 </div>
 
                 {/* Conversation History */}
-                <div className="bg-gray-200 p-4 rounded-lg h-96 overflow-y-auto mb-4">
+                <div className="bg-[#F5F5F5] p-4 rounded-lg h-96 overflow-y-auto mb-4">
                     <h3 className="text-lg font-semibold mb-3 border-b border-gray-400 pb-2">Conversation History</h3>
                     {messages.length === 0 ? (
                         <p className="text-gray-500 text-center py-10">No replies yet. Awaiting admin response.</p>
@@ -125,8 +125,8 @@ export default function TicketDetail() {
                             <div key={msg.message_id} className={`flex mb-4 ${msg.sent_by_admin ? 'justify-start' : 'justify-end'}`}>
                                 <div className={`max-w-xl p-3 rounded-xl shadow-md 
                                     ${msg.sent_by_admin 
-                                        ? 'bg-blue-100 text-gray-800' 
-                                        : 'bg-[#dcf8c6] text-gray-900'}`
+                                        ? 'bg-[#145A32] bg-opacity-10 text-gray-800' 
+                                        : 'bg-[#E49B0F] bg-opacity-20 text-gray-900'}`
                                 }>
                                     <p className="text-xs font-bold mb-1">
                                         {msg.sent_by_admin ? msg.fullName || 'Admin' : 'You'}
@@ -149,13 +149,13 @@ export default function TicketDetail() {
                         onChange={(e) => setReplyText(e.target.value)}
                         placeholder="Type your reply here..."
                         rows="3"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#145A32] focus:border-[#145A32]"
                         disabled={submitting}
                     />
                     <div className="flex justify-end mt-2">
                         <button
                             type="submit"
-                            className="bg-[#075e54] text-white py-2 px-6 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-50"
+                            className="bg-[#145A32] text-white py-2 px-6 rounded-lg font-semibold hover:bg-[#0E3F2D] transition disabled:opacity-50"
                             disabled={submitting}
                         >
                             {submitting ? 'Sending...' : 'Send Reply'}

@@ -21,12 +21,12 @@ const AboutUs = () => {
         {/* Company Overview Section */}
         <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 mb-8">
   
-          <p className="text-gray-800">
-            <strong> Rameshwar Cargo India Pvt. Ltd.</strong>, founded in <strong>June 2023</strong>, is a fast-growing logistics company  <span className="text-blue-700 font-bold"> Ship</span>
-              <span className="text-orange-600 font-bold"> Runway</span> Courierdedicated to providing
-            seamless and efficient domestic delivery solutions across India. With a focus on innovation and customer satisfaction, we’ve
-            become a trusted logistics aggregator that bridges businesses and customers through smart, reliable, and cost-effective services.
-          </p>
+            <p className="text-gray-800">
+              <strong> Rameshwar Cargo India Pvt. Ltd.</strong>, founded in <strong>June 2023</strong>, is a fast-growing logistics company  <span className="text-[#145A32] font-bold"> Ship</span>
+                <span className="text-[#E49B0F] font-bold"> Runway</span> Courier dedicated to providing
+              seamless and efficient domestic delivery solutions across India. With a focus on innovation and customer satisfaction, we’ve
+              become a trusted logistics aggregator that bridges businesses and customers through smart, reliable, and cost-effective services.
+            </p>
         </div>
 
         {/* Mission and Vision Cards */}
@@ -49,7 +49,7 @@ const AboutUs = () => {
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="bg-blue-700 text-white text-center p-8 rounded-lg mt-10">
+        <div className="bg-[#145A32] text-white text-center p-8 rounded-lg mt-10">
           <h2 className="text-3xl font-bold mb-4">Why Choose Us?</h2>
           <p className="text-lg">
             We bring together a network of trusted logistics providers, cutting-edge tracking systems, 

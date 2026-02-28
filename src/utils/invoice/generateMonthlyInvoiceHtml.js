@@ -63,8 +63,8 @@ const generateMonthlyInvoiceHtml = (data) => {
   const breakups = data?.BREAKUPS || {}
   const total = Number(data?.TOTAL_AMOUNT || 0)
 
-  const companyName = escapeHtml(from.NAME || 'ShipWale')
-  const companyShort = escapeHtml((from.NAME || 'ShipWale').split(' ').map(w => w[0]).join('').slice(0,4).toUpperCase())
+  const companyName = escapeHtml(from.NAME || 'Ship Runway')
+  const companyShort = escapeHtml((from.NAME || 'Ship Runway').split(' ').map(w => w[0]).join('').slice(0,4).toUpperCase())
   const logoUrl = `${(typeof window !== 'undefined' ? window.location.origin : '')}/logo-nobg.png`
   const companyTagline = 'Monthly Merchant Invoice'
 
@@ -115,30 +115,30 @@ const generateMonthlyInvoiceHtml = (data) => {
   <title>Invoice - ${companyName}</title>
   <style>
     :root{
-      --brown:#7a4b2a;
-      --grey:#f4f4f6;
+      --primary-green:#145A32;
+      --accent-orange:#E49B0F;
+      --bg-gray:#F5F5F5;
       --text:#222;
       --muted:#666;
-      --accent:#e9d8c3;
       font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
-    body{background:var(--grey); padding:24px;}
+    body{background:var(--bg-gray); padding:24px;}
     .sheet{max-width:900px;margin:0 auto;background:white;padding:30px;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.06);page-break-after:always;}
-    header{display:flex;align-items:center;gap:20px;border-bottom:6px solid var(--brown);padding-bottom:16px;margin-bottom:18px}
+    header{display:flex;align-items:center;gap:20px;border-bottom:6px solid var(--primary-green);padding-bottom:16px;margin-bottom:18px}
     .brand{display:flex;gap:16px;align-items:center}
   .logo{width:84px;height:42px;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid #eee}
   .logo img{width:100%;height:100%;object-fit:contain}
-    h1{margin:0;font-size:28px;color:var(--text)}
+    h1{margin:0;font-size:28px;color:var(--primary-green)}
     .meta{margin-left:auto;text-align:right}
     .meta .small{font-size:13px;color:var(--muted)}
 
     .addresses{display:flex;gap:24px;margin-bottom:20px}
     .col{flex:1;padding:12px;border-radius:6px;background:linear-gradient(180deg,#fff, #fbfbfb);border:1px solid #eee}
-    .col h3{margin:0 0 6px 0;color:var(--brown);font-size:14px}
+    .col h3{margin:0 0 6px 0;color:var(--primary-green);font-size:14px}
     .col p{margin:0;color:var(--muted);font-size:13px;line-height:1.4}
 
     table{width:100%;border-collapse:collapse;margin-top:12px}
-    thead th{background:var(--accent);text-align:left;padding:10px;font-size:13px;color:var(--text);border-bottom:1px solid #e6e6e6}
+    thead th{background:rgba(228, 155, 15, 0.15);text-align:left;padding:10px;font-size:13px;color:var(--text);border-bottom:1px solid #e6e6e6}
     tbody td{padding:10px;border-bottom:1px dashed #eee;font-size:13px;color:var(--text)}
     .text-right{text-align:right}
     .muted{color:var(--muted);font-size:12px}

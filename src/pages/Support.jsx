@@ -104,7 +104,7 @@ export default function UserSupportPage() {
             </div>
             <button 
                 onClick={handleRaiseNewTicket} // <-- FIXED
-                className="mt-6 bg-[#075e54] text-white py-2 px-4 rounded hover:bg-green-700 transition"
+                className="mt-6 bg-[#145A32] text-white py-2 px-4 rounded hover:bg-[#0E3F2D] transition"
             >
                 Raise a New Ticket
             </button>

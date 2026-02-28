@@ -36,7 +36,7 @@ export default function FloatingAssistant() {
                                 mb-4 border border-gray-200 flex flex-col"
                 >
                     {/* Header */}
-                    <div className="bg-[#075e54] text-white px-4 py-3 flex justify-between items-center shrink-0">
+                    <div className="bg-brand-green text-white px-4 py-3 flex justify-between items-center shrink-0">
                         <p className="font-semibold text-sm">Shipwale Support</p>
                         <button onClick={handleClose} className="text-xl hover:text-red-300 transition">
                             <X size={20} />
@@ -54,7 +54,7 @@ export default function FloatingAssistant() {
             <button
                 onClick={toggleOpen}
                 className={`w-14 h-14 rounded-full shadow-lg text-white transition-all duration-300 flex items-center justify-center 
-                            ${isOpen ? 'bg-red-600 hover:bg-red-700' : 'bg-[#075e54] hover:bg-green-700'}`}
+                            ${isOpen ? 'bg-brand-orange hover:bg-brand-orange-dark' : 'bg-brand-green hover:bg-brand-green-dark'}`}
                 aria-label={isOpen ? "Close Support Chat" : "Open Support Chat"}
             >
                 {isOpen ? <X size={24} /> : <MessageCircle size={24} />}

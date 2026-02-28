@@ -28,15 +28,15 @@ const {isAuthenticated} = useAuth();
     >
       <div className="bg-black/60 rounded-2xl p-8 max-w-2xl w-full text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Welcome to <span className="text-blue-500">Ship</span>{' '}
-          <span className="text-orange-500">Runway</span> Courier
+          Welcome to <span className="text-brand-green">Ship</span>{' '}
+          <span className="text-brand-orange">Runway</span> Courier
         </h1>
         <p className="text-lg md:text-xl mb-6">Your Trusted Logistics Partner</p>
 
         <div className="flex flex-wrap justify-center gap-4">
           <button
             onClick={handleLearnMoreClick}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-lg"
+            className="bg-brand-green hover:bg-brand-green-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
           >
             Learn More
           </button>

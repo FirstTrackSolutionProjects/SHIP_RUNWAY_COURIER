@@ -36,7 +36,7 @@ const International = () => {
     }
     return (
       <>
-        <form action="" className="flex flex-col max-w-[724px] space-y-4" onSubmit={handleSubmit}>
+        <form action="" className="flex flex-col max-w-[724px] space-y-4 bg-[#F5F5F5] p-6 rounded-2xl shadow-sm border border-gray-200" onSubmit={handleSubmit}>
         <div className="w-full flex mb-2 flex-wrap ">
               <div className="flex-1 mx-2 mb-2 min-w-[200px] space-y-2">
                 <label htmlFor="name">Name</label>
@@ -222,7 +222,7 @@ const International = () => {
               </div>
               </div>
               </div>
-              <button type="submit" className="border bg-white mx-2  py-2 px-4 rounded">
+              <button type="submit" className="bg-[#145A32] hover:bg-[#0E3F2D] text-white font-bold mx-2 py-3 px-6 rounded-xl transition-colors duration-300 shadow-md">
                 Submit Request
               </button>
           </form>
@@ -234,10 +234,10 @@ const International = () => {
     return (
       <>
         
-        <div className="pt-16 relative">
+        <div className="pt-16 relative bg-white">
         
         <div className="w-full p-8 flex flex-col items-center space-y-6">
-          <div className="justify-center text-center text-3xl font-medium mb-8 flex">
+          <div className="justify-center text-center text-3xl font-bold mb-8 flex text-[#145A32]">
             International Price Inquiry
           </div>
           <International />

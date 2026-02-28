@@ -25,8 +25,8 @@ const Card = ({ report }) => {
           </div>
         </div>
         <div className="absolute right-4 sm:right-8 flex items-center space-x-2">
-          <div className={`${report.dispute_deduction >= 0 ? 'text-red-500' : 'text-green-500'} font-bold`}>{report.dispute_deduction >= 0 ? '-':''}₹{report.dispute_deduction}</div>
-          <div className="px-3 py-1 bg-red-500  rounded text-white cursor-pointer" onClick={() => setIsView(true)}>View</div>
+          <div className={`${report.dispute_deduction >= 0 ? 'text-[#E49B0F]' : 'text-[#145A32]'} font-bold`}>{report.dispute_deduction >= 0 ? '-':''}₹{report.dispute_deduction}</div>
+          <div className="px-3 py-1 bg-[#145A32] hover:bg-[#0E3F2D] rounded text-white cursor-pointer transition-colors" onClick={() => setIsView(true)}>View</div>
         </div>
       </div>
     </>
@@ -37,6 +37,8 @@ const Listing = () => {
   const [reports, setReports] = useState([])
   const {role} = useAuth();
   const admin = role === USER_ROLES.ADMIN;
+  const brandGreen = "#145A32";
+  const brandDarkGreen = "#0E3F2D";
   const [filteredReports, setFilteredReports] = useState([]);
   const [filters, setFilters] = useState({
     orderId: ""
@@ -87,16 +89,16 @@ const Listing = () => {
   return (
     <>
       <div
-        className={`w-full p-4 flex flex-col items-center space-y-6`}
+        className={`w-full p-4 flex flex-col items-center space-y-6 bg-white`}
       >
-        <div className="w-full h-16 px-4  relative flex justify-between">
-          <div className="text-2xl font-medium">INTERNATIONAL WEIGHT DISPUTES</div>
-          {admin ? <div><button type='button' onClick={toggleCreateDisputePopup} className="mx-2 px-5 py-1 border rounded bg-red-500 text-white">Create</button></div> : null}
+        <div className="w-full h-16 px-4  relative flex justify-between border-b border-[#F5F5F5]">
+          <div className="text-2xl font-bold text-[#145A32]">INTERNATIONAL WEIGHT DISPUTES</div>
+          {admin ? <div><button type='button' onClick={toggleCreateDisputePopup} className="mx-2 px-5 py-1 rounded bg-[#E49B0F] hover:bg-[#C97A00] text-white font-bold transition-colors">Create</button></div> : null}
         </div>
 
-        <details className="w-full p-2 bg-red-500 rounded-xl text-white">
-          <summary>Filters</summary>
-          <div className="grid space-y-2 lg:grid-rows-1 lg:grid-cols-4 lg:space-y-0 lg:space-x-4 p-2 rounded-xl w-full bg-red-500 text-black justify-evenly">
+        <details className="w-full p-2 bg-[#145A32] rounded-xl text-white">
+          <summary className="cursor-pointer font-bold">Filters</summary>
+          <div className="grid space-y-2 lg:grid-rows-1 lg:grid-cols-4 lg:space-y-0 lg:space-x-4 p-2 rounded-xl w-full bg-[#145A32] text-black justify-evenly">
             <input
               className="p-1 rounded-xl"
               type="text"
