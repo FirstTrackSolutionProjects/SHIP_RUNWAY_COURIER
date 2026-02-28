@@ -36,7 +36,7 @@ const Footer = () => {
               <li><Link to="/faq" onClick={scrollToTop} className="hover:underline">FAQs</Link></li>
               <li><Link to="/about-us" onClick={scrollToTop} className="hover:underline">About Us</Link></li>
               <li><Link to="/contact-us" onClick={scrollToTop} className="hover:underline">Contact Us</Link></li>
-              <li><Link to="/ticket-raise" onClick={scrollToTop} className="hover:underline">Raise a Ticket</Link></li>
+
               <li><Link to="/privacy" onClick={scrollToTop} className="hover:underline">Privacy & Policy</Link></li>
               <li><Link to="/terms" onClick={scrollToTop} className="hover:underline">Terms of Use</Link></li>
             </ul>

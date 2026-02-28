@@ -350,7 +350,7 @@ const TextForm = ({ id, onNext }) => {
 };
 
 const UpdateProfileRequest = () => {  
-  const {id} = useAuth()
+  const { id } = useAuth();
   const [step, setStep] = useState(1);
   const nextStep = () => setStep((prevStep) => prevStep + 1);
 

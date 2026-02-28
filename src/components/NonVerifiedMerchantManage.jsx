@@ -1,28 +1,26 @@
 import { useEffect , useState  } from 'react'
-import formatDateAndTime from '../utils/formatDateAndTime'
 const API_URL = import.meta.env.VITE_APP_API_URL
 
 
 const Card = ({merchant}) => {
     // const [view, setView] = useState(false)
     return (
-      <>
-        {/* { view && <View {...merchant} merchant={merchant} setView={setView} />} */}
-        <div className='p-4 border'>
-            <p>User Id : {merchant.uid}</p>
-            <p>Name : {merchant.fullName}</p>
-            <p>Business Name : {merchant.businessName}</p>
-            <p>Phone : {merchant.phone}</p>
-            <p>Email : {merchant.email}</p>
-            <p className='text-gray-400'>{formatDateAndTime(merchant.createdAt)}</p>
-        </div>
-      </>
+        <>
+            {/* { view && <View {...merchant} merchant={merchant} setView={setView} />} */}
+            <div className='p-4 border'>
+                <p>User Id : {merchant.uid}</p>
+                <p>Name : {merchant.fullName}</p>
+                <p>Business Name : {merchant.businessName}</p>
+                <p>Phone : {merchant.phone}</p>
+                <p>Email : {merchant.email}</p>
+            </div>
+        </>
     )
 }
 
 
 
-const NonVerifiedMerchantManage =  () => {
+const MerchantManage =  () => {
     const [merchants, setMerchants] = useState([    ])
     useEffect(() => {
         const getVerifiedMerchant = async () => {
@@ -59,4 +57,4 @@ const NonVerifiedMerchantManage =  () => {
   )
 }
 
-export default NonVerifiedMerchantManage
+export default MerchantManage

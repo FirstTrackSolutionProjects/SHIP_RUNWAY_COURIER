@@ -1,177 +1,419 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import register from "../services/register";
-import { useAuth } from "../context/AuthContext";
-import EmailOTPVerificationModal from "../components/Modals/EmailOTPVerificationModal";
+import { Link } from "react-router-dom";
+import { FaUser, FaPhoneAlt, FaEnvelope, FaLock, FaBuilding } from "react-icons/fa";
+import React, { useEffect, useState, useRef } from 'react'; // Added useRef
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUserTag, faPhone, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../context/AuthContext';
+// import EmailOTPVerificationModal from '../components/Modals/EmailOTPVerificationModal'; // Removed modal import
 import registerImage from '/register-image.jpg';
+import registerService from '../services/register'; // Now using default export, but implementation expects named exports. Assuming service file updates handle this.
+import { requestRegistrationOTPService } from '../services/register'; // NEW service import (assuming both exported from services/register now)
+import { toast } from 'react-toastify';
+import { Box, Button, TextField } from '@mui/material';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { USER_ROLES } from '../Constants'; // Assuming Constants.jsx is the path
 
 const Register = () => {
-  const { isAuthenticated, login, verified, emailVerified } = useAuth();
-  const [emailModalOpen, setEmailModalOpen] = useState(false)
-  const [loading, setLoading] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     reg_email: "",
-    create_password: "",
+    reg_password: "",
     confirm_password: "",
     business_name: "",
     mobile: "",
+    role: USER_ROLES.MERCHANT, // Default role selection
   });
-  const closeEmailModal = () => {
-    setEmailModalOpen(false);
-  }
+  const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false); // Added loading state
+
+  // --- OTP STATE & LOGIC ---
+  const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const [timer, setTimer] = useState(0); // 30-second regeneration cooldown
+  const [otpValidUntil, setOtpValidUntil] = useState(0); // Absolute timestamp (ms) for 5-minute validity
+  const timerRef = useRef(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const emailRef = useRef(''); // Stores the email that received the OTP
+  // -------------------------
+
+  const { isAuthenticated, login, verified, role} = useAuth(); // Added role: authRole
+  // const [emailModalOpen, setEmailModalOpen] = useState(false) // Removed modal state
+  const navigate = useNavigate();
+
+  // const closeEmailModal = () => { // Removed modal function
+  //   setEmailModalOpen(false);
+  // }
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(1, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  const validate = () => {
+
+  const handleGenerateOTP = async () => {
+    const email = formData.reg_email;
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        toast.error("Please enter a valid email format before generating OTP.");
+        return;
+    }
+
+    setIsGenerating(true);
+    try {
+        await requestRegistrationOTPService(email);
+        
+        emailRef.current = email; 
+        setOtpSent(true);
+        setTimer(30); // Start 30-second regeneration cooldown
+        setOtpValidUntil(Date.now() + 300 * 1000); // OTP valid for 5 minutes (300,000 ms)
+        setOtp(''); // Clear previous OTP input
+        toast.success("OTP sent to your email. Active for 5 minutes.");
+
+    } catch (error) {
+        // Error handling for requestRegistrationOTPService uses throw
+        toast.error(error); 
+    } finally {
+        setIsGenerating(false);
+    }
+  };
+
+
+  const validate = (isSubmission = false) => {
+    let validationErrors = false;
+
+    if (!Object.values(USER_ROLES).includes(formData.role)) {
+      toast.error("Invalid user role selected");
+      validationErrors = true;
+    }
+
     if (!/^[A-Za-z\s]+$/.test(formData.name)) {
-      toast.error("Name should only contain letters and spaces");
-      return false;
+      toast.error("Full name should contain alphabets only")
+      validationErrors = true;
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.reg_email)) {
-      toast.error("Invalid email format");
-      return false;
+      toast.error("Invalid email format")
+      validationErrors = true;
     }
 
     if (formData.reg_password.length < 4) {
-      toast.error("Password must be at least 4 characters long");
-      return false;
+      toast.error("Password should be at least 4 characters")
+      validationErrors = true;
     }
 
     if (formData.reg_password !== formData.confirm_password) {
-      toast.error("Passwords do not match");
-      return false;
+      toast.error("Passwords do not match")
+      validationErrors = true;
     }
 
     if (!/^\d{10}$/.test(formData.mobile)) {
-      toast.error("Mobile number must be 10 digits long");
-      return false;
+      toast.error("Mobile number should be exactly 10 digits")
+      validationErrors = true;
     }
 
-    return true;
+    // Check if email used for OTP matches current form email
+    if (isSubmission && otpSent && emailRef.current !== formData.reg_email) {
+        toast.error("Please re-generate OTP for the modified email address.");
+        validationErrors = true;
+    }
+
+    // OTP validation only required on final submission
+    if (isSubmission && !validationErrors) {
+        if (!otpSent) {
+            toast.error("Please generate the OTP.");
+            validationErrors = true;
+        } else if (Date.now() > otpValidUntil) {
+            toast.error("The OTP has expired (5 minute limit). Please generate a new one.");
+            validationErrors = true;
+        } else if (otp.length !== 6) {
+            toast.error("Please enter the 6-digit OTP.");
+            validationErrors = true;
+        }
+    }
+
+    return validationErrors;
   };
+
   useEffect(()=>{
-    console.log("validation", isAuthenticated)
     if (isAuthenticated && verified){
       navigate("/dashboard")
-    } else if (isAuthenticated && emailVerified){
+    } else if (isAuthenticated && role === USER_ROLES.MERCHANT) {
       navigate("/verify")
-    } else if (isAuthenticated){
-      setEmailModalOpen(true);
     }
-  },[isAuthenticated])
+  },[isAuthenticated, verified, navigate, role]) // Navigation dependencies added
+
+  // Timer useEffect: Handles starting, stopping, and cleanup of the 30s regeneration cooldown
+  useEffect(() => {
+    // If otpSent is true and the cooldown timer is active (timer > 0)
+    if (otpSent && timer > 0) {
+        // Clear any existing interval before setting a new one
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+        }
+        
+        timerRef.current = setInterval(() => {
+            setTimer((prev) => {
+                if (prev === 1) {
+                    clearInterval(timerRef.current);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    }
+    
+    // Cleanup on unmount or when dependencies (otpSent, timer) change
+    return () => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+        }
+    };
+  },[otpSent, timer]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  if (!acceptTerms) {
-    toast.error("Please accept Terms & Conditions");
-    return;
-  }
-      setLoading(true);
-      if (!validate()) {
-        setLoading(false);
+    if (!acceptTerms) {
+      toast.error("Please accept Terms & Conditions");
+      return;
+    }
+
+    // Pass true to validate for final submission checks including OTP
+    const validationErrors = validate(true); 
+    if (validationErrors) {
+        toast.error("Please check form format!");
         return;
-      };
-      try {
-        const registerResponse = await register(formData)
-        if (registerResponse?.success) {
-          toast.success("User registered successfully!");
-          await login(registerResponse?.token)
+    }
+
+    setLoading(true);
+
+    try {
+        const registerPayload = {
+            fullName: formData.name,
+            businessName: formData.business_name,
+            email: formData.reg_email,
+            password: formData.reg_password,
+            mobile: formData.mobile,
+            role: formData.role,
+            otp: otp, // Include OTP
+        };
+        
+        const registerResponse = await registerService(registerPayload)
+        
+        if (registerResponse?.token) { // Successful registration returns a token
+          toast.success("Registration and Email Verification successful!");
+          await login(registerResponse.token);
+          
+          const newRole = registerPayload.role;
+              
+          // --- FIX: Role-based Redirection ---
+          if (newRole === USER_ROLES.MERCHANT) {
+              // Merchant must proceed to KYC
+              navigate("/verify"); 
+          } else {
+              // Other roles skip KYC and go straight to Dashboard
+              navigate("/dashboard"); 
+          }
+          // ------------------------------------
         } else {
           toast.error(registerResponse?.message || "Registration failed, please try again.");
         }
-      } catch (err) {
-        toast.error("Unexpected Error Occured");
-      } finally {
+    } catch (err) {
+        // Handles errors thrown by registerService (e.g., Invalid OTP, OTP Expired)
+        toast.error(err); 
+    } finally {
         setLoading(false);
-      }
+    }
   };
 
+  const navigateToLogin = () => {
+    navigate('/login');
+  };
   return (
     <>
-    {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />}
-    <div className="bg-white min-h-screen py-12">
-      <div className="max-w-md mx-auto px-4">
-        {/* Top Image */}
+    {/* {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />} // Removed modal usage */}
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-gray-100 flex flex-col items-center justify-start px-4 py-10">
+
+      {/* Top Image */}
+      <div className="w-full max-w-md flex justify-center mb-6">
         <img
           src={registerImage}
           alt="Register Banner"
           className="w-full max-h-64 object-cover rounded-xl mb-8"
         />
+      </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-lg">
-          <h2 className="text-3xl font-bold text-center text-black mb-6">Create Account</h2>
+      {/* Form Card */}
+      <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-xl">
+        <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
+          Create Account
+        </h2>
 
-          <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+
+          {/* Full Name */}
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaUser className="text-gray-500 mr-2" />
             <input
               type="text"
               placeholder="Full Name"
+              required
               name="name"
               value={formData.name}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+          </div>
 
-             <div className="flex space-x-2">
-               <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 bg-white">
-                <span className="text-xl mr-2">🇮🇳</span>
-                <span className="text-gray-800">+91</span>
-              </div>
-            
+          {/* Phone */}
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaPhoneAlt className="text-gray-500 mr-2" />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              required
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleChange}
+              className="w-full focus:outline-none"
+            />
+          </div>
+
+    {/* Email + Generate OTP */}
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center border border-gray-300 rounded-md pr-1 py-2 focus-within:ring-2 focus-within:ring-red-500">
+              <FaEnvelope className="text-gray-500 mx-3" />
               <input
-                type="tel"
-                placeholder="Phone Number"
-                name="mobile"
-                value={formData.mobile}
+                type="email"
+                placeholder="Email"
+                required
+                name="reg_email"
+                value={formData.reg_email}
                 onChange={handleChange}
-                className="w-5/6 border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-full focus:outline-none"
+                disabled={otpSent && timer > 0} // Disable email input if OTP is active
               />
+              <button
+                type="button"
+                onClick={handleGenerateOTP}
+                disabled={isGenerating || (otpSent && timer > 0 && emailRef.current === formData.reg_email)}
+                className={`px-3 py-1 text-sm rounded-md font-semibold transition whitespace-nowrap 
+                            ${(isGenerating || (otpSent && timer > 0 && emailRef.current === formData.reg_email)) 
+                              ? "bg-gray-300 text-gray-600 cursor-not-allowed" 
+                              : "bg-red-600 text-white hover:bg-red-700"}`}
+              >
+                {isGenerating ? 'Sending...' : (otpSent && timer > 0) ? formatTime(timer) : 'Generate OTP'}
+              </button>
             </div>
            
 
+            {/* OTP Input Field (Conditional) */}
+            {(otpSent || timer > 0) && (
+                <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+                  <FaLock className="text-gray-500 mr-2" />
+                  <input
+                    type="text"
+                    placeholder="Enter 6-digit OTP"
+                    required
+                    name="otp"
+                    value={otp}
+                    onChange={(e) => {
+                        // Restrict input to 6 digits and numbers
+                        const value = e.target.value.replace(/\D/g, '').slice(0, 6);
+                        setOtp(value);
+                    }}
+                    className="w-full focus:outline-none"
+                    maxLength={6}
+                  />
+                </div>
+            )}
+          </div>
+
+          {/* Password */}
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaLock className="text-gray-500 mr-2" />
             <input
-              type="email"
-              placeholder="Email"
-              name="reg_email"
-              value={formData.reg_email}
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              required
+              name="reg_password"
+              value={formData.reg_password}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+            <button 
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="text-gray-500 ml-2"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+          </div>
 
+          {/* Confirm Password */}
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaLock className="text-gray-500 mr-2" />
             <input
-              type="password"
-              placeholder="Create Password"
-              name="create_password"
-              value={formData.create_password}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            />
-
-            <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm Password"
+              required
               name="confirm_password"
               value={formData.confirm_password}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+            <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="text-gray-500 ml-2"
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+          </div>
 
+          {/* Business Name */}
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaBuilding className="text-gray-500 mr-2" />
             <input
               type="text"
               placeholder="Business Name"
+              required
               name="business_name"
               value={formData.business_name}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
+          </div>
+          
+          {/* Role Selection */}
+          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <label htmlFor="role-select" className="text-gray-500 text-sm mb-1">Register As:</label>
+            <select
+              id="role-select"
+              required
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full focus:outline-none border-none bg-transparent"
+            >
+              <option value={USER_ROLES.MERCHANT}>Merchant</option>
+              {/* Temporarily hidden roles */}
+              {/* <option value={USER_ROLES.SUBMERCHANT}>Sub-merchant</option> */}
+              {/* <option value={USER_ROLES.MERCHANT_EMPLOYEE}>Merchant Employee</option> */}
+              {/* <option value={USER_ROLES.ADMIN_EMPLOYEE}>Admin Employee</option> */}
+              {/* Note: ADMIN role is excluded from public registration */}
+            </select>
+          </div>
 
          {/* Terms & Conditions Checkbox */}
             <div className="flex items-start">
@@ -219,7 +461,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
