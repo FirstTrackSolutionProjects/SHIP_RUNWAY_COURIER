@@ -34,6 +34,9 @@ const ScrollToTop = () => {
 };
 
 const App = () => {
+  const { pathname } = useLocation();
+  const isDashboard = pathname.startsWith('/dashboard');
+
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem('token')
   );
@@ -72,7 +75,7 @@ const App = () => {
           <Route path='/verify' element={<Verify/>}></Route>
         </Routes>
       	<FloatingAssistant />
-        <Footer />
+        {!isDashboard && <Footer />}
       </div>
     </>
   );

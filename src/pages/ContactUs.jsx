@@ -31,7 +31,7 @@ const ContactUs = () => {
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#145A32]"
             />
              <div className="flex space-x-2">
                <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 bg-white">
@@ -42,7 +42,7 @@ const ContactUs = () => {
               <input
                 type="tel"
                 placeholder="Phone Number"
-                className="w-5/6 border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="w-5/6 border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#145A32]"
               />
             </div>
            
@@ -50,16 +50,16 @@ const ContactUs = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#145A32]"
             />
             <textarea
               placeholder="Your Message"
               rows="4"
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#145A32]"
             ></textarea>
             <button
               type="submit"
-              className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition"
+              className="w-full bg-[#145A32] text-white py-3 rounded-md font-semibold hover:bg-[#0E3F2D] transition"
             >
               Submit
             </button>
@@ -67,7 +67,7 @@ const ContactUs = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="bg-blue-900 text-white rounded-xl shadow-md p-6">
+        <div className="bg-[#145A32] text-white rounded-xl shadow-md p-6">
           <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
           <p className="mb-3">
             <strong>Address:</strong> Office No. 110, Bharat Chambars, <br/>Baroda Street Back Side Masjid Bundar East, Mumbai- 400009

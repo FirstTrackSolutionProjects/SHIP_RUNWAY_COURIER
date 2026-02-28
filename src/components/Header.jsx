@@ -63,53 +63,53 @@ return (
             to="/"
             className="relative group"
         >
-            <span className="hover:text-blue-600">Home</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Home</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         <Link to="/tracking" className="relative group">
-            <span className="hover:text-blue-600">Tracking</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Tracking</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         <Link to="/pricing" className="relative group">
-            <span className="hover:text-blue-600">Pricing</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Pricing</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         <Link to="/about-us" className="relative group">
-            <span className="hover:text-blue-600">About</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">About</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         <Link to="/blog" className="relative group">
-            <span className="hover:text-blue-600">Blog</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Blog</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
         <Link to="/contact-us" className="relative group">
-            <span className="hover:text-blue-600">Contact</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Contact</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
         </Link>
 
           {isAuthenticated && (
             <Link to="/dashboard" className="relative group">
-            <span className="hover:text-blue-600">Dashboard</span>
-            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            <span className="hover:text-brand-orange">Dashboard</span>
+            <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
             </Link>
         )}
 
         {!isAuthenticated && (
             <Link to="/sign-in" className="relative group">
-              <span className="hover:text-blue-600">Sign In</span>
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hover:text-brand-orange">Sign In</span>
+              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
             </Link>
           )}
         </nav>
         <div className='md:hidden' onClick={()=>setShowRecharge(true)}>
           {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-green-600 ${balance < 250 ? "text-red-400" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-green-900`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-red-400 text-3xl">!</p>}
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
+              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
                 <p>{`₹${balance}`}</p>
               </div>
               </>
@@ -117,14 +117,14 @@ return (
         </div>
         {isAuthenticated?<div className='md:flex items-center space-x-4 hidden'>
           {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-green-600 ${balance < 250 ? "text-red-400" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-green-900`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-red-400 text-3xl">!</p>}
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
+              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
                 <p>{`₹${balance}`}</p>
               </div>
               </>
           ):null}
           <div className='flex items-center'>
-            {name} <span className='bg-red-500 text-white text-xl p-3 cursor-pointer rounded-xl mx-3' onClick={logout}><FaDoorOpen /></span>
+            {name} <span className='bg-brand-orange hover:bg-brand-orange-dark text-white text-xl p-3 cursor-pointer rounded-xl mx-3 transition-colors' onClick={logout}><FaDoorOpen /></span>
           </div>
           </div>:null}
 

@@ -64,7 +64,7 @@ const SignIn = () => {
   return (
     <>
     {/* Removed EmailOTPVerificationModal rendering */}
-    <div className="min-h-screen bg-gradient-to-b from-red-50 to-gray-100 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex items-center justify-center p-6">
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6">
         
@@ -82,7 +82,7 @@ const SignIn = () => {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaEnvelope className="text-gray-500 mr-2" />
             <input
               type="email"
@@ -93,7 +93,7 @@ const SignIn = () => {
             />
           </div>
 
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaLock className="text-gray-500 mr-2" />
             <input
               type={showPassword ? "text" : "password"}
@@ -112,7 +112,7 @@ const SignIn = () => {
           </div>
 
           {/* Role Selection (New) */}
-          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <label htmlFor="role-select" className="text-gray-500 text-sm mb-1">Sign In As:</label>
             <select
               id="role-select"
@@ -154,7 +154,7 @@ const SignIn = () => {
           <button
             type="submit"
             disabled={!email || !password}
-            className="w-full bg-red-900 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition"
+            className="w-full bg-[#145A32] text-white py-2 rounded-md font-semibold hover:bg-[#0E3F2D] transition-colors duration-200"
           >
             SIGN IN
           </button>

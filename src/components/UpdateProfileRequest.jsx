@@ -280,8 +280,8 @@ const TextForm = ({ id, onNext }) => {
       }}
       className="border-gray-300 shadow-xl border-2 rounded-xl "
     >
-      <Typography variant="h4" className="text-2xl sm:text-4xl lg:text-5xl">Profile Update Request</Typography>
-      <Typography variant="h6" className="text-2xl sm:text-4xl lg:text-5xl">(Only fill fields you want to update)</Typography>
+      <Typography variant="h4" sx={{ color: '#145A32' }} className="text-2xl sm:text-4xl lg:text-5xl font-bold">Profile Update Request</Typography>
+      <Typography variant="h6" sx={{ color: '#E49B0F' }} className="text-2xl sm:text-4xl lg:text-5xl">(Only fill fields you want to update)</Typography>
 
 
       <Grid container spacing={2} sx={{ mt: 2 }}>
@@ -341,7 +341,12 @@ const TextForm = ({ id, onNext }) => {
         type="submit"
         disabled={loadingState?true:false}
         fullWidth
-        sx={{ mt: 3, maxWidth: 300, bgcolor: 'black' }}
+        sx={{ 
+          mt: 3, 
+          maxWidth: 300, 
+          bgcolor: '#145A32',
+          '&:hover': { bgcolor: '#0E3F2D' }
+        }}
       >
         {loadingState || 'Submit'}
       </Button>

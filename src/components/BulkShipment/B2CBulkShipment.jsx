@@ -515,13 +515,13 @@ const UploadSection = ({ step, file, fileInputRef, handleFileChange, handleDownl
     <Paper sx={{ p: { xs: 2, sm: 4 }, textAlign: 'center', boxShadow: 3, border: '2px dashed #fcd3d3' }}>
         {step === 'LOADING' ? (
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <CircularProgress color="error" sx={{ mb: 2 }} />
-                <Typography variant="h6">Processing File...</Typography>
+                <CircularProgress sx={{ mb: 2, color: '#145A32' }} />
+                <Typography variant="h6" sx={{ color: '#145A32' }}>Processing File...</Typography>
                 <Typography variant="body2" color="textSecondary">Validating structure and data. This may take a moment.</Typography>
             </Box>
         ) : (
             <>
-                <Typography variant="h6" gutterBottom>Upload Domestic Bulk Shipment File</Typography>
+                <Typography variant="h6" gutterBottom sx={{ color: '#145A32', fontWeight: 'bold' }}>Upload Domestic Bulk Shipment File</Typography>
                 <Typography variant="body2" color="textSecondary" sx={{ mb: 3 }}>
                     Please upload your `.xlsx` or `.xls` file following the provided format.
                 </Typography>
@@ -544,14 +544,14 @@ const UploadSection = ({ step, file, fileInputRef, handleFileChange, handleDownl
                         variant="contained"
                         startIcon={<UploadFileIcon />}
                         onClick={() => fileInputRef.current.click()}
-                        sx={{ mr: { xs: 0, sm: 2 }, bgcolor: '#ef4444', '&:hover': { bgcolor: '#dc2626' } }}
+                        sx={{ mr: { xs: 0, sm: 2 }, bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
                     >
                         Choose File
                     </Button>
                     <Button
                         variant="contained"
                         onClick={handleViewWarehouses}
-                        sx={{ bgcolor: '#3b82f6', '&:hover': { bgcolor: '#2563eb' } }}
+                        sx={{ bgcolor: '#E49B0F', '&:hover': { bgcolor: '#C97A00' } }}
                     >
                         View Created Warehouses
                     </Button>
@@ -559,7 +559,7 @@ const UploadSection = ({ step, file, fileInputRef, handleFileChange, handleDownl
                         variant="outlined"
                         startIcon={<DownloadIcon />}
                         onClick={handleDownloadSample}
-                        sx={{ color: '#ef4444', borderColor: '#ef4444', '&:hover': { bgcolor: '#fef2f2' } }}
+                        sx={{ color: '#145A32', borderColor: '#145A32', '&:hover': { bgcolor: '#F5F5F5', borderColor: '#0E3F2D' } }}
                     >
                         Download Sample
                     </Button>
@@ -842,15 +842,15 @@ const DataGridPreview = ({
                     
                     sx={{
                         height: '100%', 
-                        border: '1px solid #000',
-                        borderRadius: 0,
+                        border: '1px solid #e0e0e0',
+                        borderRadius: '4px',
                         '& .MuiDataGrid-columnHeaders': {
-                          borderBottom: '1px solid #000',
-                          backgroundColor: '#A34757',
+                          borderBottom: '1px solid #e0e0e0',
+                          backgroundColor: '#145A32',
                           color: '#FFF',
                         },
                         '& .MuiDataGrid-columnHeader': {
-                          backgroundColor: '#A34757',
+                          backgroundColor: '#145A32',
                           fontWeight: 'bold',
                         },
                         '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
@@ -1330,7 +1330,7 @@ const BulkShipment = () => {
           startIcon={<SendIcon />}
           onClick={handleSubmitBulk}
           disabled={validationErrors.length > 0 || validatedPayload.length === 0 || step === 'SUBMITTING'}
-          sx={{ bgcolor: '#ef4444', '&:hover': { bgcolor: '#dc2626' } }}
+          sx={{ bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
         >
           {step === 'SUBMITTING' ? 'Submitting...' : `Submit ${validatedPayload.length} Valid Orders`}
         </Button>

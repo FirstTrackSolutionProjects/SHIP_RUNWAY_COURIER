@@ -77,8 +77,8 @@ const Navbar = () => {
                 <Link
                   key={item.to}
                   to={item.to}
-                  className={`hover:text-red-600 transition ${
-                    pathname === item.to ? "font-semibold text-yellow-500" : "text-yellow-500"
+                  className={`hover:text-[#E49B0F] transition ${
+                    pathname === item.to ? "font-bold text-[#E49B0F]" : "text-white"
                   }`}
                 >
                   {item.label}
@@ -88,8 +88,8 @@ const Navbar = () => {
             {isAuthenticated && (
           <div className="h-16 flex space-x-3 items-center">
             {verified? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-blue-600 ${balance < 250 ? "text-red-400" : "text-green-400"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-red-900`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-0.5 text-red-400 text-3xl">!</p>}
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-[#145A32] ${balance < 250 ? "text-[#E49B0F]" : "text-white"} flex items-center font-bold rounded-tl-xl rounded-br-xl px-4 min-w-14 py-2 cursor-pointer border border-[#E49B0F]/30 hover:bg-[#0E3F2D] transition-colors`}>
+              {balance < 250 && <p className="absolute -mt-5 top-0 right-0.5 text-[#E49B0F] text-3xl">!</p>}
                 <p>{`₹${balance}`}</p>
               </div>
               </>
@@ -103,7 +103,7 @@ const Navbar = () => {
                 {formatBusinessName(business_name)}
               </p>
               <p
-                className="bg-red-400 text-white flex items-center font-medium rounded-xl px-2 py-2 cursor-pointer"
+                className="bg-[#E49B0F] hover:bg-[#C97A00] text-white flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer transition-colors"
                 onClick={() => {
                   logout();
                   navigate("/");

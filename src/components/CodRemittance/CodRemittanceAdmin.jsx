@@ -35,9 +35,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-          currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'
-        }`}
+        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#0E3F2D]'}`}
       >
         <span className="hidden sm:inline">Previous</span>
         <span className="sm:hidden">Prev</span>
@@ -48,9 +46,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           key={idx}
           onClick={() => page.number !== '...' && onPageChange(page.number)}
           className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-            page.number === '...' ? 'cursor-default'
-            : page.isCurrent ? 'bg-red-500 text-white'
-            : 'bg-white hover:bg-gray-100 border'
+            page.number === '...'
+              ? 'cursor-default'
+              : page.isCurrent
+                ? 'bg-[#145A32] text-white'
+                : 'bg-white hover:bg-gray-100 border'
           }`}
         >
           {page.number}
@@ -60,9 +60,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-          currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'
-        }`}
+        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#0E3F2D]'}`}
       >
         <span className="hidden sm:inline">Next</span>
         <span className="sm:hidden">Next</span>
@@ -294,7 +292,7 @@ const CodRemittanceAdmin = () => {
           sx={{
             mb: 1,
             p: 2,
-            bgcolor: 'red',
+            bgcolor: '#145A32',
             borderRadius: 2,
             '& .MuiTextField-root': { bgcolor: 'background.paper', borderRadius: 1 },
             overflowX: 'auto',
@@ -471,15 +469,15 @@ const CodRemittanceAdmin = () => {
           getRowId={(row) => row?.ord_id}
           onRowSelectionModelChange={setSelection}
           sx={{
-              border: '1px solid #000',
-              borderRadius: 0,
+              border: '1px solid #e0e0e0',
+              borderRadius: '4px',
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
+                borderBottom: '1px solid #e0e0e0',
+                backgroundColor: '#145A32',
                 color: '#FFF',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 fontWeight: 'bold',
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {

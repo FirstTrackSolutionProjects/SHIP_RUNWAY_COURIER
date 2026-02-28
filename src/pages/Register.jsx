@@ -242,7 +242,7 @@ const Register = () => {
   return (
     <>
     {/* {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />} // Removed modal usage */}
-    <div className="min-h-screen bg-gradient-to-b from-red-50 to-gray-100 flex flex-col items-center justify-start px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex flex-col items-center justify-start px-4 py-10">
 
       {/* Top Image */}
       <div className="w-full max-w-md flex justify-center mb-6">
@@ -262,7 +262,7 @@ const Register = () => {
         <form className="space-y-4" onSubmit={handleSubmit}>
 
           {/* Full Name */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaUser className="text-gray-500 mr-2" />
             <input
               type="text"
@@ -271,12 +271,12 @@ const Register = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border-none p-3 focus:outline-none"
             />
           </div>
 
           {/* Phone */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaPhoneAlt className="text-gray-500 mr-2" />
             <input
               type="text"
@@ -291,7 +291,7 @@ const Register = () => {
 
     {/* Email + Generate OTP */}
           <div className="flex flex-col space-y-2">
-            <div className="flex items-center border border-gray-300 rounded-md pr-1 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <div className="flex items-center border border-gray-300 rounded-md pr-1 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
               <FaEnvelope className="text-gray-500 mx-3" />
               <input
                 type="email"
@@ -310,7 +310,7 @@ const Register = () => {
                 className={`px-3 py-1 text-sm rounded-md font-semibold transition whitespace-nowrap 
                             ${(isGenerating || (otpSent && timer > 0 && emailRef.current === formData.reg_email)) 
                               ? "bg-gray-300 text-gray-600 cursor-not-allowed" 
-                              : "bg-red-600 text-white hover:bg-red-700"}`}
+                              : "bg-[#E49B0F] text-white hover:bg-[#C97A00]"}`}
               >
                 {isGenerating ? 'Sending...' : (otpSent && timer > 0) ? formatTime(timer) : 'Generate OTP'}
               </button>
@@ -319,7 +319,7 @@ const Register = () => {
 
             {/* OTP Input Field (Conditional) */}
             {(otpSent || timer > 0) && (
-                <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+                <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
                   <FaLock className="text-gray-500 mr-2" />
                   <input
                     type="text"
@@ -340,7 +340,7 @@ const Register = () => {
           </div>
 
           {/* Password */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaLock className="text-gray-500 mr-2" />
             <input
               type={showPassword ? "text" : "password"}
@@ -349,7 +349,7 @@ const Register = () => {
               name="reg_password"
               value={formData.reg_password}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border-none p-3 focus:outline-none"
             />
             <button 
               type="button"
@@ -361,7 +361,7 @@ const Register = () => {
           </div>
 
           {/* Confirm Password */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaLock className="text-gray-500 mr-2" />
             <input
               type={showConfirmPassword ? "text" : "password"}
@@ -370,7 +370,7 @@ const Register = () => {
               name="confirm_password"
               value={formData.confirm_password}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border-none p-3 focus:outline-none"
             />
             <button
                 type="button"
@@ -382,7 +382,7 @@ const Register = () => {
           </div>
 
           {/* Business Name */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <FaBuilding className="text-gray-500 mr-2" />
             <input
               type="text"
@@ -391,12 +391,12 @@ const Register = () => {
               name="business_name"
               value={formData.business_name}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full border-none p-3 focus:outline-none"
             />
           </div>
           
           {/* Role Selection */}
-          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
             <label htmlFor="role-select" className="text-gray-500 text-sm mb-1">Register As:</label>
             <select
               id="role-select"
@@ -444,8 +444,8 @@ const Register = () => {
            <button
               type="submit"
               disabled={!acceptTerms}
-              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white 
-              ${acceptTerms ? "bg-black hover:bg-green-600" : "bg-gray-400 cursor-not-allowed"}`}
+              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors duration-200 
+              ${acceptTerms ? "bg-[#145A32] hover:bg-[#0E3F2D]" : "bg-gray-400 cursor-not-allowed"}`}
             >
               Register
             </button>

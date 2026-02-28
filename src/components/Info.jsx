@@ -5,29 +5,29 @@ function Info() {
     {
       count: "20K+",
       label: "Our Trusted Clients",
-      bg: "from-red-300 to-red-100",
-      text: "text-red-900",
+      bg: "from-[#145A32]/20 to-[#145A32]/5",
+      text: "text-[#145A32]",
     },
     {
       count: "40K+",
       label: "Orders Successfully Delivered",
-      bg: "from-violet-200 to-violet-100",
-      text: "text-red-900",
+      bg: "from-[#E49B0F]/20 to-[#E49B0F]/5",
+      text: "text-[#C97A00]",
     },
     {
       count: "35+",
       label: "Suppliers",
-      bg: "from-purple-300 to-purple-100",
-      text: "text-purple-900",
+      bg: "from-[#145A32]/10 to-[#E49B0F]/10",
+      text: "text-[#0E3F2D]",
     },
   ];
 
   return (
     <div
-  className="min-h-screen flex flex-col items-center justify-center px-6 py-14 bg-gradient-to-br from-red-200 via-pink-100 to-white"
+  className="min-h-screen flex flex-col items-center justify-center px-6 py-14 bg-gradient-to-br from-[#F5F5F5] via-white to-[#F5F5F5]"
 >
 
-      <h2 className="text-red-900 text-3xl md:text-4xl font-bold mb-14 text-center">
+      <h2 className="text-[#145A32] text-3xl md:text-4xl font-bold mb-14 text-center">
         ShipWale Superiority
       </h2>
 
@@ -40,7 +40,7 @@ function Info() {
             <div className={`text-4xl font-extrabold ${item.text}`}>
               {item.count}
             </div>
-            <p className={`mt-2 text-lg font-medium ${item.text.replace("900", "800")}`}>
+            <p className={`mt-2 text-lg font-medium opacity-80 ${item.text}`}>
               {item.label}
             </p>
           </div>

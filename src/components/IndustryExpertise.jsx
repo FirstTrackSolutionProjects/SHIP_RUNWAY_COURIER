@@ -46,8 +46,8 @@ const industryData = [
 const IndustryExpertise = () => {
   return (
     <div className="py-10 px-4 bg-white">
-      <h2 className="text-3xl font-bold text-blue-600 mb-8">
-        Industry <span className="text-yellow-500">Expertise</span>
+      <h2 className="text-3xl font-bold text-brand-green mb-8">
+        Industry <span className="text-brand-orange">Expertise</span>
       </h2>
 
       <Swiper

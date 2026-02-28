@@ -11,9 +11,9 @@ function Offers() {
   ];
 
   return (
-   <div className="bg-gradient-to-r from-red-500 via-sky-300 to-gray-300 px-4 py-12 md:py-16 lg:py-20 text-center text-white md:text-gray-900">
+   <div className="bg-gradient-to-r from-[#145A32] via-[#F5F5F5] to-white px-4 py-12 md:py-16 lg:py-20 text-center text-[#145A32]">
 
-      <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-14">
+      <h2 className="text-3xl md:text-4xl font-bold text-[#145A32] mb-14">
         What We Offer
       </h2>
 

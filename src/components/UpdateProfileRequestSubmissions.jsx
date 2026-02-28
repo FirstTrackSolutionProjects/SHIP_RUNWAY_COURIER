@@ -98,15 +98,15 @@ const View = ({request, reqId, uid ,fullName, email, phone, gst, setView, busine
                             {accountNumber && <p>A/C No. : {accountNumber}</p>}
                             {ifsc && <p>IFSC : {ifsc}</p>}
                             <Box className="grid grid-cols-2 grid-rows-2 my-2" gap={1}>
-                                {cancelledCheque && <Button sx={{backgroundColor: '#60A5FF', color:'white'}} onClick={()=>handleDownload('cancelledCheque')}>Cancelled Cheque</Button>}
-                                {gstDoc && <Button sx={{backgroundColor: '#60A5FF', color:'white'}} onClick={()=>handleDownload('gstDoc')}>GST Document</Button>}
-                                {aadharDoc && <Button sx={{backgroundColor: '#60A5FF', color:'white'}} onClick={()=>handleDownload('aadharDoc')}>Aadhar Document</Button>}
-                                {panDoc && <Button sx={{backgroundColor: '#60A5FF', color:'white'}} onClick={()=>handleDownload('panDoc')}>PAN Document</Button>}
+                                {cancelledCheque && <Button sx={{backgroundColor: '#E49B0F', '&:hover': {bgcolor: '#C97A00'}, color:'white'}} onClick={()=>handleDownload('cancelledCheque')}>Cancelled Cheque</Button>}
+                                {gstDoc && <Button sx={{backgroundColor: '#E49B0F', '&:hover': {bgcolor: '#C97A00'}, color:'white'}} onClick={()=>handleDownload('gstDoc')}>GST Document</Button>}
+                                {aadharDoc && <Button sx={{backgroundColor: '#E49B0F', '&:hover': {bgcolor: '#C97A00'}, color:'white'}} onClick={()=>handleDownload('aadharDoc')}>Aadhar Document</Button>}
+                                {panDoc && <Button sx={{backgroundColor: '#E49B0F', '&:hover': {bgcolor: '#C97A00'}, color:'white'}} onClick={()=>handleDownload('panDoc')}>PAN Document</Button>}
                             </Box>
                         </div>
                     </div>
                     <Box className='w-full flex justify-center' gap={1}>
-                    <Button onClick={handleApprove} sx={{backgroundColor:"#33AA33", color: 'white'}} className='w-32'>
+                    <Button onClick={handleApprove} sx={{backgroundColor:"#145A32", '&:hover': {bgcolor: '#0E3F2D'}, color: 'white'}} className='w-32'>
                         {accepting?'Approving...':'Approve'}
                     </Button>
                     <Button onClick={handleReject} sx={{backgroundColor:"#EE3333", color: 'white'}} className='w-32'>
@@ -171,10 +171,10 @@ const UpdateProfileRequestSubmissions =  () => {
     },[]);
   return (
     <>
-    <div className=" py-16 w-full h-full flex flex-col items-center overflow-x-hidden overflow-y-auto">
+    <div className=" py-16 w-full h-full flex flex-col items-center overflow-x-hidden overflow-y-auto bg-[#F5F5F5]">
       <div className='w-full p-8 flex flex-col items-center space-y-8'>
-      <div className='text-center text-3xl font-medium text-black'>Merchant Update Profile Requests</div>
-      <div className='w-full bg-white py-8 px-4'>
+      <div className='text-center text-3xl font-bold text-[#145A32]'>Merchant Update Profile Requests</div>
+      <div className='w-full bg-white py-8 px-4 rounded-xl shadow-sm border border-gray-200'>
         {
             requests.map(((request,index)=>(
                 <Card key={index}  request={request}/>

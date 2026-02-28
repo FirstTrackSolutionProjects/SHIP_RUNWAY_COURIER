@@ -125,7 +125,7 @@ const FileUploadForm = ({reqId}) => {
           <button
             type="button"
             onClick={() => handleUpload("aadharDoc")}
-            className="px-5 py-1 border rounded bg-red-500 text-white"
+            className="px-5 py-1 rounded bg-[#145A32] hover:bg-[#0E3F2D] text-white font-bold transition-colors"
           >
             Upload
           </button>
@@ -143,7 +143,7 @@ const FileUploadForm = ({reqId}) => {
           <button
             type="button"
             onClick={() => handleUpload("panDoc")}
-            className="px-5 py-1 border rounded bg-red-500 text-white"
+            className="px-5 py-1 rounded bg-[#145A32] hover:bg-[#0E3F2D] text-white font-bold transition-colors"
           >
             Upload
           </button>
@@ -211,9 +211,9 @@ const FileUploadForm = ({reqId}) => {
       <div className="px-2 space-x-4 mb-4">
         <button
           type="submit"
-          className="px-5 py-1 border rounded bg-red-500 text-white"
+          className="px-6 py-2 rounded-xl bg-[#E49B0F] hover:bg-[#C97A00] text-white font-bold transition-colors shadow-md"
         >
-          Submit
+          Submit KYC
         </button>
       </div>
       {/* Add similar file inputs for other documents */}
@@ -433,18 +433,18 @@ const TextForm = ({ onNext, setReqId }) => {
       <div className="px-2 space-x-4 mb-4">
         <button
           type="submit"
-          className="px-5 py-1 border rounded bg-red-500 text-white"
+          className="px-6 py-2 rounded-xl bg-[#145A32] hover:bg-[#0E3F2D] text-white font-bold transition-colors"
         >
-          Next
+          Next Step
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
-            setFormData(InitialState);
+            setFormData(INITIAL_STATE);
           }}
-          className="px-5 py-1 border rounded bg-red-500 text-white"
+          className="px-6 py-2 rounded-xl bg-[#F5F5F5] hover:bg-gray-200 text-[#0E3F2D] font-bold border border-gray-300 transition-colors"
         >
-          Clear
+          Clear Form
         </button>
       </div>
     </form>

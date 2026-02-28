@@ -28,28 +28,11 @@ const Greeting = ({ name, className = '' }) => {
   }, [now])
 
   const theme = useMemo(() => {
-    const h = now.getHours()
-    if (h >= 5 && h < 12) {
-      return {
-        gradient: 'from-amber-400 to-orange-600',
-        tint: 'bg-amber-500/15',
-        ring: 'ring-amber-500/20',
-        icon: 'sun'
-      }
-    }
-    if (h >= 12 && h < 17) {
-      return {
-        gradient: 'from-sky-500 to-indigo-600',
-        tint: 'bg-sky-500/15',
-        ring: 'ring-sky-500/20',
-        icon: 'sun'
-      }
-    }
     return {
-      gradient: 'from-violet-500 to-fuchsia-600',
-      tint: 'bg-violet-500/15',
-      ring: 'ring-violet-500/20',
-      icon: 'moon'
+      gradient: 'from-brand-green to-brand-green-dark',
+      tint: 'bg-brand-green/10',
+      ring: 'ring-brand-green/20',
+      icon: now.getHours() >= 5 && now.getHours() < 18 ? 'sun' : 'moon'
     }
   }, [now])
 

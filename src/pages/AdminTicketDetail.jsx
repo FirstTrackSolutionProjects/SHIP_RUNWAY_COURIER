@@ -103,7 +103,7 @@ export default function AdminTicketDetail() {
             </button>
 
             <div className="bg-white rounded-lg shadow-xl p-6">
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">Admin View: Ticket #{ticket.ticket_id}</h1>
+                <h1 className="text-3xl font-bold text-[#145A32] mb-2">Admin View: Ticket #{ticket.ticket_id}</h1>
                 <p className="text-gray-600 mb-4">Client: <span className="font-semibold">{ticket.fullName} (Email: {ticket.email})</span></p>
 
                 <div className="flex justify-between items-start mb-6 border-b pb-4">
@@ -146,7 +146,7 @@ export default function AdminTicketDetail() {
                 </div>
 
                 {/* Conversation History */}
-                <div className="bg-gray-200 p-4 rounded-lg h-[400px] overflow-y-auto mb-4">
+                <div className="bg-[#F5F5F5] p-4 rounded-lg h-[400px] overflow-y-auto mb-4">
                     <h3 className="text-lg font-semibold mb-3 border-b border-gray-400 pb-2">Conversation History</h3>
                     {messages.length === 0 ? (
                         <p className="text-gray-500 text-center py-10">Start the conversation by sending a reply below.</p>
@@ -155,8 +155,8 @@ export default function AdminTicketDetail() {
                             <div key={msg.message_id} className={`flex mb-4 ${msg.sent_by_admin ? 'justify-end' : 'justify-start'}`}>
                                 <div className={`max-w-xl p-3 rounded-xl shadow-md 
                                     ${msg.sent_by_admin 
-                                        ? 'bg-blue-100 text-gray-800' 
-                                        : 'bg-[#dcf8c6] text-gray-900'}`
+                                        ? 'bg-[#145A32] bg-opacity-10 text-gray-800' 
+                                        : 'bg-[#E49B0F] bg-opacity-20 text-gray-900'}`
                                 }>
                                     <p className="text-xs font-bold mb-1">
                                         {msg.sent_by_admin ? 'Admin' : msg.fullName || 'User'}
@@ -185,7 +185,7 @@ export default function AdminTicketDetail() {
                     <div className="flex justify-end mt-2">
                         <button
                             type="submit"
-                            className="bg-red-600 text-white py-2 px-6 rounded-lg font-semibold hover:bg-red-700 transition disabled:opacity-50"
+                            className="bg-[#E49B0F] text-white py-2 px-6 rounded-lg font-semibold hover:bg-[#C97A00] transition disabled:opacity-50"
                             disabled={submitting}
                         >
                             {submitting ? 'Submitting...' : 'Send Admin Reply'}
