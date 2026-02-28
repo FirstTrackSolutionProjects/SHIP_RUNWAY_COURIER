@@ -1,65 +1,74 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import signInImage from '/signin-image.jpg'; // Update the path accordingly
 import { Link, useNavigate } from 'react-router-dom';
 import loginService from '../services/login';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
-import EmailOTPVerificationModal from '../components/Modals/EmailOTPVerificationModal';
+import { USER_ROLES } from '../Constants'; // ADDED: Import USER_ROLES
+// import EmailOTPVerificationModal from '../components/Modals/EmailOTPVerificationModal' // REMOVED: No longer needed
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+import ForgotPasswordModal from '../components/ForgotPasswordModal';
 
 const SignIn = () => {
+  const { isAuthenticated, login, verified } = useAuth();
+  // const [emailModalOpen, setEmailModalOpen] = useState(false); // REMOVED
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState(USER_ROLES.MERCHANT); // Role state
+  
+  // ⭐ ADDED
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login, isAuthenticated, verified, emailVerified } = useAuth();
-  const [emailModalOpen, setEmailModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
-  const closeEmailModal = () => {
-    setEmailModalOpen(false);
-  }
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-  const handleSubmit = async (e) => {
-    try{
-      e.preventDefault();
-      setLoading(true);
-      const response = await loginService(formData);
-      if (response.success) {
-        const token = response.token;
-        if (!token) {
-          toast.error('Token not found. Please try again.');
-          return;
-        }
-        login(response.token);
-        toast.success('Login successful!');
-      } else {
-        toast.error(response?.message || 'Login failed. Please check your credentials.');
-      }
-      console.log('Form submitted:', formData);
-    } catch (error) {
-      console.error("Login error:", error);
-      toast.error(error?.message || "Login failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  // const closeEmailModal = () => { // REMOVED
+  //   setEmailModalOpen(false);
+  // }
+
   useEffect(()=>{
     if (isAuthenticated && verified){
       navigate('/dashboard')
-    } else if(isAuthenticated && emailVerified){
+    } else if(isAuthenticated){
       navigate('/verify')
-    } else if (isAuthenticated){
-      setEmailModalOpen(true)
+    } 
+    // Removed logic for opening EmailOTPVerificationModal as email verification is inline during registration now.
+  },[isAuthenticated, verified, navigate])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = {
+        email,
+        password,
+        role, // Send selected role
+        
+        // ⭐ SEND REMEMBER ME VALUE (optional)
+        rememberMe  
+      }
+
+      const loginResponse = await loginService(formData)
+
+      if (loginResponse.success) {
+        login(loginResponse.token, rememberMe); // ⭐ PASS IT TO AUTH CONTEXT
+        toast.success("Login Successfull")
+      } else {
+        toast.error(loginResponse.message)
+      }
+    } catch (err) {
+      alert(err.response.data.message);
     }
-  },[isAuthenticated])
+  };
+
   return (
     <>
-    {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />}
-    <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
+    {/* Removed EmailOTPVerificationModal rendering */}
+    <div className="min-h-screen bg-gradient-to-b from-red-50 to-gray-100 flex items-center justify-center p-6">
+
+      <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6">
+        
+        <div className="w-full flex justify-center mb-4">
           <img
             className="w-full h-60 object-cover rounded-xl mb-6"
             src={signInImage}
@@ -67,64 +76,105 @@ const SignIn = () => {
           />
         </div>
 
-        <div className="bg-gray-100 shadow-md rounded-xl p-8">
-          <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Sign In</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Welcome Back
+        </h2>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaEnvelope className="text-gray-500 mr-2" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full focus:outline-none"
+            />
+          </div>
+
+          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <FaLock className="text-gray-500 mr-2" />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="ml-2 text-gray-500 focus:outline-none"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+
+          {/* Role Selection (New) */}
+          <div className="flex flex-col border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-red-500">
+            <label htmlFor="role-select" className="text-gray-500 text-sm mb-1">Sign In As:</label>
+            <select
+              id="role-select"
+              required
+              name="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full focus:outline-none border-none bg-transparent"
+            >
+              <option value={USER_ROLES.ADMIN}>Admin</option>
+              <option value={USER_ROLES.MERCHANT}>Merchant</option>
+              {/* Temporarily hidden roles */}
+              {/* <option value={USER_ROLES.SUBMERCHANT}>Sub-merchant</option>
+              <option value={USER_ROLES.MERCHANT_EMPLOYEE}>Merchant Employee</option>
+              <option value={USER_ROLES.ADMIN_EMPLOYEE}>Admin Employee</option> */}
+            </select>
+          </div>
+
+          {/* ⭐ REMEMBER ME CHECKBOX */}
+          <div className="flex items-center justify-between -mt-2">
+            <label className="flex items-center text-sm text-gray-600 cursor-pointer">
               <input
-                id="email"
-                name="email"
-                type="text"
-                placeholder='Enter email or phone number'
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+                type="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+                className="mr-2"
               />
-            </div>
+              Remember me for 30 days
+            </label>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder='password'
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="w-full bg-blue-900 text-white py-3 rounded-md font-semibold hover:bg-blue-800 transition"
-                disabled={loading}
-              >
-                {loading ? 'Signing In...' : 'Sign In'}
-              </button>
-            </div>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-700">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-red-600 font-semibold hover:underline">
-                Register here
-              </Link>
+            <p
+              className="text-sm text-gray-600 cursor-pointer hover:text-red-700"
+              onClick={() => setShowForgotPassword(true)}
+            >
+              Forgot Password?
             </p>
           </div>
+
+          <button
+            type="submit"
+            disabled={!email || !password}
+            className="w-full bg-red-900 text-white py-2 rounded-md font-semibold hover:bg-red-700 transition"
+          >
+            SIGN IN
+          </button>
+        </form>
+
+        <div className="flex items-center my-4">
+          <div className="w-full h-px bg-gray-300"></div>
+          <span className="px-3 text-gray-500 text-sm">or</span>
+          <div className="w-full h-px bg-gray-300"></div>
         </div>
+
+        <p className="text-center text-sm">
+          Don’t have an account?{" "}
+          <Link to="/register" className="text-red-600 font-semibold hover:underline">
+            Register here
+          </Link>
+        </p>
       </div>
     </div>
+    {showForgotPassword ? <ForgotPasswordModal onClose={()=>setShowForgotPassword(false)} /> : null}
     </>
   );
 };

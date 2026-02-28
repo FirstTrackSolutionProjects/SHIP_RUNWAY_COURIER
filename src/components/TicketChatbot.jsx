@@ -1,8 +1,13 @@
+// ShipWale\src\components\TicketChatbot.jsx
+
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// Removed useNavigate
+import { toast } from 'react-toastify'; 
+import { raiseTicketService } from "../services/ticketServices/raiseTicketService"; 
 
 const BOT_DELAY = 500;
 
+// The OPTIONS constant remains here
 const OPTIONS = {
   "Pickup Issue": {
     options: [
@@ -119,16 +124,19 @@ const OPTIONS = {
   },
 };
 
-export default function TicketRaise() {
-  const navigate = useNavigate();
+// Accepts onClose prop instead of using useNavigate
+export default function TicketChatbot({ onClose }) {
+  // Removed const navigate = useNavigate();
   const bottomRef = useRef(null);
 
   const [messages, setMessages] = useState([]);
   const [currentOptions, setCurrentOptions] = useState([]);
   const [step, setStep] = useState("WELCOME");
   const [currentCategory, setCurrentCategory] = useState("");
+  const [currentSubCategory, setCurrentSubCategory] = useState("");
   const [showInput, setShowInput] = useState(false);
   const [inputText, setInputText] = useState("");
+  const [isLoading, setIsLoading] = useState(false); 
 
   const addBot = (text) =>
     setMessages((prev) => [...prev, { from: "bot", text }]);
@@ -136,10 +144,15 @@ export default function TicketRaise() {
   const addUser = (text) =>
     setMessages((prev) => [...prev, { from: "user", text }]);
 
-  // Welcome Message
+  // Scroll to bottom whenever messages update
   useEffect(() => {
-    const timer = setTimeout(() => {
-      addBot("👋 Welcome to Ship Runway Support!");
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      addBot("👋 Welcome to Shipwale Support!");
       setTimeout(() => {
         addBot("How can I help you?");
         setCurrentOptions([
@@ -154,37 +167,36 @@ export default function TicketRaise() {
         setStep("MAIN");
       }, BOT_DELAY);
     }, BOT_DELAY);
-
-    return () => clearTimeout(timer);
   }, []);
 
-  // Auto Scroll
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, currentOptions, showInput]);
 
-  const handleOption = (option) => {
-    addUser(option);
-    setCurrentOptions([]);
+  const submitTicket = async (category, subCategory, description) => {
+    setIsLoading(true);
+    
+    toast.info("Attempting to create ticket...");
 
-    setTimeout(() => {
-      if (step === "MAIN") {
-        if (option === "Other") {
-          addBot("Please describe your issue below:");
-          setShowInput(true);
-        } else {
-          setCurrentCategory(option);
-          addBot("Please select one option:");
-          setCurrentOptions(OPTIONS[option].options);
-          setStep("SUB");
-        }
-      } else if (step === "SUB") {
-        addBot(OPTIONS[currentCategory].replies[option]);
-        askSolved();
-      } else if (step === "SOLVED") {
-        handleSolved(option);
-      }
-    }, BOT_DELAY);
+    const data = {
+        category,
+        subCategory,
+        description,
+    };
+
+    console.log("Submitting Payload:", data); 
+
+    try {
+        const response = await raiseTicketService(data);
+        addBot(`📝 Ticket #${response.ticketId} created successfully. Our team will contact you.`);
+        toast.success(`Ticket ${response.ticketId} Raised!`);
+        // Use onClose instead of navigate
+        setTimeout(() => onClose(), 2000); 
+    } catch (error) {
+        console.error("Ticket Submission Failed:", error); 
+        addBot("❌ Failed to create ticket. Please provide a more detailed description below.");
+        toast.error(error.message || "Ticket creation failed.");
+        setIsLoading(false);
+        setStep("DETAILS"); 
+        setShowInput(true);
+    }
   };
 
   const askSolved = () => {
@@ -195,60 +207,84 @@ export default function TicketRaise() {
     }, BOT_DELAY);
   };
 
+
+  const handleOption = (option) => {
+    if (isLoading) return; 
+    addUser(option);
+    setCurrentOptions([]);
+
+    setTimeout(() => {
+      if (step === "MAIN") {
+        if (option === "Other") {
+          setCurrentCategory(option);
+          addBot("Please describe your issue below:");
+          setStep("DETAILS"); 
+          setShowInput(true);
+        } else {
+          setCurrentCategory(option);
+          addBot("Please select one option:");
+          setCurrentOptions(OPTIONS[option].options);
+          setStep("SUB");
+        }
+      } else if (step === "SUB") {
+        setCurrentSubCategory(option); 
+        addBot(OPTIONS[currentCategory].replies[option]);
+        askSolved(); 
+      } else if (step === "SOLVED") {
+        handleSolved(option);
+      }
+    }, BOT_DELAY);
+  };
+
   const handleSolved = (answer) => {
     if (answer === "Yes") {
-      addBot("🙏 Thank you for contacting Ship Runway Support!");
+      addBot("🙏 Thank you for contacting Shipwale Support!");
+      // Use onClose instead of navigate
+      setTimeout(() => onClose(), 2000); 
     } else {
-      addBot("📝 Ticket created successfully. Our team will contact you.");
-      setTimeout(() => navigate("/"), 2000);
+      addBot("Please provide a detailed description for our team to create the ticket:");
+      setStep("DETAILS"); 
+      setShowInput(true);
     }
   };
 
-  const submitOtherIssue = () => {
-    if (!inputText.trim()) return;
-
+  const submitDetails = () => {
+    if (!inputText.trim() || isLoading) return;
+    
     addUser(inputText);
     setShowInput(false);
-    setInputText("");
+    
+    const category = currentCategory === 'Other' ? 'Other' : currentCategory;
+    const subCategory = currentCategory === 'Other' ? null : currentSubCategory;
+    const description = inputText.trim();
 
-    addBot("📝 Ticket created successfully. Our team will contact you.");
-    setTimeout(() => navigate("/"), 2000);
+    setInputText("");
+    submitTicket(category, subCategory, description);
   };
 
   return (
-    <div className="h-screen bg-[#efeae2] flex justify-center">
-      <div className="w-full max-w-xl flex flex-col bg-[#efeae2] shadow-lg">
-
-        {/* Header */}
-        <div className="bg-[#075e54] text-white px-4 py-3 flex justify-between items-center">
-          <p className="font-semibold">Ship Runway Support</p>
-          <button onClick={() => navigate("/")} className="text-xl">✕</button>
-        </div>
-
-        {/* Chat Body */}
+    // Removed full screen styling wrappers, leaving only the inner chat logic
+    <div className="w-full h-full flex flex-col bg-[#efeae2] overflow-hidden">
+      
+        {/* CHAT BODY */}
         <div className="flex-1 overflow-y-auto px-3 py-4 space-y-3">
-
           {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
-            >
-              <div
-                className={`px-3 py-2 rounded-xl text-sm max-w-[75%]
-                ${msg.from === "user" ? "bg-[#dcf8c6]" : "bg-white"}`}
-              >
+            <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
+              <div className={`px-3 py-2 rounded-xl text-sm max-w-[75%]
+                ${msg.from === "user" ? "bg-[#dcf8c6]" : "bg-white"}`}>
                 {msg.text}
               </div>
             </div>
           ))}
 
-          {currentOptions.length > 0 && (
+          {currentOptions.length > 0 && !isLoading && (
             <div className="grid grid-cols-2 gap-2">
               {currentOptions.map((opt) => (
                 <button
                   key={opt}
                   onClick={() => handleOption(opt)}
-                  className="bg-white border rounded-full py-2 text-sm hover:bg-gray-100"
+                  className="bg-white border rounded-full py-2 text-sm hover:bg-gray-100 transition"
+                  disabled={isLoading}
                 >
                   {opt}
                 </button>
@@ -256,26 +292,37 @@ export default function TicketRaise() {
             </div>
           )}
 
-          {showInput && (
+          {showInput && !isLoading && (
             <div className="flex gap-2 mt-2">
               <input
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Type your issue here..."
                 className="flex-1 px-3 py-2 rounded border"
+                disabled={isLoading}
               />
               <button
-                onClick={submitOtherIssue}
-                className="bg-[#075e54] text-white px-4 rounded"
+                onClick={submitDetails}
+                className="bg-[#075e54] text-white px-4 rounded disabled:opacity-50"
+                disabled={isLoading}
               >
-                Send
+                {isLoading ? 'Sending...' : 'Send'}
               </button>
             </div>
           )}
+          
+          {/* Display loading message if submitting a ticket */}
+          {isLoading && (
+            <div className="flex justify-start">
+                <div className="px-3 py-2 rounded-xl text-sm max-w-[75%] bg-white text-gray-600">
+                    Submitting your ticket...
+                </div>
+            </div>
+          )}
+
 
           <div ref={bottomRef} />
         </div>
-      </div>
     </div>
   );
 }
