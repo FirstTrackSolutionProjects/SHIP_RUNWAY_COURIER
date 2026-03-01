@@ -9,6 +9,7 @@ import Register from './pages/Register';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import BottomNav from './components/BottomNav';
 import Pricing from './pages/Pricing';
 import Tracking from './pages/Tracking';
 import ContactUs from './pages/ContactUs';
@@ -47,6 +48,17 @@ const App = () => {
     console.log('User logged out');
   };
 
+  const hideFooterRoutes = [
+  "/sign-in",
+  "/register",
+  "/tracking",
+  "/blog",
+  "/pricing",
+  ];
+
+const shouldHideFooter =
+  isDashboard || hideFooterRoutes.includes(pathname);
+
   return (
     <>
       <ScrollToTop />
@@ -75,7 +87,8 @@ const App = () => {
           <Route path='/verify' element={<Verify/>}></Route>
         </Routes>
       	<FloatingAssistant />
-        {!isDashboard && <Footer />}
+        {!shouldHideFooter && <Footer />}
+        <BottomNav />
       </div>
     </>
   );

@@ -64,7 +64,7 @@ const SignIn = () => {
   return (
     <>
     {/* Removed EmailOTPVerificationModal rendering */}
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex items-center justify-center p-6 mb-9">
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6">
         
