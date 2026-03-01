@@ -1,4 +1,4 @@
-// ShipWale\src\services\requestRegistrationOTP.js
+// ShipRunway\src\services\requestRegistrationOTP.js
 
 import axios from 'axios';
 const API_URL = import.meta.env.VITE_APP_API_URL;

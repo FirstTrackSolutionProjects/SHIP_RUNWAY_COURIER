@@ -1,4 +1,4 @@
-// ShipWale\src\pages\Dashboard\AdminSupport.jsx
+// ShipRunway\src\pages\Dashboard\AdminSupport.jsx
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
