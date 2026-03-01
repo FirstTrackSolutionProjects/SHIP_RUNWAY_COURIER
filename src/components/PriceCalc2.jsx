@@ -297,18 +297,19 @@ const Domestic = () => {
 
 const PriceCalc = () => {
   return (
-    <>
-      
-      <div className="pt-16 relative">
-      
-      <div className="w-full p-8 flex flex-col items-center space-y-6">
-        <div className="justify-center text-center text-3xl font-medium mb-8 flex">
-          Calculate your shipping price
-        </div>
-        <Domestic />
+    <div className="w-full py-16 px-4">
+      <div className="max-w-4xl mx-auto text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-brand-green tracking-tight mb-4">
+          Rate Calculator
+        </h1>
+        <p className="text-gray-500 text-lg">
+          Get instant estimates for your domestic shipments across India.
+        </p>
+        <div className="w-20 h-1.5 bg-brand-orange mx-auto mt-6 rounded-full"></div>
       </div>
-      </div>
-    </>
+      
+      <Domestic />
+    </div>
   );
 };
 

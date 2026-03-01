@@ -108,8 +108,8 @@ return (
         </nav>
         <div className='md:hidden' onClick={()=>setShowRecharge(true)}>
           {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm`}>
+              {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
                 <p>{`₹${balance}`}</p>
               </div>
               </>
@@ -117,14 +117,17 @@ return (
         </div>
         {isAuthenticated?<div className='md:flex items-center space-x-4 hidden'>
           {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm transition-all duration-300`}>
+              {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
                 <p>{`₹${balance}`}</p>
               </div>
               </>
           ):null}
           <div className='flex items-center'>
-            {name} <span className='bg-brand-orange hover:bg-brand-orange-dark text-white text-xl p-3 cursor-pointer rounded-xl mx-3 transition-colors' onClick={logout}><FaDoorOpen /></span>
+            <span className="text-brand-accent font-semibold">{name}</span> 
+            <span className='bg-brand-green hover:bg-brand-green-dark text-white text-lg p-2.5 cursor-pointer rounded-xl mx-3 transition-all duration-300 shadow-sm' onClick={logout}>
+              <FaDoorOpen />
+            </span>
           </div>
           </div>:null}
 

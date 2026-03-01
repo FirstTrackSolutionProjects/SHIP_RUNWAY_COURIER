@@ -25,7 +25,7 @@ const SidebarItem = ({ item, setShowRecharge, toggleSidebar = () => {}, sidebarE
         <>
             <div
                 onClick={item.isDropdown ? () => setIsOpen(!isOpen) : (item.name === "Wallet Recharge" ? () => setShowRecharge(true) : () => { navigate(`/dashboard/${item.url}`); toggleSidebar(); })}
-                className={`cursor-pointer px-2 w-full h-12 ${isCurrentMenu ? 'bg-red-500' : 'bg-black'} text-white focus:outline-none transition-all duration-300 hover:bg-red-400 relative flex items-center ${sidebarExpanded ? 'justify-start' : 'justify-center'}`}
+                className={`cursor-pointer px-2 w-full h-12 ${isCurrentMenu ? 'bg-brand-green' : 'bg-transparent'} text-white focus:outline-none transition-all duration-300 hover:bg-brand-green-light relative flex items-center ${sidebarExpanded ? 'justify-start' : 'justify-center'}`}
             >
                 {item.icon !== "/image/logo-nobg.png" && <item.icon className={`${sidebarExpanded ? 'mr-3' : ''}`} />}
                 {sidebarExpanded && <p className=''>{item.name}</p>}

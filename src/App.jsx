@@ -69,7 +69,7 @@ const shouldHideFooter =
       />
       <ToastContainer />
 
-      <div className="min-h-[calc(100vh-64px)] w-full overflow-hidden bg-white">
+      <div className="min-h-[calc(100vh-64px)] w-full overflow-hidden bg-brand-gray">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pricing" element={<Pricing />} />

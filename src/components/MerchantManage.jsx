@@ -431,25 +431,27 @@ const MerchantManage =  () => {
                             rowHeight={64}
                             columnHeaderHeight={64}
                             sx={{
-                                border: '1px solid #000',
-                                borderRadius: 0,
+                                border: 'none',
+                                backgroundColor: 'white',
                                 '& .MuiDataGrid-columnHeaders': {
-                                  borderBottom: '1px solid #000',
-                                  backgroundColor: '#A34757',
-                                color: '#FFF',
+                                  borderBottom: '2px solid #f3f4f6',
+                                  backgroundColor: '#145A32',
+                                  color: '#FFF',
+                                  borderRadius: '12px 12px 0 0',
                                 },
                                 '& .MuiDataGrid-columnHeader': {
-                                  backgroundColor: '#A34757',
-                                  fontWeight: 'bold',
-                                  },
-                                '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                                  borderRight: '1px solid #000',
+                                  backgroundColor: '#145A32',
+                                  fontWeight: '600',
                                 },
-                                '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                                  borderLeft: '1px solid #000',
+                                '& .MuiDataGrid-cell': {
+                                  borderBottom: '1px solid #f3f4f6',
+                                  color: '#374151',
                                 },
-                                '& .MuiDataGrid-row': {
-                                  borderBottom: '1px solid #000',
+                                '& .MuiDataGrid-row:hover': {
+                                  backgroundColor: '#f9fafb',
+                                },
+                                '& .MuiDataGrid-columnSeparator': {
+                                  display: 'none',
                                 },
                             }}
                         />

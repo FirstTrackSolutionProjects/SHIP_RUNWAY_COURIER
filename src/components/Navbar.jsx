@@ -59,9 +59,9 @@ const Navbar = () => {
                 />
               </div>
               <h1 className="text-2xl font-bold flex items-center">
-                <span className="text-white ml-2">Ship</span>
-                <span className="ml-1 bg-linear-to-r from-gray-200 via-yellow-400 to-gray-200 text-transparent bg-clip-text">
-                  Wale
+                <span className="text-white ml-2 tracking-tight">Ship</span>
+                <span className="ml-1 text-[#E49B0F] tracking-tight">
+                  Runway
                 </span>
               </h1>
 

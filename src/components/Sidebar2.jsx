@@ -40,7 +40,7 @@ const Sidebar2 = () => {
 
        {/* Sidebar for md screen */}
        <div
-        className={`${isSidebarHovered ? 'w-[250px] min-w-[250px]' : 'w-[72px] min-w-[72px]'} md:block hidden h-full relative bg-black overflow-y-auto overflow-x-hidden transition-all duration-300`}
+        className={`${isSidebarHovered ? 'w-[250px] min-w-[250px]' : 'w-[72px] min-w-[72px]'} md:block hidden h-full relative bg-brand-green-dark overflow-y-auto overflow-x-hidden transition-all duration-300 shadow-xl`}
         onMouseEnter={() => setIsSidebarHovered(true)}
         onMouseLeave={() => setIsSidebarHovered(false)}
       >
@@ -55,7 +55,7 @@ const Sidebar2 = () => {
       </div>
        {/* Sidebar for beloe md screen */}
        <div
-        className={`relative ${isOpen?'w-[300px]': 'w-0'} block md:hidden h-full bg-black overflow-y-auto overflow-x-hidden transition-all duration-300`}
+        className={`relative ${isOpen?'w-[300px]': 'w-0'} block md:hidden h-full bg-brand-green-dark overflow-y-auto overflow-x-hidden transition-all duration-300`}
       >
         {/* Close button (Icon) */}
         <ul className="p-4 pt-12">

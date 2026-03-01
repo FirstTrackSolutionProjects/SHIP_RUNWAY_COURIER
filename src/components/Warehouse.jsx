@@ -528,11 +528,13 @@ const Warehouse = () => {
 												minWidth: 120,
 												textAlign: 'center',
 												lineHeight: 1.5,
-												backgroundColor: params.value ? '#dcfce7' : '#fee2e2',
-												color: params.value ? '#166534' : '#dc2626',
+												backgroundColor: params.value ? '#ecfdf5' : '#fff1f2',
+												color: params.value ? '#059669' : '#e11d48',
+												fontWeight: 600,
+												border: `1px solid ${params.value ? '#10b981' : '#fda4af'}33`
 											}}
 										>
-											{params.value ? 'Online' : 'Failed'}
+											{params.value ? 'ONLINE' : 'FAILED'}
 										</Box>
 									),
 								},
