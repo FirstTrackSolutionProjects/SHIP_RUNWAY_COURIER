@@ -26,12 +26,12 @@ const {isAuthenticated} = useAuth();
       className="min-h-screen bg-cover bg-center flex items-center justify-center text-white px-4 py-10"
       style={{ backgroundImage: `url(${courierBg})` }}
     >
-      <div className="bg-black/60 rounded-2xl p-8 max-w-2xl w-full text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          Welcome to <span className="text-brand-green">Ship</span>{' '}
-          <span className="text-brand-orange">Runway</span> Courier
+      <div className="bg-black/40 backdrop-blur-[2px] rounded-3xl p-8 md:p-12 max-w-3xl w-full text-center border border-white/10 shadow-2xl">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+          Welcome to <span className="text-[#4ade80]">Ship</span>{' '}
+          <span className="text-[#E49B0F]">Runway</span>
         </h1>
-        <p className="text-lg md:text-xl mb-6">Your Trusted Logistics Partner</p>
+        <p className="text-xl md:text-2xl mb-10 text-gray-100 font-medium">Your Trusted Premium Logistics Partner</p>
 
         <div className="flex flex-wrap justify-center gap-4">
           <button

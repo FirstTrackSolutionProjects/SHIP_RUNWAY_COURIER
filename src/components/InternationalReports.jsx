@@ -805,19 +805,51 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   }
   if (totalPages > 1) addPageNumber(totalPages);
+  
   return (
-    <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
-      <Button size="small" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} variant={currentPage === 1 ? "outlined" : "contained"} sx={{ bgcolor: currentPage === 1 ? 'transparent' : '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}>
-        Previous
-      </Button>
-      {pages.map((p, idx) => (
-        <Button key={idx} size="small" onClick={() => p.number !== "..." && onPageChange(p.number)} variant={p.number === "..." ? "outlined" : p.isCurrent ? "contained" : "outlined"} sx={p.isCurrent ? { bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } } : {}}>
-          {p.number}
-        </Button>
-      ))}
-      <Button size="small" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages} variant={currentPage === totalPages ? "outlined" : "contained"} sx={{ bgcolor: currentPage === totalPages ? 'transparent' : '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}>
-        Next
-      </Button>
+    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 mt-6 pb-4">
+      <button 
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === 1 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
+      >
+        <span className="hidden sm:inline">Previous</span>
+        <span className="sm:hidden">Prev</span>
+      </button>
+      
+      <div className="flex items-center gap-1">
+        {pages.map((page, idx) => (
+          <button
+            key={idx}
+            onClick={() => page.number !== '...' && onPageChange(page.number)}
+            className={`min-w-[32px] h-8 sm:h-9 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 ${
+              page.number === '...' ? 'cursor-default text-gray-400' 
+              : page.isCurrent 
+                ? 'bg-[#145A32] text-white shadow-md' 
+                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 active:scale-95'
+            }`}
+          >
+            {page.number}
+          </button>
+        ))}
+      </div>
+      
+      <button 
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === totalPages 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
+      >
+        <span className="hidden sm:inline">Next</span>
+        <span className="sm:hidden">Next</span>
+      </button>
     </div>
   );
 };

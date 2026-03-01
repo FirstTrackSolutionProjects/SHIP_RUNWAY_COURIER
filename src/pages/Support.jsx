@@ -77,26 +77,40 @@ export default function UserSupportPage() {
     }
 
     return (
-        <div className="p-4 md:p-8">
-            <h1 className="text-2xl font-bold mb-6 text-gray-800">Your Support Tickets</h1>
-            <div className="space-y-4">
+        <div className="p-4 md:p-10 max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+                <div>
+                    <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Support Tickets</h1>
+                    <p className="text-gray-500 mt-1">Track and manage your inquiries</p>
+                </div>
+                <button 
+                    onClick={handleRaiseNewTicket}
+                    className="hidden md:flex bg-[#145A32] text-white py-2.5 px-6 rounded-xl font-bold hover:bg-[#0E3F2D] transition-all shadow-lg shadow-green-900/10 active:scale-95 items-center gap-2"
+                >
+                    Raise Ticket
+                </button>
+            </div>
+
+            <div className="grid gap-4">
                 {tickets.map((ticket) => (
                     <div 
                         key={ticket.ticket_id} 
-                        className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition cursor-pointer flex justify-between items-center"
+                        className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4"
                         onClick={() => handleViewTicket(ticket.ticket_id)}
                     >
-                        <div>
-                            <p className="text-sm font-medium text-gray-500">Ticket #{ticket.ticket_id}</p>
-                            <h2 className="text-lg font-semibold text-gray-700">{ticket.category}</h2>
-                            <p className="text-gray-500 truncate max-w-sm">{ticket.sub_category || ticket.description}</p>
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                                <span className="text-[10px] font-bold text-[#145A32] bg-[#145A32]/5 px-2 py-0.5 rounded-full">#{ticket.ticket_id}</span>
+                                <h2 className="text-lg font-bold text-gray-900 truncate">{ticket.category}</h2>
+                            </div>
+                            <p className="text-sm text-gray-500 truncate">{ticket.sub_category || ticket.description}</p>
                         </div>
-                        <div className="flex flex-col items-end">
-                            <span className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusClasses(ticket.status)} mb-2`}>
+                        <div className="flex items-center md:flex-col md:items-end justify-between md:justify-center gap-3 md:gap-1.5">
+                            <span className={`px-3 py-1 text-xs font-bold rounded-lg ${getStatusClasses(ticket.status)}`}>
                                 {ticket.status.replace('_', ' ')}
                             </span>
-                            <p className="text-xs text-gray-400">
-                                Opened: {new Date(ticket.created_at).toLocaleDateString()}
+                            <p className="text-[11px] font-medium text-gray-400 uppercase tracking-tight">
+                                {new Date(ticket.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
                             </p>
                         </div>
                     </div>

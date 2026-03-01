@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Truck } from 'lucide-react';
 const API_URL = import.meta.env.VITE_APP_API_URL
 const ManageForm = ({ shipment }) => {
   const [dockets, setDockets] = useState([
@@ -1139,14 +1140,15 @@ const Listing = ({ step, setStep }) => {
           }`}
       >
         {pickup ? <PickupRequest setPickup={setPickup} /> : null}
-        <div className="w-full h-16 px-4  relative flex">
-          <div className="text-2xl font-medium">SHIPMENTS </div>
-          <div
+        <div className="w-full px-4 flex flex-col sm:flex-row justify-between items-center gap-4 mb-2">
+          <div className="text-2xl font-bold text-brand-accent tracking-tight">SHIPMENTS</div>
+          <button
             onClick={() => setPickup(true)}
-            className="px-5 py-1 bg-blue-500 absolute rounded-3xl text-white  right-4"
+            className="w-full sm:w-auto px-6 py-2.5 bg-[#145A32] hover:bg-[#0E3F2D] rounded-xl text-white font-bold transition-all shadow-lg shadow-brand-green/10 active:scale-95 flex items-center justify-center gap-2"
           >
+            <Truck size={20} />
             Pickup Request
-          </div>
+          </button>
         </div>
         <div className="w-full">
           {shipments.map((shipment, index) => (

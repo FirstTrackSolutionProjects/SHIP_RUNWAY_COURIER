@@ -150,8 +150,8 @@ const AllTransactions = () => {
     <div className='py-10 w-full flex flex-col items-center'>
       <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
         <h1 className='text-2xl font-semibold text-center'>Admin Transactions</h1>
-        <div className='bg-brand-green text-white p-4 rounded-lg space-y-4'>
-          <div className='grid md:grid-cols-8 gap-3'>
+        <div className='bg-brand-gray border border-gray-200 p-6 rounded-2xl space-y-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4'>
             <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'>
               <option value='all'>All Types</option>
               <option value='recharge'>Recharge</option>

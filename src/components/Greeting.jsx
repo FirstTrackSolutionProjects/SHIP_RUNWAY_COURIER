@@ -30,7 +30,7 @@ const Greeting = ({ name, className = '' }) => {
   const theme = useMemo(() => {
     return {
       gradient: 'from-brand-green to-brand-green-dark',
-      tint: 'bg-brand-green/10',
+      tint: 'bg-brand-green/5',
       ring: 'ring-brand-green/20',
       icon: now.getHours() >= 5 && now.getHours() < 18 ? 'sun' : 'moon'
     }
@@ -53,8 +53,8 @@ const Greeting = ({ name, className = '' }) => {
   }
 
   return (
-    <div className='w-full px-14'>
-    <div className={` relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ${className}`}>
+    <div className='w-full px-6 md:px-14'>
+    <div className={` relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm ${className}`}>
       {/* Decorative gradient blur */}
       <div className={`pointer-events-none absolute -top-16 -right-20 h-56 w-56 rounded-full blur-3xl opacity-30 bg-linear-to-br ${theme.gradient}`} />
 
@@ -81,7 +81,7 @@ const Greeting = ({ name, className = '' }) => {
       </div>
 
       {/* Bottom accent bar */}
-      <div className={`h-1.5 w-full bg-linear-to-r ${theme.gradient}`} />
+      <div className={`h-1 w-full bg-brand-green/10 border-t border-brand-green/20`} />
     </div>
     </div>
   )

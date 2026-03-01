@@ -1,70 +1,161 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Button, TextField } from '@mui/material'
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import { Search, MapPin, Package, BellRing } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_APP_API_URL
+const API_URL = import.meta.env.VITE_APP_API_URL;
 
 const Form = () => {
-    const [isTracking, setIsTracking] = useState(false)
-    const [formData,setFormData] = useState({
-        awb : ''
-    })
+    const [isTracking, setIsTracking] = useState(false);
+    const [formData, setFormData] = useState({
+        awb: ''
+    });
 
     useEffect(() => {
-        if (localStorage.getItem('track')){
-            setFormData({id: localStorage.getItem('track'), isWaybill: true})
-            localStorage.setItem('track','')
-            // handleSubmit(1)
+        const storedTrack = localStorage.getItem('track');
+        if (storedTrack) {
+            setFormData({ awb: storedTrack });
+            localStorage.setItem('track', '');
         }
-    }, [])
+    }, []);
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
-          ...prevData,
-          [name]:type === 'radio' ? checked : value
+            ...prevData,
+            [name]: value
         }));
-      };
-    const [trackingData,setTrackingData] = useState(null)
+    };
+
+    const [trackingData, setTrackingData] = useState(null);
     const closeResultModal = () => {
-        setTrackingData(null)
-    }
+        setTrackingData(null);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsTracking(true)
-        try{
+        if (!formData.awb.trim()) return;
+        setIsTracking(true);
+        try {
             const data = await fetch(`${API_URL}/shipment/track`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify(formData)
-            }).then(response => response.json())
-            setTrackingData(data)
+                body: JSON.stringify({ id: formData.awb, isWaybill: true })
+            }).then(response => response.json());
+            setTrackingData(data);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         } finally {
-            setIsTracking(false)
+            setIsTracking(false);
         }
-    }
+    };
+
     return (
-        <>
-            <Box className='w-full font-inter'>
-                <Box className='w-full p-8 flex flex-col items-center space-y-16 mb-8'>
-                    <Box className='text-center text-3xl font-medium'>Track your Parcel</Box>
-                    
-        <Box component={'form'} className="flex flex-col items-center  space-y-8" onSubmit={handleSubmit}>
-            <Box className='flex'>
-            <TextField size='small' type="text" label="AWB" name="awb" value={formData.id} onChange={handleChange} className="border py-2 px-4 rounded-l-xl bg-blue-50" placeholder="Enter Tracking Id/AWB" />
-            <Button variant='outlined' sx={{borderTopRightRadius : '10px', borderBottomRightRadius: '10px'}} type='submit' className="border py-2 px-4 w-28 bg-blue-50" disabled={isTracking}>{isTracking?'Tracking...':'Track'}</Button>
-            </Box>
-        </Box>
-                </Box>
-            </Box>
+        <div className="min-h-screen bg-brand-gray">
+            {/* Hero & Form Section */}
+            <div className="w-full bg-linear-to-b from-[#F0FDF4] to-brand-gray pt-16 pb-20 px-4">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-brand-accent mb-4 tracking-tight">
+                        Track Your Shipment
+                    </h1>
+                    <p className="text-gray-500 text-lg max-w-xl mx-auto">
+                        Enter your AWB number below to receive real-time updates and monitor your delivery progress.
+                    </p>
+                    <div className="w-16 h-1 bg-brand-orange mx-auto mt-6 rounded-full"></div>
+
+                    {/* Tracking Card */}
+                    <div className="mt-12 max-w-2xl mx-auto">
+                        <div className="bg-white shadow-xl rounded-3xl p-6 md:p-10 border border-gray-200">
+                            <form className="flex flex-col sm:flex-row gap-3" onSubmit={handleSubmit}>
+                                <div className="relative flex-1">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                        <Search size={20} />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="awb"
+                                        value={formData.awb}
+                                        onChange={handleChange}
+                                        placeholder="Enter AWB / Tracking ID"
+                                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all text-gray-800 font-medium"
+                                        required
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    disabled={isTracking}
+                                    className="h-14 px-8 bg-brand-green text-white rounded-2xl font-bold hover:bg-brand-green-light transition-all active:scale-95 disabled:opacity-50 disabled:scale-100 shadow-lg shadow-brand-green/20"
+                                >
+                                    {isTracking ? 'Tracking...' : 'Track Now'}
+                                </button>
+                            </form>
+
+                            {/* Trust Indicators */}
+                            <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-medium border-t border-gray-50 pt-8">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-brand-green text-lg">✔</span> Real-time updates
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-brand-green text-lg">✔</span> Nationwide coverage
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-brand-green text-lg">✔</span> Secure monitoring
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* How It Works Section */}
+            <div className="max-w-6xl mx-auto py-20 px-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-bold text-brand-green">How It Works</h2>
+                    <p className="text-gray-500 mt-2">Simple steps to track your shipment lifecycle</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    {/* Step 1 */}
+                    <div className="flex flex-col items-center text-center group">
+                        <div className="w-16 h-16 bg-white shadow-sm border border-gray-100 rounded-2xl flex items-center justify-center text-brand-orange mb-6 group-hover:-translate-y-2 transition-transform duration-300">
+                            <Package size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-brand-accent mb-2">Enter AWB</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">
+                            Input your unique Air Waybill number provided during shipment booking.
+                        </p>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="flex flex-col items-center text-center group">
+                        <div className="w-16 h-16 bg-white shadow-sm border border-gray-100 rounded-2xl flex items-center justify-center text-brand-orange mb-6 group-hover:-translate-y-2 transition-transform duration-300">
+                            <MapPin size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-brand-accent mb-2">Live Status</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">
+                            Get real-time location and status information as your parcel travels across the network.
+                        </p>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="flex flex-col items-center text-center group">
+                        <div className="w-16 h-16 bg-white shadow-sm border border-gray-100 rounded-2xl flex items-center justify-center text-brand-orange mb-6 group-hover:-translate-y-2 transition-transform duration-300">
+                            <BellRing size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-brand-accent mb-2">Final Delivery</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">
+                            Receive notifications when your shipment reaches the final hub for delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             {trackingData && <ResultModal data={trackingData} onClose={closeResultModal} />}
-        </>
-    )
-}
+        </div>
+    );
+};
 
 const Card = ({ scan }) => {
     return (
@@ -195,13 +286,7 @@ const ResultModal = ({ data, onClose }) => {
   
 
 const Tracking = () => {
-  return (
-    <>
-        
-        <Form />
-        
-    </>
-  )
+  return <Form />
 }
 
 export default Tracking

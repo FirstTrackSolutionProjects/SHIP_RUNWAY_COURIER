@@ -11,9 +11,9 @@ function Offers() {
   ];
 
   return (
-   <div className="bg-gradient-to-r from-[#145A32] via-[#F5F5F5] to-white px-4 py-12 md:py-16 lg:py-20 text-center text-[#145A32]">
+   <div className="bg-white px-4 py-12 md:py-16 lg:py-20 text-center text-brand-green">
 
-      <h2 className="text-3xl md:text-4xl font-bold text-[#145A32] mb-14">
+      <h2 className="text-3xl md:text-4xl font-bold text-brand-green mb-14">
         What We Offer
       </h2>
 
@@ -28,17 +28,17 @@ function Offers() {
         {offersData.map((offer, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center bg-red-50 hover:bg-red-100 transition-all duration-300 p-8 rounded-2xl shadow-md hover:shadow-xl"
+            className="flex flex-col items-center text-center bg-brand-gray transition-all duration-300 p-8 rounded-2xl shadow-sm border border-gray-100"
           >
             <img
               src={offer.image}
               alt={offer.title}
               className="w-[420px] h-auto rounded-lg shadow-md mb-6 transform hover:scale-105 transition duration-300"
             />
-            <h3 className="text-2xl font-semibold text-orange-700 mb-4">
+            <h3 className="text-2xl font-semibold text-brand-orange-dark mb-4">
               {offer.title}
             </h3>
-            <p className="text-red-900 text-sm md:text-base leading-relaxed max-w-xl font-serif">
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-xl">
               {offer.desc}
             </p>
           </div>

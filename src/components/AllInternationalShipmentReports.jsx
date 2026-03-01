@@ -1457,10 +1457,11 @@ const AllInternationalShipmentReports = () => {
         <Box
           sx={{
             mb: 3,
-            p: 2,
-            bgcolor: "red",
-            borderRadius: 2,
-            "& .MuiTextField-root": { bgcolor: "background.paper", borderRadius: 1 },
+            p: 3,
+            bgcolor: "var(--color-brand-gray)",
+            border: "1px solid #e5e7eb",
+            borderRadius: 3,
+            "& .MuiTextField-root": { bgcolor: "background.paper", borderRadius: 2 },
             overflowX: "auto",
             "&::-webkit-scrollbar": { display: "none" },
             msOverflowStyle: "none",
@@ -1536,11 +1537,11 @@ const AllInternationalShipmentReports = () => {
               borderRadius: 0,
               '& .MuiDataGrid-columnHeaders': {
                 borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 color: '#FFF',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 fontWeight: 'bold',
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
@@ -1572,7 +1573,6 @@ const AllInternationalShipmentReports = () => {
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = [];
   
-  // Function to add page numbers to the array
   const addPageNumber = (pageNum) => {
     pages.push({
       number: pageNum,
@@ -1580,29 +1580,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     });
   };
 
-  // Add first page
   addPageNumber(1);
 
   if (totalPages <= 7) {
-    // If total pages is 7 or less, show all pages
     for (let i = 2; i < totalPages; i++) {
       addPageNumber(i);
     }
   } else {
     if (currentPage <= 4) {
-      // We're near the start
       for (let i = 2; i <= 5; i++) {
         addPageNumber(i);
       }
       pages.push({ number: '...' });
     } else if (currentPage >= totalPages - 3) {
-      // We're near the end
       pages.push({ number: '...' });
       for (let i = totalPages - 4; i < totalPages; i++) {
         addPageNumber(i);
       }
     } else {
-      // We're in the middle
       pages.push({ number: '...' });
       for (let i = currentPage - 1; i <= currentPage + 1; i++) {
         addPageNumber(i);
@@ -1611,40 +1606,50 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   }
 
-  // Add last page if we have more than 1 page
   if (totalPages > 1) {
     addPageNumber(totalPages);
   }
 
   return (
-    <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
+    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 mt-6 pb-4">
       <button 
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === 1 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
       >
         <span className="hidden sm:inline">Previous</span>
         <span className="sm:hidden">Prev</span>
       </button>
       
-      {pages.map((page, idx) => (
-        <button
-          key={idx}
-          onClick={() => page.number !== '...' && onPageChange(page.number)}
-          className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-            page.number === '...' ? 'cursor-default' 
-            : page.isCurrent ? 'bg-red-500 text-white' 
-            : 'bg-white hover:bg-gray-100 border'
-          }`}
-        >
-          {page.number}
-        </button>
-      ))}
+      <div className="flex items-center gap-1">
+        {pages.map((page, idx) => (
+          <button
+            key={idx}
+            onClick={() => page.number !== '...' && onPageChange(page.number)}
+            className={`min-w-[32px] h-8 sm:h-9 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 ${
+              page.number === '...' ? 'cursor-default text-gray-400' 
+              : page.isCurrent 
+                ? 'bg-[#145A32] text-white shadow-md' 
+                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 active:scale-95'
+            }`}
+          >
+            {page.number}
+          </button>
+        ))}
+      </div>
       
       <button 
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === totalPages 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
       >
         <span className="hidden sm:inline">Next</span>
         <span className="sm:hidden">Next</span>

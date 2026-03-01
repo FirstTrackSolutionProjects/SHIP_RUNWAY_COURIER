@@ -33,8 +33,8 @@ const TrustedPartners = () => {
   };
 
   return (
-    <div className="bg-gray-200 py-10 px-4">
-      <h2 className="text-center text-xl font-bold text-gray-800 mb-6">
+    <div className="bg-brand-gray py-10 px-4 border-t border-gray-100">
+      <h2 className="text-center text-xl font-bold text-brand-green mb-6 uppercase tracking-wider">
         Our Trusted Partners
       </h2>
 
