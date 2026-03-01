@@ -242,7 +242,7 @@ const Register = () => {
   return (
     <>
     {/* {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />} // Removed modal usage */}
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex flex-col items-center justify-start px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex flex-col items-center justify-start px-4 py-10 mb-9">
 
       {/* Top Image */}
       <div className="w-full max-w-md flex justify-center mb-6">
@@ -275,19 +275,41 @@ const Register = () => {
             />
           </div>
 
-          {/* Phone */}
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
-            <FaPhoneAlt className="text-gray-500 mr-2" />
+        {/* Phone Number */}
+        <div className="relative w-full">
+
+          <div className="flex items-center bg-gray-50 border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[#145A32] focus-within:border-[#145A32] transition">
+
+            {/* Flag + Code Section */}
+            <div className="flex items-center gap-2 px-3 bg-white border-r border-gray-300 h-12">
+              <img
+                src="https://flagcdn.com/w40/in.png"
+                alt="India"
+                className="w-5 h-4 object-cover rounded-sm"
+              />
+              <span className="text-gray-700 font-medium text-sm">+91</span>
+            </div>
+
+            {/* Phone Input */}
             <input
-              type="text"
+              type="tel"
+              name="mobile"
               placeholder="Phone Number"
               required
-              name="mobile"
               value={formData.mobile}
-              onChange={handleChange}
-              className="w-full focus:outline-none"
+              onChange={(e) => {
+                const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                setFormData({
+                  ...formData,
+                  mobile: value,
+                });
+              }}
+              className="flex-1 h-12 px-2 bg-gray-50 outline-none text-gray-700 placeholder-gray-400"
+              maxLength={10}
             />
           </div>
+
+        </div>
 
     {/* Email + Generate OTP */}
           <div className="flex flex-col space-y-2">
