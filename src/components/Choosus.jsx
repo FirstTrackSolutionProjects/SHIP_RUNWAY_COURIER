@@ -43,7 +43,7 @@ const Choosus = () => {
 
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-14">
-          Why Choose Shipwale?
+          Why Choose Shiprunway?
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">

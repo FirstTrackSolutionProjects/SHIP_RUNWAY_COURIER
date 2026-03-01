@@ -1,4 +1,4 @@
-// ShipWale\src\components\TicketChatbot.jsx
+// ShipRunway\src\components\TicketChatbot.jsx
 
 import { useEffect, useRef, useState } from "react";
 // Removed useNavigate
@@ -152,7 +152,7 @@ export default function TicketChatbot({ onClose }) {
 
   useEffect(() => {
     setTimeout(() => {
-      addBot("👋 Welcome to Shipwale Support!");
+      addBot("👋 Welcome to Shiprunway Support!");
       setTimeout(() => {
         addBot("How can I help you?");
         setCurrentOptions([
@@ -238,7 +238,7 @@ export default function TicketChatbot({ onClose }) {
 
   const handleSolved = (answer) => {
     if (answer === "Yes") {
-      addBot("🙏 Thank you for contacting Shipwale Support!");
+      addBot("🙏 Thank you for contacting Shiprunway Support!");
       // Use onClose instead of navigate
       setTimeout(() => onClose(), 2000); 
     } else {
