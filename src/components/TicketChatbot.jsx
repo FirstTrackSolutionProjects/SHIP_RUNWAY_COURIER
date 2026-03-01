@@ -1,5 +1,4 @@
-// ShipRunway\src\components\TicketChatbot.jsx
-
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 // Removed useNavigate
 import { toast } from 'react-toastify'; 
