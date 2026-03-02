@@ -67,7 +67,7 @@ const Domestic = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.origin.length !== 6 || formData.origin.length !== 6){
+    if (formData.origin.length !== 6 || formData.dest.length !== 6){
       toast.error("Origin and Destination pincodes should be 6 digits")
       return;
     }
@@ -297,12 +297,12 @@ const Domestic = () => {
 
 const PriceCalc = () => {
   return (
-    <div className="w-full py-16 px-4">
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-brand-green tracking-tight mb-4">
+    <div className="w-full py-6 sm:py-10 md:py-16 px-3 sm:px-4">
+      <div className="max-w-4xl mx-auto text-center mb-6 sm:mb-8 md:mb-12">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-brand-green tracking-tight mb-2 sm:mb-3 md:mb-4">
           Rate Calculator
         </h1>
-        <p className="text-gray-500 text-lg">
+        <p className="text-gray-500 text-sm sm:text-lg px-1 sm:px-2">
           Get instant estimates for your domestic shipments across India.
         </p>
         <div className="w-20 h-1.5 bg-brand-orange mx-auto mt-6 rounded-full"></div>
