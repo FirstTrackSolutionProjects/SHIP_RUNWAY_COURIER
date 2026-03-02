@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from "react-icons/fi";
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
@@ -10,7 +10,6 @@ const API_URL = import.meta.env.VITE_APP_API_URL
 
 const Header = () => {
 const [isOpen, setIsOpen] = useState(false);
-const location = useLocation();
 const {isAuthenticated, name, logout, verified} = useAuth()
 const [showRecharge, setShowRecharge] = useState(false);
 const closeRechargeModal = () => {
@@ -65,7 +64,7 @@ return (
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-6 font-semibold text-gray-700">
+        <nav className="hidden md:flex items-center gap-6 font-semibold text-gray-700">
         <Link
             to="/"
             className="relative group"
@@ -159,6 +158,29 @@ return (
               {isOpen ? <FiX /> : <FiMenu />}
           </button> */}
         </div>
+        {isAuthenticated?<div className='md:flex items-center space-x-4 hidden'>
+          {verified && location.pathname.startsWith('/dashboard')? (<>
+              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
+              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
+                <p>{`₹${balance}`}</p>
+              </div>
+              </>
+          ):null}
+          <div className='flex items-center'>
+            {name} <span className='bg-brand-orange hover:bg-brand-orange-dark text-white text-xl p-3 cursor-pointer rounded-xl mx-3 transition-colors' onClick={logout}><FaDoorOpen /></span>
+          </div>
+          </div>:null}
+
+
+
+        {/* Mobile menu toggle */}
+        <button
+          className="md:hidden text-gray-700 text-4xl"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+            {isOpen ? <FiX /> : <FiMenu />}
+      
+        </button>
       </div>
 
       {/* Sidebar (Mobile) */}
