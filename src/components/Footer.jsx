@@ -10,7 +10,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-brand-gray font-bold text-gray-800 p-8">
+    <footer className="bg-brand-gray font-bold text-gray-800 p-8 mb-10">
       <div className="container mx-auto px-2">
         <div className="flex flex-wrap">
           {/* Company Info */}
@@ -35,10 +35,13 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/faq" onClick={scrollToTop} className="hover:underline">FAQs</Link></li>
               <li><Link to="/about-us" onClick={scrollToTop} className="hover:underline">About Us</Link></li>
+              <li><Link to="/tracking" onClick={scrollToTop} className="hover:underline">Tracking</Link></li>
+              <li><Link to="/pricing" onClick={scrollToTop} className="hover:underline">Pricing</Link></li>
               <li><Link to="/contact-us" onClick={scrollToTop} className="hover:underline">Contact Us</Link></li>
 
               <li><Link to="/privacy" onClick={scrollToTop} className="hover:underline">Privacy & Policy</Link></li>
               <li><Link to="/terms" onClick={scrollToTop} className="hover:underline">Terms of Use</Link></li>
+              <li><Link to="/refund-cancel" onClick={scrollToTop} className="hover:underline">Refund & Cancellation</Link></li>
             </ul>
           </div>
 
