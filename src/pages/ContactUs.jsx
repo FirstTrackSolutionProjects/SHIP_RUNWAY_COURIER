@@ -87,9 +87,9 @@ const ContactUs = () => {
             href="https://wa.me/911234567890?text=Hello%20I%20am%20interested%20in%20your%20services"
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-30 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50 transition-transform duration-300 hover:scale-110"
+            className="fixed bottom-36 md:bottom-24 right-4 md:right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-[1001] transition-transform duration-300 hover:scale-110 flex items-center justify-center"
           >
-            <FaWhatsapp className="w-5 h-5" />
+            <FaWhatsapp className="w-6 h-6" />
           </a>
                     
         </div>
