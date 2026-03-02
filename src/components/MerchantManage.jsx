@@ -108,7 +108,7 @@ const View = ({merchant, balance ,fullName, email, phone,isActive, uid  , gst, s
                         <button onClick={isActivated?()=>deactivate():()=>activate()}  className={` ${isActivated?"bg-red-500":"bg-green-500"} text-white mx-2  py-2 px-4 rounded`}>
                             {isActivated? "Deactivate" : "Activate"}
                         </button>
-                        <button onClick={() => setOpenDiscountModal(true)}  className={`bg-red-500 text-white mx-2  py-2 px-4 rounded`}>
+                        <button onClick={() => setOpenDiscountModal(true)}  className={`bg-yellow-500 hover:bg-yellow-600 text-black font-medium mx-2  py-2 px-4 rounded`}>
                             Discounts
                         </button>
                     </div>
@@ -167,13 +167,13 @@ const MerchantManage =  () => {
         { field: 'actions', headerName: 'Actions', width: 320, sortable: false, filterable: false, renderCell: (params)=> (
             <div className="flex items-center space-x-2">
                 <button
-                    className="px-3 py-1 bg-red-500 text-white rounded-2xl text-sm"
+                    className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white rounded-2xl text-sm"
                     onClick={() => { setSelectedMerchant(params.row); setShowView(true); }}
                 >
                     View
                 </button>
                 <button
-                    className="px-3 py-1 bg-purple-600 text-white rounded-2xl text-sm"
+                    className="px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-2xl text-sm"
                     onClick={() => {
                         setSelectedToPay(params.row);
                         const defaultLimit = (params.row?.negative_value ?? params.row?.negative_limit);
@@ -237,7 +237,7 @@ const MerchantManage =  () => {
             </div>
             <div className="ml-auto flex items-center space-x-2">
                 <button
-                    className={`px-3 py-1 bg-red-500 rounded text-white ${page <= 0 || loading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+                    className={`px-3 py-1 bg-green-700 hover:bg-green-800 rounded text-white ${page <= 0 || loading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     onClick={() => { if (page > 0 && !loading) setPage(page - 1) }}
                     disabled={page <= 0 || loading}
                 >
@@ -247,7 +247,7 @@ const MerchantManage =  () => {
                     Page {page + 1} of {totalPages}
                 </div>
                 <button
-                    className={`px-3 py-1 bg-red-500 rounded text-white ${(page + 1) >= totalPages || loading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+                    className={`px-3 py-1 bg-green-700 hover:bg-green-800 rounded text-white ${(page + 1) >= totalPages || loading ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
                     onClick={() => { if ((page + 1) < totalPages && !loading) setPage(page + 1) }}
                     disabled={(page + 1) >= totalPages || loading}
                 >
@@ -273,7 +273,7 @@ const MerchantManage =  () => {
                                 type='number'
                                 max={0}
                                 step='0.01'
-                                className='border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400'
+                                className='border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400'
                                 placeholder='Enter negative limit (e.g., -5000)'
                                 value={toPayForm.negative_limit}
                                 onChange={(e) => setToPayForm({ negative_limit: e.target.value })}
@@ -284,7 +284,7 @@ const MerchantManage =  () => {
                         <div className='flex items-center justify-between pt-2'>
                             {(selectedToPay?.negative_limit !== undefined && selectedToPay?.negative_limit !== null) || (selectedToPay?.negative_value !== undefined && selectedToPay?.negative_value !== null) ? (
                                 <button
-                                    className={`px-3 py-2 rounded-2xl text-sm ${toPaySubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-600 text-white'}`}
+                                    className={`px-3 py-2 rounded-2xl text-sm ${toPaySubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-yellow-600 text-white'}`}
                                     onClick={async () => {
                                         if (toPaySubmitting) return;
                                         try {
@@ -315,7 +315,7 @@ const MerchantManage =  () => {
                                     Cancel
                                 </button>
                                 <button
-                                    className={`px-3 py-2 rounded-2xl text-sm ${toPaySubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-600 text-white'}`}
+                                    className={`px-3 py-2 rounded-2xl text-sm ${toPaySubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-700 text-white'}`}
                                     onClick={async () => {
                                         if (toPaySubmitting) return;
                                         const val = parseFloat(toPayForm.negative_limit)
@@ -360,34 +360,34 @@ const MerchantManage =  () => {
                         <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Name"
                                 value={filters.merchant_name}
                                 onChange={handleFilterChange('merchant_name')}
                             />
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Business Name"
                                 value={filters.business_name}
                                 onChange={handleFilterChange('business_name')}
                             />
                             <input
                                 type="email"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Email"
                                 value={filters.merchant_email}
                                 onChange={handleFilterChange('merchant_email')}
                             />
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Phone"
                                 value={filters.merchant_phone}
                                 onChange={handleFilterChange('merchant_phone')}
                             />
                             <select
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 value={filters.is_to_pay_merchant}
                                 onChange={handleFilterChange('is_to_pay_merchant')}
                             >
@@ -396,7 +396,7 @@ const MerchantManage =  () => {
                                 <option value='false'>Non To Pay Merchants</option>
                             </select>
                             <select
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-red-400"
+                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 value={filters.sort_by}
                                 onChange={handleFilterChange('sort_by')}
                             >
@@ -431,25 +431,27 @@ const MerchantManage =  () => {
                             rowHeight={64}
                             columnHeaderHeight={64}
                             sx={{
-                                border: '1px solid #000',
-                                borderRadius: 0,
+                                border: 'none',
+                                backgroundColor: 'white',
                                 '& .MuiDataGrid-columnHeaders': {
-                                  borderBottom: '1px solid #000',
-                                  backgroundColor: '#A34757',
-                                color: '#FFF',
+                                  borderBottom: '2px solid #f3f4f6',
+                                  backgroundColor: '#145A32',
+                                  color: '#FFF',
+                                  borderRadius: '12px 12px 0 0',
                                 },
                                 '& .MuiDataGrid-columnHeader': {
-                                  backgroundColor: '#A34757',
-                                  fontWeight: 'bold',
-                                  },
-                                '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                                  borderRight: '1px solid #000',
+                                  backgroundColor: '#145A32',
+                                  fontWeight: '600',
                                 },
-                                '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                                  borderLeft: '1px solid #000',
+                                '& .MuiDataGrid-cell': {
+                                  borderBottom: '1px solid #f3f4f6',
+                                  color: '#374151',
                                 },
-                                '& .MuiDataGrid-row': {
-                                  borderBottom: '1px solid #000',
+                                '& .MuiDataGrid-row:hover': {
+                                  backgroundColor: '#f9fafb',
+                                },
+                                '& .MuiDataGrid-columnSeparator': {
+                                  display: 'none',
                                 },
                             }}
                         />

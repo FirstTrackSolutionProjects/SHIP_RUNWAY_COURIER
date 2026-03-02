@@ -119,7 +119,7 @@ const AllTransactions = () => {
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+          className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
         >
           <span className="hidden sm:inline">Previous</span>
           <span className="sm:hidden">Prev</span>
@@ -128,7 +128,7 @@ const AllTransactions = () => {
           <button
             key={idx}
             onClick={() => p.number !== '...' && onPageChange(p.number)}
-            className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${p.number === '...' ? 'cursor-default' : p.isCurrent ? 'bg-blue-500 text-white' : 'bg-white hover:bg-gray-100 border'}`}
+            className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${p.number === '...' ? 'cursor-default' : p.isCurrent ? 'bg-yellow-400 text-black font-semibold' : 'bg-white hover:bg-yellow-50 border border-gray-300'}`}
             disabled={p.number === '...'}
           >
             {p.number}
@@ -137,7 +137,7 @@ const AllTransactions = () => {
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+          className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
         >
           <span className="hidden sm:inline">Next</span>
           <span className="sm:hidden">Next</span>
@@ -147,11 +147,11 @@ const AllTransactions = () => {
   };
 
   return (
-    <div className='py-10 w-full flex flex-col items-center'>
+    <div className='py-10 w-full flex flex-col items-center bg-white'>
       <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
-        <h1 className='text-2xl font-semibold text-center'>Admin Transactions</h1>
-        <div className='bg-brand-green text-white p-4 rounded-lg space-y-4'>
-          <div className='grid md:grid-cols-8 gap-3'>
+        <h1 className='text-2xl font-semibold text-center text-green-800'>Admin Transactions</h1>
+        <div className='bg-yellow-50 border border-yellow-200 p-6 rounded-2xl space-y-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4'>
             <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'>
               <option value='all'>All Types</option>
               <option value='recharge'>Recharge</option>
@@ -194,10 +194,11 @@ const AllTransactions = () => {
                 }
               }}
               sx={{ 
-                backgroundColor: 'white',
+                backgroundColor: '#15803d',
+                color: 'white',
                 borderRadius: 1,
                 '&:hover': {
-                  backgroundColor: 'grey.100',
+                  backgroundColor: '#166534',
                 },
                 minWidth: '40px'
               }}
@@ -225,10 +226,11 @@ const AllTransactions = () => {
             sx={{
               '& .MuiDataGrid-overlayWrapper': { backgroundColor: '#fff' },
               '& .MuiDataGrid-virtualScrollerRenderZone': rows.length === 0 ? { opacity: 0 } : {},
-              border: '1px solid #000',
-              borderRadius: 0,
+              border: '1px solid #145A32',
+              borderRadius: '8px',
+              overflow: 'hidden',
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid #000',
+                borderBottom: '1px solid #145A32',
                 backgroundColor: '#145A32',
                 color: '#FFF',
               },
@@ -237,13 +239,13 @@ const AllTransactions = () => {
                 fontWeight: 'bold',
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                borderRight: '1px solid #000',
-              },
-              '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                borderLeft: '1px solid #000',
+                borderRight: '1px solid #e0e0e0',
               },
               '& .MuiDataGrid-row': {
-                borderBottom: '1px solid #000',
+                borderBottom: '1px solid #e0e0e0',
+                '&:hover': {
+                  backgroundColor: '#fefce8', // Light yellow hover
+                }
               },
             }}
           />

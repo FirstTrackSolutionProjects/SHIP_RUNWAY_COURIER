@@ -93,7 +93,7 @@ const View = ({request, reqId, uid ,fullName, email, phone, gst, setView, busine
                     <button onClick={handleApprove} className=" bg-[#145A32] hover:bg-[#0E3F2D] text-white mx-2  py-2 px-6 rounded-3xl transition-colors">
                         Approve
                     </button>
-                    <button onClick={handleReject} className=" bg-red-600 hover:bg-red-700 text-white mx-2  py-2 px-6 rounded-3xl transition-colors">
+                    <button onClick={handleReject} className=" bg-yellow-600 hover:bg-yellow-700 text-white mx-2  py-2 px-6 rounded-3xl transition-colors">
                         Reject
                     </button>
                 </div>

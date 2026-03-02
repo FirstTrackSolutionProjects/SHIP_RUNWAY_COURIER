@@ -309,8 +309,8 @@ const FullDetails = () => {
   }
 
   return (
-    <div className="w-full p-4 flex flex-col items-center">
-      <div className="text-3xl font-medium text-center my-8">Enter Shipping Details</div>
+    <div className="w-full p-4 flex flex-col items-center bg-white">
+      <div className="text-3xl font-bold text-green-700 text-center my-8">Enter Shipping Details</div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full flex mb-2 px-2 flex-wrap">
           <WarehouseSelect
@@ -561,8 +561,8 @@ const FullDetails = () => {
           </>
         )}
         <div className="w-full flex mb-2 flex-wrap">
-          <div className="w-full mb-2">
-            <div className="text-2xl font-medium">Order Details</div>
+          <div className="w-full mb-2 border-b-2 border-yellow-400 pb-2 mb-6">
+            <div className="text-2xl font-semibold text-green-700">Order Details</div>
           </div>
           {boxes.fields.map((field, index) => (
             <div key={field.id} className="w-full flex mb-2 flex-wrap">
@@ -639,17 +639,17 @@ const FullDetails = () => {
                 {errors.boxes?.[index]?.quantity && <span className='text-red-500'>{errors.boxes?.[index]?.quantity.message}</span>}
               </div>
               {watch('boxes').length > 1 ? <div className="w-full text-right">
-                <button type="button" className="text-red-500" onClick={() => boxes.remove(index)}>Remove</button>
+                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700" onClick={() => boxes.remove(index)}>Remove</button>
               </div> : null}
             </div>
           ))}
-          <div className="w-full text-right">
+          <div className="w-full text-right mt-2">
             <button
               type="button"
-              className="bg-red-500 text-white px-4 py-2 rounded"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors shadow-sm"
               onClick={() => boxes.append({ box_no: watch('boxes').length + 1, product_name: '', product_quantity: 0, selling_price: 0, discount: '', tax_in_percentage: 0 })}
             >
-              Add Boxes
+              + Add Boxes
             </button>
           </div>
           {fields.map((field, index) => (
@@ -706,17 +706,17 @@ const FullDetails = () => {
                 {errors.orders?.[index]?.tax_in_percentage && <span className='text-red-500'>{errors.orders[index].tax_in_percentage.message}</span>}
               </div>
               {watch('orders').length > 1 ? <div className="w-full text-right">
-                <button type="button" className="text-red-500" onClick={() => remove(index)}>Remove</button>
+                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700" onClick={() => remove(index)}>Remove</button>
               </div> : null}
             </div>
           ))}
-          <div className="w-full text-right">
+          <div className="w-full text-right mt-2">
             <button
               type="button"
-              className="bg-red-500 text-white px-4 py-2 rounded"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors shadow-sm"
               onClick={() => append({ box_no: 1, product_name: '', product_quantity: 0, selling_price: 0, discount: '', tax_in_percentage: 0 })}
             >
-              Add Product
+              + Add Product
             </button>
           </div>
         </div>
@@ -776,10 +776,10 @@ const FullDetails = () => {
                 {errors.invoiceUrl && <span className='text-red-500'>{errors.invoiceUrl.message}</span>}
                 <button
                   type='button'
-                  className="bg-red-500 text-white px-6 py-2 rounded"
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-colors"
                   onClick={handleInvoiceUpload}
                 >
-                  Upload
+                  Upload Invoice
                 </button>
                 {errors.cod && <span className='text-red-500'>{errors.cod.message}</span>}
               </div>
@@ -891,12 +891,12 @@ const FullDetails = () => {
           />
           {errors.Cgst && <span className='text-red-500'>{errors.Cgst.message}</span>}
         </div>
-        <div className="w-full flex justify-center mt-4">
+        <div className="w-full flex justify-center mt-10">
           <button
-            className="bg-green-500 text-white px-6 py-2 rounded"
+            className="bg-green-600 hover:bg-green-700 text-white px-12 py-3 rounded-lg font-bold text-lg transition-all shadow-md transform hover:scale-105"
             type="submit"
           >
-            Submit
+            Create Shipment
           </button>
         </div>
       </form>

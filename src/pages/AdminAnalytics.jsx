@@ -1,4 +1,4 @@
-// ShipWale\src\pages\AdminAnalytics.jsx
+// ShipRunway\src\pages\AdminAnalytics.jsx
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify'; 
@@ -7,12 +7,16 @@ import { fetchTicketAnalytics } from '../services/ticketServices/adminTicketServ
 const STATUS_OPTIONS = ['OPEN', 'IN_PROGRESS', 'RESOLVED', 'CLOSED'];
 
 // Card component for displaying metrics
-const MetricCard = ({ title, value, unit = '' }) => (
-    <div className="bg-white p-6 rounded-xl shadow-md border-b-4 border-[#145A32]">
-        <h3 className="text-sm font-medium text-gray-500">{title}</h3>
-        <p className="mt-1 text-3xl font-bold text-gray-900">
-            {value} {unit}
-        </p>
+const MetricCard = ({ title, value, unit = '', color = '#145A32' }) => (
+    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider">{title}</h3>
+        <div className="flex items-baseline mt-2">
+            <p className="text-3xl font-extrabold text-gray-900 leading-none">
+                {value}
+            </p>
+            {unit && <span className="ml-1 text-sm font-semibold text-gray-500">{unit}</span>}
+        </div>
+        <div className="mt-4 h-1 w-12 rounded-full" style={{ backgroundColor: color }}></div>
     </div>
 );
 

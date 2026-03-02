@@ -5,37 +5,37 @@ function Info() {
     {
       count: "20K+",
       label: "Our Trusted Clients",
-      bg: "from-[#145A32]/20 to-[#145A32]/5",
-      text: "text-[#145A32]",
+      bg: "bg-white",
+      text: "text-brand-green",
     },
     {
       count: "40K+",
       label: "Orders Successfully Delivered",
-      bg: "from-[#E49B0F]/20 to-[#E49B0F]/5",
-      text: "text-[#C97A00]",
+      bg: "bg-white",
+      text: "text-brand-orange-dark",
     },
     {
       count: "35+",
       label: "Suppliers",
-      bg: "from-[#145A32]/10 to-[#E49B0F]/10",
-      text: "text-[#0E3F2D]",
+      bg: "bg-white",
+      text: "text-brand-green-dark",
     },
   ];
 
   return (
     <div
-  className="min-h-screen flex flex-col items-center justify-center px-6 py-14 bg-gradient-to-br from-[#F5F5F5] via-white to-[#F5F5F5]"
+  className="min-h-[60vh] flex flex-col items-center justify-center px-6 py-14 bg-brand-gray"
 >
 
-      <h2 className="text-[#145A32] text-3xl md:text-4xl font-bold mb-14 text-center">
-        ShipWale Superiority
+      <h2 className="text-brand-green text-3xl md:text-4xl font-bold mb-14 text-center">
+        ShipRunway Superiority
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-6xl">
         {data.map((item, index) => (
           <div
             key={index}
-            className={`bg-gradient-to-br ${item.bg} rounded-2xl shadow-lg py-10 px-6 text-center hover:shadow-2xl hover:-translate-y-1 transition-all duration-300`}
+            className={`${item.bg} rounded-3xl shadow-sm border border-gray-200 py-12 px-8 text-center hover:shadow-md hover:-translate-y-2 transition-all duration-500 ease-out`}
           >
             <div className={`text-4xl font-extrabold ${item.text}`}>
               {item.count}

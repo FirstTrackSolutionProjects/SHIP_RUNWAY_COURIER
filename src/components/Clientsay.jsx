@@ -51,27 +51,27 @@ const sliderSettings = {
 
 const Clientsay = () => {
   return (
-    <div className="bg-gradient-to-br from-red-200 to-yellow-100 px-5 py-16 flex justify-center">
+    <div className="bg-white px-5 py-16 flex justify-center">
       <div className="w-full max-w-4xl text-center">
         {/* Heading */}
-        <h2 className="text-red-700 text-2xl md:text-3xl font-bold mb-10 tracking-wide">
+        <h2 className="text-brand-green text-2xl md:text-3xl font-bold mb-10 tracking-wide">
           What Our Clients Say
         </h2>
 
         <Slider {...sliderSettings}>
           {testimonials.map((t, index) => (
             <div key={index} className="px-4">
-              <div className="bg-white shadow-lg rounded-2xl px-8 py-10 flex flex-col items-center border border-gray-100 hover:shadow-xl transition duration-300">
+              <div className="bg-brand-gray shadow-sm rounded-2xl px-8 py-10 flex flex-col items-center border border-gray-200 hover:shadow-md transition duration-300">
                 
                 {/* Avatar */}
                 <img
                   src={t.image}
                   alt={t.name}
-                  className="w-20 h-20 rounded-full object-cover border-4 border-red-100 shadow-md mb-4"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-sm mb-4"
                 />
 
                 {/* Quote Icon */}
-                <Quote size={32} className="text-yellow-500 mb-2" />
+                <Quote size={32} className="text-brand-orange mb-2" />
 
                 {/* Review Text */}
                 <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-lg">

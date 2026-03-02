@@ -280,8 +280,12 @@ const TextForm = ({ id, onNext }) => {
       }}
       className="border-gray-300 shadow-xl border-2 rounded-xl "
     >
-      <Typography variant="h4" sx={{ color: '#145A32' }} className="text-2xl sm:text-4xl lg:text-5xl font-bold">Profile Update Request</Typography>
-      <Typography variant="h6" sx={{ color: '#E49B0F' }} className="text-2xl sm:text-4xl lg:text-5xl">(Only fill fields you want to update)</Typography>
+      <Typography variant="h4" sx={{ color: '#145A32', fontWeight: 800, textAlign: 'center' }} className="text-2xl sm:text-3xl md:text-4xl">
+        Profile Update Request
+      </Typography>
+      <Typography variant="subtitle1" sx={{ color: '#E49B0F', mt: 1, fontWeight: 500, textAlign: 'center' }}>
+        (Only fill fields you want to update)
+      </Typography>
 
 
       <Grid container spacing={2} sx={{ mt: 2 }}>

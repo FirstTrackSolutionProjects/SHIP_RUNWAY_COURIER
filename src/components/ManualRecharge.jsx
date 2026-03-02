@@ -76,7 +76,7 @@ const ManualRecharge = () => {
               />
             </div>
           
-            <button type="submit" className="border bg-white mx-2  py-2 px-4 rounded-3xl">
+            <button type="submit" className="border bg-green-700 hover:bg-green-800 text-white mx-2 font-medium py-2 px-4 rounded-3xl transition-colors">
               Recharge
             </button>
         </form>

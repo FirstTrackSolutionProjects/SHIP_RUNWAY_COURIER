@@ -60,7 +60,7 @@ const ShippingCalculator = () => {
         </h2>
 
         {/* Row 1 */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block mb-1 font-medium">Shipping Method</label>
             <select
@@ -142,7 +142,7 @@ const ShippingCalculator = () => {
         </div>
 
         {/* Row 4 */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block mb-1 font-medium">Shipment Type</label>
             <select
@@ -171,7 +171,7 @@ const ShippingCalculator = () => {
         {boxes.map((box, index) => (
           <div
             key={index}
-            className="relative grid grid-cols-2 sm:grid-cols-6 gap-4 p-2 mb-2 rounded-md bg-gray-200"
+            className="relative grid grid-cols-2 lg:grid-cols-6 gap-3 p-4 mb-4 rounded-xl bg-gray-50 border border-gray-200"
           >
             <div>
               <label className="block text-sm font-medium">Weight</label>
@@ -256,14 +256,14 @@ const ShippingCalculator = () => {
         <div className="mx-auto justify-center items-center flex">
           <button
             type="button"
-            className="m-2 px-2 md:px-5 py-2 text-sm md:text-base border border-green-600 rounded-3xl bg-white text-green-600"
+            className="m-2 px-2 md:px-5 py-2 text-sm md:text-base border border-brand-green rounded-3xl bg-white text-brand-green hover:bg-brand-gray transition"
             onClick={addBox}
           >
             Add More Boxes
           </button>
           <button
             type="submit"
-            className="border bg-green-600 text-white mx-2 text-sm md:text-base py-2 md:px-4 px-2 rounded-3xl"
+            className="border bg-brand-green text-white mx-2 text-sm md:text-base py-2 md:px-4 px-2 rounded-3xl hover:bg-brand-green-dark transition shadow-md"
           >
             Submit and Compare
           </button>

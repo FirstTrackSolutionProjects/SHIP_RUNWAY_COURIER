@@ -72,8 +72,8 @@ const FAQs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <div className="min-h-screen bg-white p-4">
+      <div className="max-w-2xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
         {faqsList.map((faq, index) => (
           <FAQ key={index} faq={faq} index={index} toggleFAQ={toggleFAQ} />

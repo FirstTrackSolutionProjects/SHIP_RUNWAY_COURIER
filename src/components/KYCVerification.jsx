@@ -110,7 +110,7 @@ const FileUploadForm = ({reqId}) => {
   }).then(response => response.json()).then(result => alert(result.message));
 }
   return (
-    <form className="w-[1024px] flex flex-col bg-white pt-8 px-4" onSubmit={handleSubmit}>
+    <form className="max-w-5xl w-full flex flex-col bg-white pt-8 px-6 md:px-8 rounded-2xl shadow-sm border border-gray-100" onSubmit={handleSubmit}>
       {/* File input required fields */}
       <div className="w-full flex mb-2 flex-wrap ">
         <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
@@ -268,7 +268,7 @@ const TextForm = ({ onNext, setReqId }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-[1024px] flex flex-col bg-white pt-8 px-4"
+      className="max-w-5xl w-full flex flex-col bg-white pt-8 px-6 md:px-8 rounded-2xl shadow-sm border border-gray-100"
     >
       <div className="w-full flex mb-2 flex-wrap "></div>
       <div className="w-full flex mb-2 flex-wrap ">
