@@ -64,9 +64,9 @@ const SignIn = () => {
   return (
     <>
     {/* Removed EmailOTPVerificationModal rendering */}
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex items-center justify-center p-6 mb-9">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 mb-9">
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl shadow-gray-200/50 p-8 border border-gray-100">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl shadow-gray-100 p-8 border border-gray-100">
         
         <div className="w-full flex justify-center mb-8">
           <img
@@ -143,13 +143,13 @@ const SignIn = () => {
                 type="checkbox"
                 checked={rememberMe}
                 onChange={() => setRememberMe(!rememberMe)}
-                className="mr-2"
+                className="mr-2 accent-[#145A32]"
               />
               Remember me for 30 days
             </label>
 
             <p
-              className="text-sm text-gray-600 cursor-pointer hover:text-red-700"
+              className="text-sm text-gray-600 cursor-pointer hover:text-yellow-600 transition-colors"
               onClick={() => setShowForgotPassword(true)}
             >
               Forgot Password?
@@ -159,7 +159,7 @@ const SignIn = () => {
           <button
             type="submit"
             disabled={!email || !password}
-            className="w-full bg-[#145A32] text-white py-2 rounded-md font-semibold hover:bg-[#0E3F2D] transition-colors duration-200"
+            className="w-full bg-[#145A32] text-white py-3 rounded-xl font-bold hover:bg-[#0E3F2D] border-b-4 border-[#0E3F2D] active:border-b-0 active:translate-y-1 transition-all duration-150"
           >
             SIGN IN
           </button>
@@ -171,9 +171,9 @@ const SignIn = () => {
           <div className="w-full h-px bg-gray-300"></div>
         </div>
 
-        <p className="text-center text-sm">
+        <p className="text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-red-600 font-semibold hover:underline">
+          <Link to="/register" className="text-yellow-600 font-bold hover:text-yellow-700 transition-colors">
             Register here
           </Link>
         </p>

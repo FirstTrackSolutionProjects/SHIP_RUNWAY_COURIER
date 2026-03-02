@@ -54,12 +54,17 @@ const PendingRefunds = () => {
         <Box display="flex" gap={1}>
           <Button
             variant="contained"
-            color="success"
             size="small"
             disabled={!!actionLoading[params.row.ord_id]}
             onClick={() => handleRefund(params.row.ord_id)}
+            sx={{
+              backgroundColor: '#fbc02d',
+              color: '#000',
+              '&:hover': { backgroundColor: '#f9a825' },
+              fontWeight: 'bold'
+            }}
           >
-            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} /> : 'Refund'}
+            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} sx={{ color: '#000' }} /> : 'Refund'}
           </Button>
         </Box>
       ),
@@ -68,7 +73,7 @@ const PendingRefunds = () => {
 
   return (
     <Box p={2}>
-      <Typography variant="h5" mb={2}>Pending Refunds</Typography>
+      <Typography variant="h5" mb={2} sx={{ color: '#1b5e20', fontWeight: 'bold' }}>Pending Refunds</Typography>
       <Box sx={{ height: 500, width: '100%', background: 'white', borderRadius: 2, boxShadow: 1 }}>
         <DataGrid
           rows={rows}
@@ -78,25 +83,26 @@ const PendingRefunds = () => {
           disableSelectionOnClick
           pageSize={20}
           sx={{
-            border: '1px solid #000',
+            border: '1px solid #1b5e20',
             borderRadius: 0,
             '& .MuiDataGrid-columnHeaders': {
-              borderBottom: '1px solid #000',
-              backgroundColor: '#A34757',
-                color: '#FFF',
+              borderBottom: '1px solid #1b5e20',
+              backgroundColor: '#1b5e20',
+                color: '#fbc02d',
               },
             '& .MuiDataGrid-columnHeader': {
-              backgroundColor: '#A34757',
+              backgroundColor: '#1b5e20',
+              color: '#fbc02d',
               fontWeight: 'bold',
             },
             '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-              borderRight: '1px solid #000',
+              borderRight: '1px solid #1b5e20',
             },
             '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-              borderLeft: '1px solid #000',
+              borderLeft: '1px solid #1b5e20',
             },
             '& .MuiDataGrid-row': {
-              borderBottom: '1px solid #000',
+              borderBottom: '1px solid #1b5e20',
             },
           }}
           rowsPerPageOptions={[20, 50, 100]}

@@ -31,16 +31,16 @@ const AboutUs = () => {
 
         {/* Mission and Vision Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-black mb-2">Our Mission</h2>
+          <div className="bg-green-50 border border-green-100 rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-green-800 mb-2">Our Mission</h2>
             <p className="text-gray-800">
               To revolutionize domestic logistics by connecting businesses and customers through innovative technology and exceptional service. 
               We ensure efficiency, transparency, and reliability in every shipment.
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-black mb-2">Our Vision</h2>
+          <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-yellow-700 mb-2">Our Vision</h2>
             <p className="text-gray-800">
               To be the leading domestic logistics aggregator, empowering businesses and individuals with seamless, cost-effective, 
               and eco-friendly delivery solutions.

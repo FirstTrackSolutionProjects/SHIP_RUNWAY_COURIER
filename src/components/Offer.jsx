@@ -3,7 +3,7 @@ import React from 'react';
 const Offer = () => {
   return (
     <div className="py-10 px-4 bg-white">
-      <h2 className="text-3xl font-bold text-center text-black mb-6">
+      <h2 className="text-3xl font-bold text-center text-green-800 mb-6">
         What We Offer
       </h2>
 
@@ -19,7 +19,7 @@ const Offer = () => {
           </div>
           {/* Uncomment to add text below image */}
           {/* 
-          <h3 className="text-xl font-semibold text-orange-500 mb-2">International Shipping</h3>
+          <h3 className="text-xl font-semibold text-yellow-600 mb-2">International Shipping</h3>
           <p className="text-gray-700">
             Take your business across borders with ease. Our international logistics solutions are designed
             to handle complex shipping requirements while ensuring timely and secure deliveries. From

@@ -35,7 +35,7 @@ function Offers() {
               alt={offer.title}
               className="w-[420px] h-auto rounded-lg shadow-md mb-6 transform hover:scale-105 transition duration-300"
             />
-            <h3 className="text-2xl font-semibold text-brand-orange-dark mb-4">
+            <h3 className="text-2xl font-semibold text-yellow-600 mb-4">
               {offer.title}
             </h3>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-xl">
