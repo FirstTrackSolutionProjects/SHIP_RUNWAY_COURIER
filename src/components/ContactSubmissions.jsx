@@ -55,10 +55,10 @@ const View = ({reqId, uid ,fullName, email, phone, gst, setView, businessName, c
                             <p>IFSC : {ifsc}</p>
                         </div>
                     </div>
-                    <button onClick={handleApprove} className=" bg-red-500 text-white mx-2  py-2 px-4 rounded">
+                    <button onClick={handleApprove} className=" bg-green-700 hover:bg-green-800 text-white mx-2  py-2 px-4 rounded">
                         Approve
                     </button>
-                    <button onClick={handleReject} className=" bg-red-500 text-white mx-2  py-2 px-6 rounded">
+                    <button onClick={handleReject} className=" bg-yellow-500 hover:bg-yellow-600 text-black font-medium mx-2  py-2 px-6 rounded">
                         Reject
                     </button>
                 </div>

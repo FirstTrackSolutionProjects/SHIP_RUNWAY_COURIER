@@ -242,7 +242,7 @@ const Register = () => {
   return (
     <>
     {/* {emailModalOpen && <EmailOTPVerificationModal open={emailModalOpen} onClose={closeEmailModal} />} // Removed modal usage */}
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex flex-col items-center justify-start px-4 py-10 mb-9">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-start px-4 py-10 mb-9">
 
       {/* Top Image */}
       <div className="w-full max-w-md flex justify-center mb-6">
@@ -254,8 +254,8 @@ const Register = () => {
       </div>
 
       {/* Form Card */}
-      <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-xl">
-        <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
+      <div className="w-full max-w-md bg-white p-6 rounded-xl shadow-2xl border border-gray-100">
+        <h2 className="text-center text-2xl font-extrabold text-[#145A32] mb-6">
           Create Account
         </h2>
 
@@ -452,11 +452,11 @@ const Register = () => {
               <div className="ml-2 text-sm">
                 <label htmlFor="terms" className="text-gray-600">
                   I agree to the{" "}
-                  <Link to="/terms" className="text-blue-600 hover:underline">
+                  <Link to="/terms" className="text-[#145A32] font-semibold hover:underline">
                     Terms & Conditions
                   </Link>{" "}
                   and{" "}
-                  <Link to="/privacy" className="text-blue-600 hover:underline">
+                  <Link to="/privacy" className="text-[#145A32] font-semibold hover:underline">
                     Privacy Policy
                   </Link>
                 </label>
@@ -476,7 +476,7 @@ const Register = () => {
           <div className="text-center mt-6">
             <p className="text-sm text-gray-700">
               Already have an account?{' '}
-              <Link to="/sign-in" className="text-red-600 font-semibold hover:underline">
+              <Link to="/sign-in" className="text-[#E49B0F] font-bold hover:underline">
                 Sign In
               </Link>
             </p>

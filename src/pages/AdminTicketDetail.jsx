@@ -1,4 +1,4 @@
-// ShipWale\src\pages\AdminTicketDetail.jsx (NEW FILE for Phase 3 Admin View)
+// ShipRunway\src\pages\AdminTicketDetail.jsx (NEW FILE for Phase 3 Admin View)
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';

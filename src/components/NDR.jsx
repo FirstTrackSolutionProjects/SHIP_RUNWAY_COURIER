@@ -341,37 +341,44 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   return (
-    <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
+    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 mt-6 pb-4">
       <button 
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-          currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === 1 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
         }`}
       >
         <span className="hidden sm:inline">Previous</span>
         <span className="sm:hidden">Prev</span>
       </button>
       
-      {pages.map((page, idx) => (
-        <button
-          key={idx}
-          onClick={() => page.number !== '...' && onPageChange(page.number)}
-          className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-            page.number === '...' ? 'cursor-default' 
-            : page.isCurrent ? 'bg-red-500 text-white' 
-            : 'bg-white hover:bg-gray-100 border'
-          }`}
-        >
-          {page.number}
-        </button>
-      ))}
+      <div className="flex items-center gap-1">
+        {pages.map((page, idx) => (
+          <button
+            key={idx}
+            onClick={() => page.number !== '...' && onPageChange(page.number)}
+            className={`min-w-[32px] h-8 sm:h-9 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 ${
+              page.number === '...' ? 'cursor-default text-gray-400' 
+              : page.isCurrent 
+                ? 'bg-[#145A32] text-white shadow-md' 
+                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 active:scale-95'
+            }`}
+          >
+            {page.number}
+          </button>
+        ))}
+      </div>
       
       <button 
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-          currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === totalPages 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
         }`}
       >
         <span className="hidden sm:inline">Next</span>
@@ -577,7 +584,7 @@ const Listing = () => {
           <Button
             variant="contained"
             size="small"
-            sx={{ mr: 1 }}
+            sx={{ mr: 1, bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
             onClick={() => {
               setSelectedReport(params.row);
               setIsViewOpen(true);
@@ -604,6 +611,7 @@ const Listing = () => {
             size="small"
             onClick={handleBulkLabel}
             disabled={selectedOrderIds.length === 0}
+            sx={{ bgcolor: '#F1C40F', color: 'black', '&:hover': { bgcolor: '#D4AC0D' }, '&.Mui-disabled': { bgcolor: '#F9E79F' } }}
           >
             Bulk Label
           </Button>
@@ -613,7 +621,7 @@ const Listing = () => {
           sx={{
             mb: 3,
             p: 2,
-            bgcolor: 'primary.main',
+            bgcolor: '#145A32',
             borderRadius: 2, '& .MuiTextField-root': {bgcolor: 'background.paper', borderRadius: 1},
             overflowX: 'auto',
             '&::-webkit-scrollbar': {
@@ -812,14 +820,19 @@ const Listing = () => {
             sx={{
               border: '1px solid #000',
               borderRadius: 0,
+              overflow: 'hidden',
+              backgroundColor: '#fff',
               '& .MuiDataGrid-columnHeaders': {
                 borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 color: '#FFF',
+                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                letterSpacing: '0.05em',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
-                fontWeight: 'bold',
+                backgroundColor: '#145A32',
+                fontWeight: 600,
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
                 borderRight: '1px solid #000',
@@ -829,6 +842,10 @@ const Listing = () => {
               },
               '& .MuiDataGrid-row': {
                 borderBottom: '1px solid #000',
+              },
+              '& .MuiDataGrid-row:hover': {
+                backgroundColor: '#f8fafc',
+                transition: 'background-color 0.2s ease',
               },
             }}
           />
@@ -946,7 +963,7 @@ const OrderDetailsDialog = ({ isOpen, onClose, orderId, shipment }) => {
       <DialogContent sx={{ p: { xs: 2, sm: 3 }, pt: 0 }}>
         {loading ? (
           <Box p={8} textAlign="center" display="flex" flexDirection="column" alignItems="center" gap={2}>
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-500"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#145A32]"></div>
             <Typography color="text.secondary">Fetching order details...</Typography>
           </Box>
         ) : (

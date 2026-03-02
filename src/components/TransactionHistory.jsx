@@ -97,7 +97,7 @@ const TransactionHistory = () => {
                 <button
                     onClick={() => onPageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                    className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#F1C40F] hover:text-[#145A32]'}`}
                 >
                     <span className="hidden sm:inline">Previous</span>
                     <span className="sm:hidden">Prev</span>
@@ -108,8 +108,8 @@ const TransactionHistory = () => {
                         onClick={() => p.number !== '...' && onPageChange(p.number)}
                         className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
                             p.number === '...' ? 'cursor-default'
-                            : p.isCurrent ? 'bg-blue-500 text-white'
-                            : 'bg-white hover:bg-gray-100 border'
+                            : p.isCurrent ? 'bg-[#145A32] text-white'
+                            : 'bg-white hover:bg-[#F1C40F] border'
                         }`}
                         disabled={p.number === '...'}
                     >
@@ -119,7 +119,7 @@ const TransactionHistory = () => {
                 <button
                     onClick={() => onPageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
+                    className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#F1C40F] hover:text-[#145A32]'}`}
                 >
                     <span className="hidden sm:inline">Next</span>
                     <span className="sm:hidden">Next</span>
@@ -129,10 +129,10 @@ const TransactionHistory = () => {
     };
 
     return (
-        <div className='py-10 w-full flex flex-col items-center'>
+        <div className='py-10 w-full flex flex-col items-center bg-white'>
             <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
-                <h1 className='text-2xl font-semibold text-center'>Transaction History</h1>
-                <div className='bg-[#145A32] text-white p-4 rounded-lg space-y-4 shadow-sm'>
+                <h1 className='text-2xl font-semibold text-center text-[#145A32]'>Transaction History</h1>
+                <div className='bg-[#145A32] text-white p-4 rounded-lg space-y-4 shadow-sm border-b-4 border-[#F1C40F]'>
                     <div className='grid md:grid-cols-5 gap-3'>
                         <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'>
                             <option value='all'>All Types</option>
@@ -170,10 +170,11 @@ const TransactionHistory = () => {
                               }
                             }}
                             sx={{ 
-                              backgroundColor: 'white',
+                              backgroundColor: '#F1C40F',
+                              color: '#145A32',
                               borderRadius: 1,
                               '&:hover': {
-                                backgroundColor: 'grey.100',
+                                backgroundColor: '#D4AC0D',
                               },
                               minWidth: '40px'
                             }}
@@ -183,7 +184,7 @@ const TransactionHistory = () => {
                     </div>
                 </div>
                 {error && <div className='text-red-600 text-sm'>{error}</div>}
-                <div style={{ width: '100%', background: 'white' }} className='rounded-lg border'>
+                <div style={{ width: '100%', background: 'white' }} className='rounded-lg overflow-hidden border'>
                     <DataGrid
                         autoHeight
                         rows={rows}
@@ -203,10 +204,10 @@ const TransactionHistory = () => {
                         sx={{
                             '& .MuiDataGrid-overlayWrapper': { backgroundColor: '#fff' },
                             '& .MuiDataGrid-virtualScrollerRenderZone': rows.length === 0 ? { opacity: 0 } : {},
-                            border: '1px solid #000',
+                            border: '1px solid #145A32',
                             borderRadius: 0,
                             '& .MuiDataGrid-columnHeaders': {
-                              borderBottom: '1px solid #000',
+                              borderBottom: '2px solid #F1C40F',
                               backgroundColor: '#145A32',
                               color: '#FFF',
                             },
@@ -215,13 +216,13 @@ const TransactionHistory = () => {
                               fontWeight: 'bold',
                             },
                             '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                              borderRight: '1px solid #000',
+                              borderRight: '1px solid #145A32',
                             },
                             '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                              borderLeft: '1px solid #000',
+                              borderLeft: '1px solid #145A32',
                             },
                             '& .MuiDataGrid-row': {
-                              borderBottom: '1px solid #000',
+                              borderBottom: '1px solid #145A32',
                             },
                         }}
                     />

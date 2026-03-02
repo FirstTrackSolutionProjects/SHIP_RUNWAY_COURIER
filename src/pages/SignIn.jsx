@@ -64,32 +64,37 @@ const SignIn = () => {
   return (
     <>
     {/* Removed EmailOTPVerificationModal rendering */}
-    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex items-center justify-center p-6 mb-9">
+    <div className="min-h-screen bg-white flex items-center justify-center p-6 mb-9">
 
-      <div className="w-full max-w-md bg-white rounded-xl shadow-xl p-6">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl shadow-gray-100 p-8 border border-gray-100">
         
-        <div className="w-full flex justify-center mb-4">
+        <div className="w-full flex justify-center mb-8">
           <img
-            className="w-full h-60 object-cover rounded-xl mb-6"
+            className="w-full h-48 object-cover rounded-2xl shadow-inner border border-gray-100"
             src={signInImage}
             alt="Sign In Banner"
           />
         </div>
 
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Welcome Back
-        </h2>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-extrabold text-gray-900">
+            Welcome Back
+          </h2>
+          <p className="text-sm text-gray-500 mt-2">Sign in to manage your shipments</p>
+        </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-5" onSubmit={handleSubmit}>
           
-          <div className="flex items-center border border-gray-300 rounded-md px-3 py-2 focus-within:ring-2 focus-within:ring-[#145A32]">
-            <FaEnvelope className="text-gray-500 mr-2" />
+          <div className="group relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <FaEnvelope className="text-gray-400 group-focus-within:text-[#145A32] transition-colors" />
+            </div>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full focus:outline-none"
+              className="block w-full pl-11 pr-3 py-3.5 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#145A32]/20 focus:border-[#145A32] transition-all"
             />
           </div>
 
@@ -138,13 +143,13 @@ const SignIn = () => {
                 type="checkbox"
                 checked={rememberMe}
                 onChange={() => setRememberMe(!rememberMe)}
-                className="mr-2"
+                className="mr-2 accent-[#145A32]"
               />
               Remember me for 30 days
             </label>
 
             <p
-              className="text-sm text-gray-600 cursor-pointer hover:text-red-700"
+              className="text-sm text-gray-600 cursor-pointer hover:text-yellow-600 transition-colors"
               onClick={() => setShowForgotPassword(true)}
             >
               Forgot Password?
@@ -154,7 +159,7 @@ const SignIn = () => {
           <button
             type="submit"
             disabled={!email || !password}
-            className="w-full bg-[#145A32] text-white py-2 rounded-md font-semibold hover:bg-[#0E3F2D] transition-colors duration-200"
+            className="w-full bg-[#145A32] text-white py-3 rounded-xl font-bold hover:bg-[#0E3F2D] border-b-4 border-[#0E3F2D] active:border-b-0 active:translate-y-1 transition-all duration-150"
           >
             SIGN IN
           </button>
@@ -166,9 +171,9 @@ const SignIn = () => {
           <div className="w-full h-px bg-gray-300"></div>
         </div>
 
-        <p className="text-center text-sm">
+        <p className="text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <Link to="/register" className="text-red-600 font-semibold hover:underline">
+          <Link to="/register" className="text-yellow-600 font-bold hover:text-yellow-700 transition-colors">
             Register here
           </Link>
         </p>

@@ -150,9 +150,9 @@ async function generateShipmentLabels(labelData) {
       <div class='header'>
         <div class='brand'>
           <img src='${logoUrl}' />
-          <div><div class='brand-name'>SHIPWALE</div><div class='brand-sub'>International Courier & Cargo</div></div>
+          <div><div class='brand-name'>SHIPRUNWAY</div><div class='brand-sub'>International Courier & Cargo</div></div>
         </div>
-        <div class='contact'>info@shipwale.com<br/>https://shipwale.com</div>
+        <div class='contact'>info@shiprunway.com<br/>https://shiprunway.com</div>
       </div>
       <div class='section'>
         <div class='section-title'>To</div>
@@ -196,7 +196,7 @@ async function generateShipmentLabels(labelData) {
           <div class='ref'>${labelData.SHIPMENT_REFERENCE_ID || ''}</div>
         </div>
       </div>
-      <div class='footer'>Thank you for shipping with ShipWale Courier & Cargo</div>
+      <div class='footer'>Thank you for shipping with ShipRunway Courier & Cargo</div>
     </body></html>`;
   };
 
@@ -2249,14 +2249,19 @@ const Listing = ({ step, setStep }) => {
             sx={{
               border: '1px solid #000',
               borderRadius: 0,
+              overflow: 'hidden',
+              backgroundColor: '#fff',
               '& .MuiDataGrid-columnHeaders': {
                 borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
+                backgroundColor: '#145A32',
                 color: '#FFF',
+                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                letterSpacing: '0.05em',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
-                fontWeight: 'bold',
+                backgroundColor: '#145A32',
+                fontWeight: 600,
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
                 borderRight: '1px solid #000',
@@ -2266,6 +2271,10 @@ const Listing = ({ step, setStep }) => {
               },
               '& .MuiDataGrid-row': {
                 borderBottom: '1px solid #000',
+              },
+              '& .MuiDataGrid-row:hover': {
+                backgroundColor: '#f8fafc',
+                transition: 'background-color 0.2s ease',
               },
             }}
           />

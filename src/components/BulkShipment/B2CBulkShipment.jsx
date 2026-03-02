@@ -323,7 +323,7 @@ const generateSampleExcel = () => {
   const ws = XLSX.utils.json_to_sheet(SAMPLE_DATA);
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Shipments');
-  XLSX.writeFile(wb, 'Shipwale_Domestic_Bulk_Shipment_Sample.xlsx');
+  XLSX.writeFile(wb, 'Shiprunway_Domestic_Bulk_Shipment_Sample.xlsx');
 };
 
 const parseExcel = (file) => {
@@ -512,7 +512,21 @@ const convertToBackendPayload = (validatedData) => {
 
 // --- UI Component: UploadSection.jsx ---
 const UploadSection = ({ step, file, fileInputRef, handleFileChange, handleDownloadSample, handleViewWarehouses }) => (
-    <Paper sx={{ p: { xs: 2, sm: 4 }, textAlign: 'center', boxShadow: 3, border: '2px dashed #fcd3d3' }}>
+    <Paper 
+      elevation={0}
+      sx={{ 
+        p: { xs: 3, sm: 6 }, 
+        textAlign: 'center', 
+        borderRadius: '20px',
+        border: '2px dashed #e2e8f0', 
+        bgcolor: '#f8fafc',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          borderColor: '#145A32',
+          bgcolor: '#f1f5f9'
+        }
+      }}
+    >
         {step === 'LOADING' ? (
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <CircularProgress sx={{ mb: 2, color: '#145A32' }} />
@@ -584,7 +598,7 @@ const ErrorSummary = ({ errors, onTraceError }) => {
         const ws = XLSX.utils.json_to_sheet(reportData);
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Error Report');
-        XLSX.writeFile(wb, 'Shipwale_Bulk_Shipment_Error_Report.csv');
+        XLSX.writeFile(wb, 'Shiprunway_Bulk_Shipment_Error_Report.csv');
         toast.info("Error report downloaded.");
     };
 
@@ -1157,7 +1171,7 @@ const BulkShipment = () => {
     const ws = XLSX.utils.json_to_sheet(rowsForReport);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Failed Shipments');
-    XLSX.writeFile(wb, 'Shipwale_Bulk_Shipment_Failed_Shipments_Report.xlsx');
+    XLSX.writeFile(wb, 'Shiprunway_Bulk_Shipment_Failed_Shipments_Report.xlsx');
     toast.info('Failed shipments report downloaded.');
   }, [apiFailedShipments, validatedPayload]);
 

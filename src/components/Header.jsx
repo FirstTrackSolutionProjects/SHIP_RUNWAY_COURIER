@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX } from "react-icons/fi";
 // import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
@@ -10,6 +10,7 @@ const API_URL = import.meta.env.VITE_APP_API_URL
 
 const Header = () => {
 const [isOpen, setIsOpen] = useState(false);
+const location = useLocation();
 const {isAuthenticated, name, logout, verified} = useAuth()
 const [showRecharge, setShowRecharge] = useState(false);
 const closeRechargeModal = () => {
@@ -47,18 +48,20 @@ return (
     <>
     {showRecharge ? <WalletRechargeModal onClose={closeRechargeModal} /> : null}
     <header className="w-full bg-gray-100 sticky top-0 z-50 h-16 flex items-center px-4 shadow">
-    <div className="flex items-center justify-between w-full">
-        {/* Logo */}
-        <Link to="/" className="h-24 flex items-center ">
-          <img 
-            src="/logo 1.png" 
-            alt="Logo" 
-            className="h-20 w-auto sm:h-24 object-contain" 
-          />
-        </Link>
+    <div className="flex items-center justify-between w-full h-full">
+        {/* Logo Container */}
+        <div className="flex-1 flex justify-start items-center">
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/logo 1.png" 
+              alt="Logo" 
+              className="h-12 w-auto object-contain" 
+            />
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 font-semibold text-gray-700">
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-6 font-semibold text-gray-700">
         <Link
             to="/"
             className="relative group"
@@ -106,29 +109,33 @@ return (
             </Link>
           )}
         </nav>
-        <div className='md:hidden' onClick={()=>setShowRecharge(true)}>
-          {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
-                <p>{`₹${balance}`}</p>
-              </div>
-              </>
-          ):null}
-        </div>
-        {isAuthenticated?<div className='md:flex items-center space-x-4 hidden'>
-          {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
-                <p>{`₹${balance}`}</p>
-              </div>
-              </>
-          ):null}
-          <div className='flex items-center'>
-            {name} <span className='bg-brand-orange hover:bg-brand-orange-dark text-white text-xl p-3 cursor-pointer rounded-xl mx-3 transition-colors' onClick={logout}><FaDoorOpen /></span>
+
+        {/* Right Section Container */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <div className='md:hidden' onClick={()=>setShowRecharge(true)}>
+            {verified && location.pathname.startsWith('/dashboard') && (
+                <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm`}>
+                {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
+                  <p>{`₹${balance}`}</p>
+                </div>
+            )}
           </div>
-          </div>:null}
-
-
+          {isAuthenticated && (
+            <div className='md:flex items-center space-x-4 hidden'>
+              {verified && location.pathname.startsWith('/dashboard') && (
+                  <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm transition-all duration-300`}>
+                  {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
+                    <p>{`₹${balance}`}</p>
+                  </div>
+              )}
+              <div className='flex items-center'>
+                <span className="text-brand-accent font-semibold">{name}</span> 
+                <span className='bg-brand-green hover:bg-brand-green-dark text-white text-lg p-2.5 cursor-pointer rounded-xl mx-3 transition-all duration-300 shadow-sm' onClick={logout}>
+                  <FaDoorOpen />
+                </span>
+              </div>
+            </div>
+          )}
 
         {/* Mobile menu toggle */}
         {/* <button

@@ -13,17 +13,17 @@ const AboutUs = () => {
         />
 
         {/* Main Title */}
-        <h1 className="text-4xl font-bold text-center text-black mb-4">About Us</h1>
-        <p className="text-xl text-center text-black mb-8">
-          Delivering Excellence in Domestic Logistics
-        </p>
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">About Us</h1>
+          <p className="text-xl text-gray-600 font-medium">
+            Delivering Excellence in Domestic Logistics
+          </p>
+        </div>
 
         {/* Company Overview Section */}
-        <div className="bg-gray-100 border border-gray-200 rounded-lg p-6 mb-8">
-  
-            <p className="text-gray-800">
-              <strong> Rameshwar Cargo India Pvt. Ltd.</strong>, founded in <strong>June 2023</strong>, is a fast-growing logistics company  <span className="text-[#145A32] font-bold"> Ship</span>
-                <span className="text-[#E49B0F] font-bold"> Runway</span> Courier dedicated to providing
+        <div className="bg-white border border-gray-100 rounded-2xl p-8 md:p-10 shadow-sm mb-10 ring-1 ring-gray-900/5">
+            <p className="text-lg leading-relaxed text-gray-700">
+              <strong className="text-gray-900">Rameshwar Cargo India Pvt. Ltd.</strong>, founded in <strong className="text-gray-900">June 2023</strong>, is a fast-growing logistics company <span className="text-[#145A32] font-extrabold">Ship</span><span className="text-[#E49B0F] font-extrabold">Runway</span> Courier dedicated to providing
               seamless and efficient domestic delivery solutions across India. With a focus on innovation and customer satisfaction, we’ve
               become a trusted logistics aggregator that bridges businesses and customers through smart, reliable, and cost-effective services.
             </p>
@@ -31,16 +31,16 @@ const AboutUs = () => {
 
         {/* Mission and Vision Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-black mb-2">Our Mission</h2>
+          <div className="bg-green-50 border border-green-100 rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-green-800 mb-2">Our Mission</h2>
             <p className="text-gray-800">
               To revolutionize domestic logistics by connecting businesses and customers through innovative technology and exceptional service. 
               We ensure efficiency, transparency, and reliability in every shipment.
             </p>
           </div>
 
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-6">
-            <h2 className="text-2xl font-semibold text-black mb-2">Our Vision</h2>
+          <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-6">
+            <h2 className="text-2xl font-semibold text-yellow-700 mb-2">Our Vision</h2>
             <p className="text-gray-800">
               To be the leading domestic logistics aggregator, empowering businesses and individuals with seamless, cost-effective, 
               and eco-friendly delivery solutions.

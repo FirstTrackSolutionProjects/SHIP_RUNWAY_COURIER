@@ -27,24 +27,28 @@ export default function FloatingAssistant() {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-1000"> 
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[1000] flex flex-col items-end"> 
             {/* Chat Modal Window */}
             {isOpen && (
                 <div 
-                    className="bg-white shadow-2xl rounded-lg overflow-hidden 
-                                w-80 h-[450px] md:w-96 md:h-[600px] 
-                                mb-4 border border-gray-200 flex flex-col"
+                    className="bg-white shadow-2xl rounded-2xl overflow-hidden 
+                                w-[calc(100vw-2rem)] sm:w-80 md:w-96 
+                                h-auto max-h-[75vh] md:max-h-[600px] 
+                                mb-4 border border-gray-100 flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300 shadow-brand-green/10"
                 >
                     {/* Header */}
-                    <div className="bg-brand-green text-white px-4 py-3 flex justify-between items-center shrink-0">
-                        <p className="font-semibold text-sm">Shipwale Support</p>
-                        <button onClick={handleClose} className="text-xl hover:text-red-300 transition">
+                    <div className="bg-brand-green text-white px-5 py-4 flex justify-between items-center shrink-0">
+                        <div>
+                            <p className="font-bold text-sm tracking-tight">Shiprunway Support</p>
+                            <p className="text-[10px] text-white/80 font-medium">Online • Typical reply 5m</p>
+                        </div>
+                        <button onClick={handleClose} className="p-1 hover:bg-white/10 rounded-full transition-colors">
                             <X size={20} />
                         </button>
                     </div>
 
                     {/* Chatbot Content */}
-                    <div className="grow">
+                    <div className="flex-1 overflow-hidden">
                         <TicketChatbot onClose={handleClose} />
                     </div>
                 </div>
@@ -53,11 +57,11 @@ export default function FloatingAssistant() {
             {/* Floating Button */}
             <button
                 onClick={toggleOpen}
-                className={`w-14 h-14 rounded-full shadow-lg text-white transition-all duration-300 flex items-center justify-center 
-                            ${isOpen ? 'bg-brand-orange hover:bg-brand-orange-dark' : 'bg-brand-green hover:bg-brand-green-dark'}`}
+                className={`w-14 h-14 rounded-full shadow-xl text-white transition-all duration-300 flex items-center justify-center 
+                            ${isOpen ? 'bg-brand-orange rotate-90 scale-110 shadow-brand-orange/40' : 'bg-brand-green hover:bg-brand-green-light hover:scale-110 hover:shadow-brand-green/40'}`}
                 aria-label={isOpen ? "Close Support Chat" : "Open Support Chat"}
             >
-                {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+                {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
             </button>
         </div>
     );

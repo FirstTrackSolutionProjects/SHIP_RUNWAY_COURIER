@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import CloseIcon from '@mui/icons-material/Close';
+import { TruckElectricIcon } from 'lucide-react';
 import convertToUTCISOString from "../helpers/convertToUTCISOString";
 import { DOMESTIC_ORDER_STATUS_ENUMS } from "@/Constants";
 import { Warehouse } from "lucide-react";
@@ -823,12 +824,12 @@ const ManageForm = ({ isManage, setIsManage, shipment, isShipped }) => {
                   onChange={handleInvoice}
                 />
                 <Box className="flex items-center mt-2">
-                  <a type="button" className="m-2 w-20 px-5 py-2 border rounded bg-red-600 text-white" target="_blank" href={import.meta.env.VITE_APP_BUCKET_URL + formData.invoiceUrl}>View</a>
+                  <a type="button" className="m-2 w-20 px-5 py-2 border rounded bg-green-700 text-white" target="_blank" href={import.meta.env.VITE_APP_BUCKET_URL + formData.invoiceUrl}>View</a>
                 <Button
                   variant="contained"
                   onClick={uploadInvoice}
-                  className="bg-red-500"
-                  sx={{ borderRadius: '4px' }}
+                  className="bg-yellow-500 hover:bg-yellow-600"
+                  sx={{ borderRadius: '4px', color: 'black', fontWeight: 'bold' }}
                 >
                   Update
                 </Button>
@@ -942,34 +943,46 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   }
 
-  return (    <div className="flex items-center justify-center space-x-1 sm:space-x-2 mt-4">
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 mt-6 pb-4">
       <button 
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === 1 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
       >
         <span className="hidden sm:inline">Previous</span>
         <span className="sm:hidden">Prev</span>
       </button>
       
-      {pages.map((page, idx) => (
-        <button
-          key={idx}
-          onClick={() => page.number !== '...' && onPageChange(page.number)}
-          className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
-            page.number === '...' ? 'cursor-default' 
-            : page.isCurrent ? 'bg-red-500 text-white' 
-            : 'bg-white hover:bg-gray-100 border'
-          }`}
-        >
-          {page.number}
-        </button>
-      ))}
+      <div className="flex items-center gap-1">
+        {pages.map((page, idx) => (
+          <button
+            key={idx}
+            onClick={() => page.number !== '...' && onPageChange(page.number)}
+            className={`min-w-[32px] h-8 sm:h-9 px-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 ${
+              page.number === '...' ? 'cursor-default text-gray-400' 
+              : page.isCurrent 
+                ? 'bg-[#145A32] text-white shadow-md' 
+                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 active:scale-95'
+            }`}
+          >
+            {page.number}
+          </button>
+        ))}
+      </div>
       
       <button 
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+        className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
+          currentPage === totalPages 
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+            : 'bg-[#145A32] text-white hover:bg-[#0E3F2D] shadow-md hover:shadow-lg active:scale-95'
+        }`}
       >
         <span className="hidden sm:inline">Next</span>
         <span className="sm:hidden">Next</span>
@@ -1048,7 +1061,7 @@ const Card = ({ shipment }) => {
           {/* Action Button - 1 column */}
           <div className="col-span-1 flex items-center justify-end">
             <button 
-              className="px-4 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors" 
+              className="px-4 py-1 bg-yellow-500 text-black font-medium text-sm rounded hover:bg-yellow-600 transition-colors" 
               onClick={() => setIsManage(true)}
             >
               {isShipped ? "View" : "Manage"}
@@ -1257,7 +1270,7 @@ const Listing = ({ step, setStep }) => {
 
 {/* Filters */}
       <Box
-        className="bg-red-500 p-4 rounded-xl shadow-md"
+        className="bg-green-800 p-4 rounded-xl shadow-md"
         sx={{
           mb: 3,
           display: 'grid',
