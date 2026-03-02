@@ -479,6 +479,7 @@ const Listing = () => {
               setSelectedReport(params.row);
               setIsViewOpen(true);
             }}
+            sx={{ bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
           >
             Status
           </Button>

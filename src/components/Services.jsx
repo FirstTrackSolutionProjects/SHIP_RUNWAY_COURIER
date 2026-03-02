@@ -3,22 +3,22 @@ import { FaChartLine, FaLaptopCode, FaShieldAlt, FaWarehouse } from 'react-icons
 
 const services = [
   {
-    icon: <FaChartLine className="text-blue-600 text-4xl mx-auto mb-4" />,
+    icon: <FaChartLine className="text-green-700 text-4xl mx-auto mb-4" />,
     title: 'Supply Chain Optimization',
     description: 'Enhance efficiency across your supply chain with smart analytics and expert planning.',
   },
   {
-    icon: <FaLaptopCode className="text-blue-600 text-4xl mx-auto mb-4" />,
+    icon: <FaLaptopCode className="text-green-700 text-4xl mx-auto mb-4" />,
     title: 'Real-Time Tracking',
     description: 'Monitor shipments with GPS and IoT for complete visibility and faster deliveries.',
   },
   {
-    icon: <FaShieldAlt className="text-blue-600 text-4xl mx-auto mb-4" />,
+    icon: <FaShieldAlt className="text-green-700 text-4xl mx-auto mb-4" />,
     title: 'Customs & Compliance',
     description: 'Simplify global shipping with automated compliance checks and customs documentation.',
   },
   {
-    icon: <FaWarehouse className="text-blue-600 text-4xl mx-auto mb-4" />,
+    icon: <FaWarehouse className="text-green-700 text-4xl mx-auto mb-4" />,
     title: 'Warehouse Solutions',
     description: 'Maximize space and streamline fulfillment with intelligent warehouse management.',
   },

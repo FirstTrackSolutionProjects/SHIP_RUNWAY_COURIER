@@ -4,8 +4,8 @@ const faqs = [
       question: (
       <span className="text-gray-700 text-lg font-semibold">
         What is{' '}
-        <span className="text-blue-700 font-bold inline">Ship</span>
-        <span className="text-orange-600 font-bold inline"> Runway</span>{' '}
+        <span className="text-[#145A32] font-bold inline">Ship</span>
+        <span className="text-[#F1C40F] font-bold inline"> Runway</span>{' '}
         COURIER?
       </span>
     ),
@@ -13,8 +13,8 @@ const faqs = [
 
     answer:(
       <>
-    <span className="text-blue-700 font-bold"> Ship</span>
-    <span className="text-orange-600 font-bold"> Runway</span>  Courier appears to be a delivery service, possibly a specialized or expedited courier service that emphasizes speed and efficiency in delivering packages. Services with similar names typically focus on providing rapid delivery solutions, often catering to e-commerce businesses, urgent shipments, or high-priority deliveries.
+    <span className="text-[#145A32] font-bold"> Ship</span>
+    <span className="text-[#F1C40F] font-bold"> Runway</span>  Courier appears to be a delivery service, possibly a specialized or expedited courier service that emphasizes speed and efficiency in delivering packages. Services with similar names typically focus on providing rapid delivery solutions, often catering to e-commerce businesses, urgent shipments, or high-priority deliveries.
     </>
     ),
   },
@@ -72,8 +72,8 @@ const FAQs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+    <div className="min-h-screen bg-white p-4">
+      <div className="max-w-2xl mx-auto bg-white p-8 border border-gray-200 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
         {faqsList.map((faq, index) => (
           <FAQ key={index} faq={faq} index={index} toggleFAQ={toggleFAQ} />

@@ -43,7 +43,7 @@ const timestampToDate = (timestamp) => {
 const DelhiveryStatusCard = ({ report, status }) => {
   return (
     <div>
-      <p className="font-bold">AWB : <b className="text-red-500">{report.awb}</b></p>
+      <p className="font-bold">AWB : <b className="text-[#F1C40F]">{report.awb}</b></p>
       <p>Ref Id: {report.ref_id}</p>
       <p>Status : {status.Status.Status}</p>
       <div className="my-2 border-b border-black"> </div>
@@ -531,6 +531,7 @@ const Listing = () => {
               setSelectedReport(params.row);
               setIsViewOpen(true);
             }}
+            sx={{ bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
           >
             Status
           </Button>
@@ -560,7 +561,7 @@ const Listing = () => {
           sx={{
             mb: 3,
             p: 2,
-            bgcolor: 'red',
+            bgcolor: '#145A32',
             borderRadius: 2, '& .MuiTextField-root': {bgcolor: 'background.paper', borderRadius: 1},
             overflowX: 'auto',
             '&::-webkit-scrollbar': {
@@ -937,7 +938,7 @@ const OrderDetailsDialog = ({ isOpen, onClose, orderId, shipment }) => {
       <DialogContent sx={{ p: { xs: 2, sm: 3 }, pt: 0 }}>
         {loading ? (
           <Box p={8} textAlign="center" display="flex" flexDirection="column" alignItems="center" gap={2}>
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-500"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#145A32]"></div>
             <Typography color="text.secondary">Fetching order details...</Typography>
           </Box>
         ) : (

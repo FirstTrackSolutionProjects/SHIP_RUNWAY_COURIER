@@ -584,7 +584,7 @@ const Listing = () => {
           <Button
             variant="contained"
             size="small"
-            sx={{ mr: 1 }}
+            sx={{ mr: 1, bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
             onClick={() => {
               setSelectedReport(params.row);
               setIsViewOpen(true);
@@ -611,6 +611,7 @@ const Listing = () => {
             size="small"
             onClick={handleBulkLabel}
             disabled={selectedOrderIds.length === 0}
+            sx={{ bgcolor: '#F1C40F', color: 'black', '&:hover': { bgcolor: '#D4AC0D' }, '&.Mui-disabled': { bgcolor: '#F9E79F' } }}
           >
             Bulk Label
           </Button>
@@ -620,7 +621,7 @@ const Listing = () => {
           sx={{
             mb: 3,
             p: 2,
-            bgcolor: 'primary.main',
+            bgcolor: '#145A32',
             borderRadius: 2, '& .MuiTextField-root': {bgcolor: 'background.paper', borderRadius: 1},
             overflowX: 'auto',
             '&::-webkit-scrollbar': {
@@ -962,7 +963,7 @@ const OrderDetailsDialog = ({ isOpen, onClose, orderId, shipment }) => {
       <DialogContent sx={{ p: { xs: 2, sm: 3 }, pt: 0 }}>
         {loading ? (
           <Box p={8} textAlign="center" display="flex" flexDirection="column" alignItems="center" gap={2}>
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-500"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#145A32]"></div>
             <Typography color="text.secondary">Fetching order details...</Typography>
           </Box>
         ) : (

@@ -57,7 +57,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 			<button
 				onClick={() => onPageChange(currentPage - 1)}
 				disabled={currentPage === 1}
-				className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+				className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === 1 ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#0E3F2D]'}`}
 			>
 				<span className="hidden sm:inline">Previous</span>
 				<span className="sm:hidden">Prev</span>
@@ -69,10 +69,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 					onClick={() => page.number !== '...' && onPageChange(page.number)}
 					className={`min-w-[30px] px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${
 						page.number === '...'
-							? 'cursor-default'
+							? 'cursor-default text-gray-400'
 							: page.isCurrent
-								? 'bg-red-500 text-white'
-								: 'bg-white hover:bg-gray-100 border'
+								? 'bg-[#145A32] text-white shadow-md'
+								: 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
 					}`}
 				>
 					{page.number}
@@ -82,7 +82,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 			<button
 				onClick={() => onPageChange(currentPage + 1)}
 				disabled={currentPage === totalPages}
-				className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-200 cursor-not-allowed' : 'bg-red-500 text-white hover:bg-red-600'}`}
+				className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${currentPage === totalPages ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-[#145A32] text-white hover:bg-[#0E3F2D]'}`}
 			>
 				<span className="hidden sm:inline">Next</span>
 				<span className="sm:hidden">Next</span>
@@ -115,7 +115,16 @@ const Warehouse = () => {
 		USER_ROLE: { headerName: 'Role', minWidth: 120, roles: [USER_ROLES.ADMIN], filter: true, filterConfig:{ type:'select', options:[{value:	USER_ROLES.ADMIN, label:'Admin'}, {value:USER_ROLES.MERCHANT, label:'Merchant'}] } },
 		ACTIONS: { headerName: 'Actions', minWidth: 220, sortable: false, filterable: false, renderCell: (params) => (
 				<Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-					<Button variant="contained" size="small" onClick={() => openCheck(params.row)} sx={{ borderRadius: '4px' }}>
+					<Button 
+						variant="contained" 
+						size="small" 
+						onClick={() => openCheck(params.row)} 
+						sx={{ 
+							borderRadius: '4px',
+							bgcolor: '#E49B0F',
+							'&:hover': { bgcolor: '#C97A00' }
+						}}
+					>
 						Check
 					</Button>
 				</Box>
@@ -488,7 +497,12 @@ const Warehouse = () => {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={() => setEditOpen(false)} disabled={saving}>Cancel</Button>
-					<Button variant="contained" onClick={saveEdit} disabled={saving}>
+					<Button 
+						variant="contained" 
+						onClick={saveEdit} 
+						disabled={saving}
+						sx={{ bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
+					>
 						{saving ? 'Updating...' : 'Update'}
 					</Button>
 				</DialogActions>
@@ -551,7 +565,11 @@ const Warehouse = () => {
 							variant="contained"
 							onClick={retryWarehouseCreation}
 							disabled={servicesLoading || retrying}
-							sx={{ borderRadius: '4px' }}
+							sx={{ 
+								borderRadius: '4px',
+								bgcolor: '#E49B0F',
+								'&:hover': { bgcolor: '#C97A00' }
+							}}
 						>
 							{retrying ? 'Retrying...' : 'Retry'}
 						</Button>
@@ -642,7 +660,12 @@ const Warehouse = () => {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={() => setCreateOpen(false)} disabled={creating}>Cancel</Button>
-					<Button variant="contained" onClick={saveCreate} disabled={creating}>
+					<Button 
+						variant="contained" 
+						onClick={saveCreate} 
+						disabled={creating}
+						sx={{ bgcolor: '#145A32', '&:hover': { bgcolor: '#0E3F2D' } }}
+					>
 						{creating ? 'Creating...' : 'Create'}
 					</Button>
 				</DialogActions>

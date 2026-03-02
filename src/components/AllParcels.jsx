@@ -824,12 +824,12 @@ const ManageForm = ({ isManage, setIsManage, shipment, isShipped }) => {
                   onChange={handleInvoice}
                 />
                 <Box className="flex items-center mt-2">
-                  <a type="button" className="m-2 w-20 px-5 py-2 border rounded bg-red-600 text-white" target="_blank" href={import.meta.env.VITE_APP_BUCKET_URL + formData.invoiceUrl}>View</a>
+                  <a type="button" className="m-2 w-20 px-5 py-2 border rounded bg-green-700 text-white" target="_blank" href={import.meta.env.VITE_APP_BUCKET_URL + formData.invoiceUrl}>View</a>
                 <Button
                   variant="contained"
                   onClick={uploadInvoice}
-                  className="bg-red-500"
-                  sx={{ borderRadius: '4px' }}
+                  className="bg-yellow-500 hover:bg-yellow-600"
+                  sx={{ borderRadius: '4px', color: 'black', fontWeight: 'bold' }}
                 >
                   Update
                 </Button>
@@ -1061,7 +1061,7 @@ const Card = ({ shipment }) => {
           {/* Action Button - 1 column */}
           <div className="col-span-1 flex items-center justify-end">
             <button 
-              className="px-4 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 transition-colors" 
+              className="px-4 py-1 bg-yellow-500 text-black font-medium text-sm rounded hover:bg-yellow-600 transition-colors" 
               onClick={() => setIsManage(true)}
             >
               {isShipped ? "View" : "Manage"}
@@ -1270,7 +1270,7 @@ const Listing = ({ step, setStep }) => {
 
 {/* Filters */}
       <Box
-        className="bg-red-500 p-4 rounded-xl shadow-md"
+        className="bg-green-800 p-4 rounded-xl shadow-md"
         sx={{
           mb: 3,
           display: 'grid',

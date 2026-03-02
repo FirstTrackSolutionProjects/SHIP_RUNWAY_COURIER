@@ -17,17 +17,17 @@ const stats = [
 
 const Superiority = () => {
   return (
-    <div className="bg-[#f9fafa] py-10 px-4 text-center">
+    <div className="bg-white py-10 px-4 text-center">
       <h2 className="text-3xl font-bold mb-8">
-       <span className="text-blue-900">Ship</span> <span className="text-orange-700">Runway</span> Superiority
+       <span className="text-green-800">Ship</span> <span className="text-yellow-600">Runway</span> Superiority
       </h2>
       <div className="flex flex-col items-center space-y-6">
         {stats.map((item, index) => (
           <div
             key={index}
-            className="w-full max-w-md bg-gray-200 rounded-lg p-6 shadow-md"
+            className="w-full max-w-md bg-green-50 rounded-lg p-6 shadow-md border border-yellow-100"
           >
-            <h3 className="text-3xl font-bold">{item.number}</h3>
+            <h3 className="text-3xl font-bold text-green-800">{item.number}</h3>
             <p className="text-gray-600 text-lg">{item.label}</p>
           </div>
         ))}

@@ -92,13 +92,20 @@ const PendingRTO = () => {
         <Box display="flex" gap={1} alignItems="center" height="100%">
           <Button
             variant="contained"
-            color="success"
             size="small"
             disabled={!!actionLoading[params.row.ord_id]}
             onClick={() => openProcessDialog(params.row.ord_id)}
-            sx={{ whiteSpace: 'nowrap', flexShrink: 0 }}
+            sx={{ 
+              whiteSpace: 'nowrap', 
+              flexShrink: 0,
+              backgroundColor: '#2e7d32',
+              color: '#fdd835',
+              '&:hover': {
+                backgroundColor: '#1b5e20',
+              }
+            }}
           >
-            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} /> : 'Process'}
+            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} color="inherit" /> : 'Process'}
           </Button>
         </Box>
       ),
@@ -107,7 +114,7 @@ const PendingRTO = () => {
 
   return (
     <Box p={{ xs: 1, sm: 2 }}>
-      <Typography variant="h5" mb={2} sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' } }}>
+      <Typography variant="h5" mb={2} sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' }, color: '#1b5e20', fontWeight: 'bold' }}>
         Pending RTOs
       </Typography>
       <Box sx={{ height: 500, width: '100%', background: 'white', borderRadius: 2, boxShadow: 1, overflowX: 'auto' }}>
@@ -119,37 +126,41 @@ const PendingRTO = () => {
           disableSelectionOnClick
           pageSize={20}
           sx={{
-              border: '1px solid #000',
+              border: '1px solid #1b5e20',
               borderRadius: 0,
               minWidth: 720, // Forces horizontal scroll instead of squashing columns
               '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid #000',
-                backgroundColor: '#A34757',
-                color: '#FFF',
+                borderBottom: '1px solid #1b5e20',
+                backgroundColor: '#2e7d32',
+                color: '#fdd835',
               },
               '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#A34757',
+                backgroundColor: '#2e7d32',
                 fontWeight: 'bold',
               },
               '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                borderRight: '1px solid #000',
+                borderRight: '1px solid #1b5e20',
               },
               '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                borderLeft: '1px solid #000',
+                borderLeft: '1px solid #1b5e20',
               },
               '& .MuiDataGrid-row': {
-                borderBottom: '1px solid #000',
+                borderBottom: '1px solid #1b5e20',
               },
               '& .MuiDataGrid-cell': {
                 whiteSpace: 'nowrap',
               },
+              '& .MuiDataGrid-footerContainer': {
+                borderTop: '1px solid #1b5e20',
+                backgroundColor: '#f9fbe7',
+              }
             }}
           rowsPerPageOptions={[20, 50, 100]}
         />
       </Box>
 
       <Dialog open={processDialogOpen} onClose={closeProcessDialog} maxWidth="xs" fullWidth>
-        <DialogTitle>Process RTO</DialogTitle>
+        <DialogTitle sx={{ color: '#1b5e20', fontWeight: 'bold' }}>Process RTO</DialogTitle>
         <DialogContent>
           <Typography variant="body2" sx={{ mb: 1 }}>
             Order ID: {selectedOrdId || '-'}
@@ -162,18 +173,26 @@ const PendingRTO = () => {
             value={rtoAmount}
             onChange={(e) => setRtoAmount(e.target.value)}
             inputProps={{ min: 0, step: '0.01' }}
+            sx={{ mt: 1 }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeProcessDialog} disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : false}>
+          <Button onClick={closeProcessDialog} disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : false} sx={{ color: '#2e7d32' }}>
             Cancel
           </Button>
           <Button
             onClick={handleProcessConfirm}
             variant="contained"
             disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : true}
+            sx={{ 
+              backgroundColor: '#2e7d32', 
+              color: '#fdd835',
+              '&:hover': {
+                backgroundColor: '#1b5e20',
+              }
+            }}
           >
-            {selectedOrdId && actionLoading[selectedOrdId] ? <CircularProgress size={18} /> : 'Confirm'}
+            {selectedOrdId && actionLoading[selectedOrdId] ? <CircularProgress size={18} color="inherit" /> : 'Confirm'}
           </Button>
         </DialogActions>
       </Dialog>
