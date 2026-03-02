@@ -88,11 +88,11 @@ const PendingRefunds = () => {
             '& .MuiDataGrid-columnHeaders': {
               borderBottom: '1px solid #1b5e20',
               backgroundColor: '#1b5e20',
-                color: '#fbc02d',
-              },
+              color: '#fff',
+            },
             '& .MuiDataGrid-columnHeader': {
               backgroundColor: '#1b5e20',
-              color: '#fbc02d',
+              color: '#fff',
               fontWeight: 'bold',
             },
             '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
