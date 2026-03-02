@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX } from "react-icons/fi";
 // import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
@@ -9,8 +9,9 @@ import { FaDoorOpen } from 'react-icons/fa';
 const API_URL = import.meta.env.VITE_APP_API_URL
 
 const Header = () => {
-const [isOpen, setIsOpen] = useState(false);
+
 const {isAuthenticated, name, logout, verified} = useAuth()
+const location = useLocation();
 const [showRecharge, setShowRecharge] = useState(false);
 const closeRechargeModal = () => {
   setShowRecharge(false)
@@ -36,7 +37,7 @@ const [balance, setBalance] = useState(0.00);
     if (isAuthenticated && verified){
         fetchBalance();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, verified]);
   
   const handleLogout = () => {
   localStorage.removeItem('token'); 
