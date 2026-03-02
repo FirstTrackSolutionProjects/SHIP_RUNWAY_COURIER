@@ -61,17 +61,17 @@ const Header = () => {
   return (
     <>
       {showRecharge && <WalletRechargeModal onClose={closeRechargeModal} />}
-      <header className="w-full bg-gray-100 sticky top-0 z-50 h-16 flex items-center px-4 shadow">
+      <header className="w-full bg-gray-100 sticky top-0 z-50 h-16 sm:h-20 flex items-center px-2 sm:px-4 shadow">
         <div className="flex items-center justify-between w-full h-full">
           {/* Logo Container (Left Side) */}
-          <div className="flex items-center"> {/* Removed flex-1 to let other elements control width */}
-            <Link to="/" className="flex items-center gap-2">
+          <div className="flex items-center shrink-0">
+            <Link to="/" className="flex items-center gap-1">
               <img
                 src="/logo 1.png"
                 alt="Logo"
-                className="h-12 w-auto object-contain"
+                className="h-10 sm:h-16 w-auto object-contain"
               />
-              <span className="flex items-center gap-1 sm:gap-1.5 text-xl sm:text-2xl font-extrabold tracking-tight">
+              <span className="flex items-center gap-0.5 text-sm sm:text-2xl font-extrabold tracking-tight">
                 <span className="text-brand-green">Ship</span>
                 <span className="text-yellow-500">Runway</span>
               </span>
@@ -119,17 +119,22 @@ const Header = () => {
           </nav>
 
           {/* Right Section Container (User Info, Wallet, Logout) */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
             {/* Mobile Right Section (Visible on small screens) */}
-            <div className='md:hidden flex items-center gap-2'>
+            <div className='md:hidden flex items-center gap-1.5'>
+              {!isAuthenticated && (
+                <Link to="/sign-in" className="text-xs font-bold text-gray-700 hover:text-brand-orange transition-colors px-1">
+                  Sign In
+                </Link>
+              )}
               {isAuthenticated && verified && location.pathname.startsWith('/dashboard') && (
-                <div onClick={() => setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-lg px-3 py-1.5 cursor-pointer border border-brand-green-light shadow-sm`}>
-                  {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse text-sm">⚠️</span>}
-                  <p className="text-sm">{`₹${balance}`}</p>
+                <div onClick={() => setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-lg px-2 py-1 cursor-pointer border border-brand-green-light shadow-sm`}>
+                  {balance < 250 && <span className="mr-0.5 text-brand-orange animate-pulse text-[10px]">⚠️</span>}
+                  <p className="text-xs">{`₹${balance}`}</p>
                 </div>
               )}
               {isAuthenticated && (
-                <span className='bg-red-600 hover:bg-red-700 text-white text-base p-2 cursor-pointer rounded-lg transition-all duration-300 shadow-sm' onClick={handleLogout}>
+                <span className='bg-red-600 hover:bg-red-700 text-white text-sm p-1.5 cursor-pointer rounded-lg transition-all duration-300 shadow-sm' onClick={handleLogout}>
                   <FaDoorOpen />
                 </span>
               )}
@@ -157,8 +162,8 @@ const Header = () => {
 
             {/* Mobile menu toggle button (Visible on small screens) */}
             {/* <button
-              className="md:hidden text-gray-700 text-4xl flex items-center"
-              onClick={toggleSidebar} // Use the new toggle function
+              className="md:hidden text-gray-700 text-2xl flex items-center ml-1"
+              onClick={toggleSidebar}
             >
               {isOpen ? <FiX /> : <FiMenu />}
             </button> */}
