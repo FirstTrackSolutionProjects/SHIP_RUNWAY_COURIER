@@ -9,16 +9,16 @@ const Offer = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
         {/* International Shipping */}
-        <div className="text-center">
+        {/* <div className="text-center">
           <div className="mb-4">
             <img
               src="/international shipping.jpg" // Replace with actual image path
               alt="International Shipping"
               className="w-full object-contain mx-auto"
             />
-          </div>
+          </div> */}
           {/* Uncomment to add text below image */}
-          {/* 
+{/*           
           <h3 className="text-xl font-semibold text-yellow-600 mb-2">International Shipping</h3>
           <p className="text-gray-700">
             Take your business across borders with ease. Our international logistics solutions are designed
@@ -26,8 +26,8 @@ const Offer = () => {
             managing customs regulations to providing real-time visibility, we make cross-border shipping
             hassle-free and efficient.
           </p>
-          */}
-        </div>
+         
+        </div> */}
 
         {/* Domestic Shipping */}
         <div className="text-center">
