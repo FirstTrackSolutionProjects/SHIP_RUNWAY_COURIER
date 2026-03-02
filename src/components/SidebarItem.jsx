@@ -27,31 +27,31 @@ const SidebarItem = ({ item, setShowRecharge, toggleSidebar = () => {}, sidebarE
         <div className="w-full">
             <div
                 onClick={item.isDropdown ? () => setIsOpen(!isOpen) : (item.name === "Wallet Recharge" ? () => setShowRecharge(true) : () => { navigate(`/dashboard/${item.url}`); toggleSidebar(); })}
-                className={`cursor-pointer w-full h-12 my-0.5 rounded-lg transition-all duration-300 group relative flex items-center 
+                className={`cursor-pointer w-full min-h-[56px] py-2 my-1 rounded-lg transition-all duration-300 group relative flex items-center 
                     ${isCurrentMenu 
-                        ? 'bg-gradient-to-r from-green-500/10 to-transparent text-yellow-400 border-l-[4px] border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.1)]' 
-                        : 'text-green-500 hover:bg-green-500/5 hover:text-yellow-400'} 
+                        ? 'bg-gradient-to-r from-yellow-500/10 to-transparent text-yellow-500 border-l-[4px] border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.1)]' 
+                        : 'text-white hover:bg-yellow-500/5 hover:text-yellow-500'} 
                     ${sidebarExpanded ? 'justify-start px-4' : 'justify-center px-0'}
                     ${isSubItem && sidebarExpanded ? 'pl-8' : ''}`}
             >
                 {item.icon && item.icon !== "/image/logo-nobg.png" && (
-                    <item.icon className={`text-xl flex-shrink-0 transition-all duration-200 
-                        ${sidebarExpanded ? 'mr-3' : ''} 
-                        ${isCurrentMenu ? 'text-yellow-400' : 'text-green-500 group-hover:text-yellow-400'}`} 
+                    <item.icon className={`text-2xl flex-shrink-0 transition-all duration-200 
+                        ${sidebarExpanded ? 'mr-4' : ''} 
+                        ${isCurrentMenu ? 'text-yellow-500' : 'text-white group-hover:text-yellow-500'}`} 
                     />
                 )}
                 
                 {sidebarExpanded && (
-                    <p className={`text-[14px] font-semibold tracking-wide transition-colors duration-200 
-                        ${isCurrentMenu ? 'text-yellow-400' : 'text-green-500 group-hover:text-yellow-400'}`}>
+                    <p className={`text-[15px] font-bold tracking-wide transition-colors duration-200 leading-tight
+                        ${isCurrentMenu ? 'text-yellow-500' : 'text-white group-hover:text-yellow-500'}`}>
                         {item.name}
                     </p>
                 )}
 
                 {sidebarExpanded && item.isDropdown && (
                     <div className={`absolute right-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}>
-                        <FaChevronDown className={`text-[10px] 
-                            ${isCurrentMenu ? 'text-yellow-400' : 'text-green-500 group-hover:text-yellow-400'}`} />
+                        <FaChevronDown className={`text-[12px] 
+                            ${isCurrentMenu ? 'text-yellow-500' : 'text-white group-hover:text-yellow-500'}`} />
                     </div>
                 )}
             </div>

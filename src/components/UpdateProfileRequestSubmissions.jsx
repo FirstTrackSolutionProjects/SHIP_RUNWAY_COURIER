@@ -173,7 +173,7 @@ const UpdateProfileRequestSubmissions =  () => {
     <>
     <div className=" py-16 w-full h-full flex flex-col items-center overflow-x-hidden overflow-y-auto bg-[#F5F5F5]">
       <div className='w-full p-8 flex flex-col items-center space-y-8'>
-      <div className='text-center text-3xl font-bold text-[#145A32]'>Merchant Update Profile Requests</div>
+      <div className='text-center text-3xl font-medium text-[#145A32]'>Merchant Update Profile Requests</div>
       <div className='w-full bg-white py-8 px-4 rounded-xl shadow-sm border border-gray-200'>
         {
             requests.map(((request,index)=>(

@@ -47,15 +47,21 @@ return (
     <>
     {showRecharge ? <WalletRechargeModal onClose={closeRechargeModal} /> : null}
     <header className="w-full bg-gray-100 sticky top-0 z-50 h-16 flex items-center px-4 shadow">
-    <div className="flex items-center justify-between w-full">
-        {/* Logo */}
-        <Link to="/" className="h-24 flex items-center ">
-          <img 
-            src="/logo 1.png" 
-            alt="Logo" 
-            className="h-20 w-auto sm:h-24 object-contain" 
-          />
-        </Link>
+    <div className="flex items-center justify-between w-full h-full">
+        {/* Logo Container */}
+        <div className="flex-1 flex justify-start items-center">
+          <Link to="/" className="flex items-center gap-2">
+            <img 
+              src="/logo 1.png" 
+              alt="Logo" 
+              className="h-12 w-auto object-contain" 
+            />
+            <span className="flex items-center gap-1 sm:gap-1.5 text-xl sm:text-2xl font-extrabold tracking-tight">
+              <span className="text-brand-green">Ship</span>
+              <span className="text-yellow-500">Runway</span>
+            </span>
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 font-semibold text-gray-700">
@@ -106,14 +112,51 @@ return (
             </Link>
           )}
         </nav>
-        <div className='md:hidden' onClick={()=>setShowRecharge(true)}>
-          {verified && location.pathname.startsWith('/dashboard')? (<>
-              <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-medium rounded-tl-xl rounded-br-xl px-3 min-w-14 py-2 cursor-pointer border-l-4 border-t-4 border-brand-green-dark`}>
-              {balance < 250 && <p className="absolute -mt-5 top-0 right-[2px] text-brand-orange text-3xl">!</p>}
-                <p>{`₹${balance}`}</p>
+
+        {/* Right Section Container */}
+        <div className="flex-1 flex justify-end items-center gap-3">
+          {/* Mobile Right Section */}
+          <div className='md:hidden flex items-center gap-2'>
+            {verified && location.pathname.startsWith('/dashboard') && (
+                <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-lg px-3 py-1.5 cursor-pointer border border-brand-green-light shadow-sm`}>
+                {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse text-sm">⚠️</span>}
+                  <p className="text-sm">{`₹${balance}`}</p>
+                </div>
+            )}
+            {isAuthenticated && (
+              <span className='bg-red-600 hover:bg-red-700 text-white text-base p-2 cursor-pointer rounded-lg transition-all duration-300 shadow-sm' onClick={handleLogout}>
+                <FaDoorOpen />
+              </span>
+            )}
+          </div>
+
+          {/* Desktop Right Section */}
+          {isAuthenticated && (
+            <div className='md:flex items-center space-x-4 hidden'>
+              {verified && location.pathname.startsWith('/dashboard') && (
+                  <div onClick={()=>setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm transition-all duration-300`}>
+                  {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
+                    <p>{`₹${balance}`}</p>
+                  </div>
+              )}
+              <div className='flex items-center'>
+                <Link to="/dashboard" className="text-brand-accent font-semibold hover:text-brand-orange transition-colors duration-200">
+                  {name}
+                </Link>
+                <span className='bg-red-600 hover:bg-red-700 text-white text-lg p-2.5 cursor-pointer rounded-xl mx-3 transition-all duration-300 shadow-sm' onClick={handleLogout}>
+                  <FaDoorOpen />
+                </span>
               </div>
-              </>
-          ):null}
+            </div>
+          )}
+
+          {/* Mobile menu toggle */}
+          {/* <button
+            className="md:hidden text-gray-700 text-4xl flex items-center"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+              {isOpen ? <FiX /> : <FiMenu />}
+          </button> */}
         </div>
         {isAuthenticated?<div className='md:flex items-center space-x-4 hidden'>
           {verified && location.pathname.startsWith('/dashboard')? (<>

@@ -132,7 +132,7 @@ const PendingRTO = () => {
               '& .MuiDataGrid-columnHeaders': {
                 borderBottom: '1px solid #1b5e20',
                 backgroundColor: '#2e7d32',
-                color: '#fdd835',
+                color: 'white',
               },
               '& .MuiDataGrid-columnHeader': {
                 backgroundColor: '#2e7d32',

@@ -356,38 +356,38 @@ const MerchantManage =  () => {
                     <div className='text-center text-3xl font-medium text-black'>Verified Merchants</div>
 
                     {/* Filters */}
-                    <div className="w-full bg-white p-4 rounded-xl shadow-sm border">
+                    <div className="w-full bg-[#145A32] p-4 rounded-xl shadow-sm border">
                         <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Name"
                                 value={filters.merchant_name}
                                 onChange={handleFilterChange('merchant_name')}
                             />
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Business Name"
                                 value={filters.business_name}
                                 onChange={handleFilterChange('business_name')}
                             />
                             <input
                                 type="email"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Email"
                                 value={filters.merchant_email}
                                 onChange={handleFilterChange('merchant_email')}
                             />
                             <input
                                 type="text"
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 placeholder="Merchant Phone"
                                 value={filters.merchant_phone}
                                 onChange={handleFilterChange('merchant_phone')}
                             />
                             <select
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 value={filters.is_to_pay_merchant}
                                 onChange={handleFilterChange('is_to_pay_merchant')}
                             >
@@ -396,7 +396,7 @@ const MerchantManage =  () => {
                                 <option value='false'>Non To Pay Merchants</option>
                             </select>
                             <select
-                                className="border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
+                                className="bg-white border rounded-lg px-3 py-2 w-full outline-none focus:ring-2 focus:ring-green-400"
                                 value={filters.sort_by}
                                 onChange={handleFilterChange('sort_by')}
                             >

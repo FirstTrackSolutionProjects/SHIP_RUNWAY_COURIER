@@ -13,30 +13,30 @@ const Sidebar = ({ isOpen, setIsOpen,
 
  return (
   <div
-    className={`fixed top-0 right-0 h-full w-64 bg-white shadow-2xl transform transition-transform duration-300 z-50 ${
+    className={`fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] shadow-2xl transform transition-transform duration-300 z-50 ${
       isOpen ? "translate-x-0" : "translate-x-full"
     }`}
   >
     {/* Header */}
-    <div className="p-5 border-b border-gray-200 flex justify-between items-center">
-      <h2 className="text-2xl font-semibold text-gray-800 tracking-wide">
+    <div className="p-5 border-b border-gray-800 flex justify-between items-center">
+      <h2 className="text-2xl font-semibold text-white tracking-wide">
         Menu
       </h2>
       <button
         onClick={() => setIsOpen(false)}
-        className="text-gray-500 text-xl hover:text-gray-800 transition"
+        className="text-white text-xl hover:text-yellow-500 transition"
       >
         ✕
       </button>
     </div>
 
     {/* Navigation */}
-    <nav className="flex flex-col p-6 gap-5 text-gray-700 text-[15px] font-medium">
+    <nav className="flex flex-col p-6 gap-5 text-white text-[15px] font-medium">
 
       <Link
         to="/"
         onClick={() => setIsOpen(false)}
-        className="hover:text-orange-500 transition duration-200"
+        className="hover:text-yellow-500 transition duration-200"
       >
         Home
       </Link>
@@ -44,7 +44,7 @@ const Sidebar = ({ isOpen, setIsOpen,
       <Link
         to="/about-us"
         onClick={() => setIsOpen(false)}
-        className="hover:text-orange-500 transition duration-200"
+        className="hover:text-yellow-500 transition duration-200"
       >
         About
       </Link>
@@ -52,7 +52,7 @@ const Sidebar = ({ isOpen, setIsOpen,
       <Link
         to="/blog"
         onClick={() => setIsOpen(false)}
-        className="hover:text-orange-500 transition duration-200"
+        className="hover:text-yellow-500 transition duration-200"
       >
         Blog
       </Link>
@@ -60,7 +60,7 @@ const Sidebar = ({ isOpen, setIsOpen,
       <Link
         to="/contact-us"
         onClick={() => setIsOpen(false)}
-        className="hover:text-orange-500 transition duration-200"
+        className="hover:text-yellow-500 transition duration-200"
       >
         Contact
       </Link>

@@ -5,32 +5,15 @@ import { useNavigate } from "react-router-dom"
 import { USER_ROLES } from "@/Constants"
 const API_URL = import.meta.env.VITE_APP_API_URL
 
-const DashboardSummaryCard = ({title, number, Icon, onClick=() => {}, variant="default"}) => {
-  const styles = {
-    default: {
-      text: 'text-brand-green',
-      icon: 'text-brand-green-light',
-      hover: 'hover:bg-brand-green hover:text-white',
-      iconHover: 'group-hover:text-white'
-    },
-    pending: {
-      text: 'text-brand-orange-dark',
-      icon: 'text-brand-orange',
-      hover: 'hover:bg-brand-orange-dark hover:text-white',
-      iconHover: 'group-hover:text-white'
-    }
-  };
-
-  const activeStyle = styles[variant] || styles.default;
-
+const DashboardSummaryCard = ({title, number, Icon, onClick=() => {}}) => {
   return (
     <div 
       onClick={onClick} 
-      className={`group rounded-xl flex-1 m-2 min-w-64 h-32 transition-all flex items-center duration-300 ${activeStyle.text} font-medium bg-white border border-gray-100 shadow-sm ${activeStyle.hover} p-6 cursor-pointer`}
+      className="group rounded-xl flex-1 m-2 min-w-64 h-32 transition-all flex items-center duration-300 text-brand-green font-medium bg-white border border-gray-200 shadow-sm hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:shadow-xl transform hover:-translate-y-1 p-6 cursor-pointer"
     >
-      <Icon className={`w-10 h-10 mr-4 transition-colors duration-300 ${activeStyle.icon} ${activeStyle.iconHover}`} />
+      <Icon className="w-10 h-10 mr-4 transition-all duration-300 text-brand-green group-hover:text-black group-hover:scale-110" />
       <div>
-        <div className="text-sm uppercase tracking-wider opacity-80">{title}</div>
+        <div className="text-sm uppercase tracking-wider opacity-70 group-hover:opacity-100">{title}</div>
         <div className="text-2xl font-bold">{number}</div>
       </div>
     </div>
@@ -60,12 +43,12 @@ const DashboardSummary = () => {
         <DashboardSummaryCard title="Total Warehouses" number={summary?summary.warehouse:0} Icon={Warehouse} />
         <DashboardSummaryCard title="Total Shipments" number={summary?summary.shipment:0} Icon={Package} />
         <DashboardSummaryCard title="Total Delivered" number={summary?summary.delivered:0} Icon={CheckCircle2} />
-        <DashboardSummaryCard title="Pending Pickups" number={summary?summary.unDelivered:0} Icon={Clock} variant="pending" />
+        <DashboardSummaryCard title="Pending Pickups" number={summary?summary.unDelivered:0} Icon={Clock} />
         <DashboardSummaryCard title={admin?`Total Revenue`:`Total Wallet Recharge`} number={summary? (admin ? summary.revenue : summary.total_recharge) :0} Icon={admin ? IndianRupee : Wallet} />
         <DashboardSummaryCard title="Shipment In Transit" number={summary?summary.inTransit:0} Icon={Truck} />
         <DashboardSummaryCard title="Out For Delivery" number={summary?summary.outForDeliveries:0} Icon={Truck} />
-        <DashboardSummaryCard title="Total RTO Shipments" number={summary?summary.rtoShipment:0} Icon={RotateCcw} variant="pending" />
-        {!admin ? <DashboardSummaryCard title="Pending COD Remittance" number={`₹${summary?summary.pendingCodRemittance:0}`} Icon={IndianRupee} variant="pending" /> : null}
+        <DashboardSummaryCard title="Total RTO Shipments" number={summary?summary.rtoShipment:0} Icon={RotateCcw} />
+        {!admin ? <DashboardSummaryCard title="Pending COD Remittance" number={`₹${summary?summary.pendingCodRemittance:0}`} Icon={IndianRupee} /> : null}
         {!admin ? <DashboardSummaryCard title="Paid COD Remittance" number={`₹${summary?summary.paidCodRemittance:0}`} Icon={IndianRupee} /> : null}
         {!admin ? <DashboardSummaryCard title="Total COD Remittance" number={`₹${summary?summary.totalCodRemittance:0}`} Icon={IndianRupee} /> : null}
       </div>

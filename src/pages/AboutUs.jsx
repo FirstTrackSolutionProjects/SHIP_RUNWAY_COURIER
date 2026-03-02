@@ -23,7 +23,7 @@ const AboutUs = () => {
         {/* Company Overview Section */}
         <div className="bg-white border border-gray-100 rounded-2xl p-8 md:p-10 shadow-sm mb-10 ring-1 ring-gray-900/5">
             <p className="text-lg leading-relaxed text-gray-700">
-              <strong className="text-gray-900">Rameshwar Cargo India Pvt. Ltd.</strong>, founded in <strong className="text-gray-900">June 2023</strong>, is a fast-growing logistics company <span className="text-[#145A32] font-extrabold">Ship</span><span className="text-[#E49B0F] font-extrabold">Runway</span> Courier dedicated to providing
+              <strong className="text-gray-900">Harsh Enterprises</strong>, founded in <strong className="text-gray-900">June 2023</strong>, is a fast-growing logistics company <span className="text-[#145A32] font-extrabold">Ship</span> <span className="text-[#E49B0F] font-extrabold">Runway</span> Courier dedicated to providing
               seamless and efficient domestic delivery solutions across India. With a focus on innovation and customer satisfaction, we’ve
               become a trusted logistics aggregator that bridges businesses and customers through smart, reliable, and cost-effective services.
             </p>
