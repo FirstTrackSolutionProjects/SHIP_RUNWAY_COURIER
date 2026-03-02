@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from "react-icons/fi";
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import WalletRechargeModal from './WalletRechargeModal';
 import { FaDoorOpen } from 'react-icons/fa';
@@ -131,22 +131,22 @@ return (
 
 
         {/* Mobile menu toggle */}
-        <button
+        {/* <button
           className="md:hidden text-gray-700 text-4xl"
           onClick={() => setIsOpen(!isOpen)}
         >
             {isOpen ? <FiX /> : <FiMenu />}
       
-        </button>
+        </button> */}
       </div>
 
       {/* Sidebar (Mobile) */}
-     <Sidebar
+     {/* <Sidebar
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         isAuthenticated={isAuthenticated}
         handleLogout={handleLogout} // yeh line important hai
-        />
+        /> */}
 
     </header>
     </>

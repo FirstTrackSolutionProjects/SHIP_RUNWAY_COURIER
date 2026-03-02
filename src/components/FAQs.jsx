@@ -4,7 +4,7 @@ const faqs = [
       question: (
       <span className="text-gray-700 text-lg font-semibold">
         What is{' '}
-        <span className="text-blue-700 font-bold inline">Ship</span>
+        <span className="text-green-800 font-bold inline">Ship</span>
         <span className="text-orange-600 font-bold inline"> Runway</span>{' '}
         COURIER?
       </span>
@@ -13,7 +13,7 @@ const faqs = [
 
     answer:(
       <>
-    <span className="text-blue-700 font-bold"> Ship</span>
+    <span className="text-green-800 font-bold"> Ship</span>
     <span className="text-orange-600 font-bold"> Runway</span>  Courier appears to be a delivery service, possibly a specialized or expedited courier service that emphasizes speed and efficiency in delivering packages. Services with similar names typically focus on providing rapid delivery solutions, often catering to e-commerce businesses, urgent shipments, or high-priority deliveries.
     </>
     ),

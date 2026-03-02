@@ -20,6 +20,7 @@ import Verify from './pages/Verify';
 import FAQs from './components/FAQs';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfUse from './components/TermsOfUse';
+import RefundCancellation from './components/RefundCancellation';
 import { ToastContainer } from 'react-toastify';
 import FloatingAssistant from './components/FloatingAssistant';
 
@@ -82,7 +83,7 @@ const shouldHideFooter =
           <Route path="/faq" element={<FAQs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfUse />} />
-
+          <Route path="/refund-cancel" element={<RefundCancellation />} />
           <Route path='/dashboard/*' element={<Dashboard/>}></Route>
           <Route path='/verify' element={<Verify/>}></Route>
         </Routes>
