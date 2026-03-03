@@ -19,9 +19,9 @@ const Footer = () => {
             <div className="mb-4">
               <img src={logo} alt="Ship Runway Logo" className="w-28 h-auto" />
             </div>
-            <h2 className="text-xl font-serif mb-2 hover:underline font-extrabold">
-               <span className="text-brand-green"> Ship</span>
-              <span className="text-brand-orange"> Runway</span> Courier
+            <h2 className="text-xl font-sans mb-2 hover:underline font-extrabold">
+               <span className="text-green-900"> Ship</span>
+              <span className="text-yellow-600"> Runway</span> 
             </h2>
             <p className="pr-4 font-normal">
               Delivering excellence in logistics solutions entire PAN India.

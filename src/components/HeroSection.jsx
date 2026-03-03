@@ -12,14 +12,18 @@ const {isAuthenticated} = useAuth();
   const handleLearnMoreClick = () => {
     navigate('/blog');
   };
-   const handleSignInClick = () => {
-    if (isAuthenticated == true){
-      navigate('/dashboard')
-    } 
-    else {
-      navigate('/sign-in')
-    }
+  const handleExploreClick = () => {
+    navigate('/about-us');
   };
+
+  //  const handleSignInClick = () => {
+  //   if (isAuthenticated == true){
+  //     navigate('/dashboard')
+  //   } 
+  //   else {
+  //     navigate('/sign-in')
+  //   }
+  // };
 
   return (
     <div
@@ -40,14 +44,20 @@ const {isAuthenticated} = useAuth();
           >
             Learn More
           </button>
-          <button
+          <button 
+            onClick={handleExploreClick}
+            className="border border-white hover:bg-white/20 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
+          >
+            Explore 
+          </button>
+          {/* <button
             onClick={handleSignInClick}
-            className="border border-white hover:bg-white/20 text-white font-bold py-3 px-6 rounded-lg text-lg"
+            className="border border-white hover:bg-white/20 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
           >
        
            { isAuthenticated == true ? "Dashboard" : "Sign In" } 
 
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
