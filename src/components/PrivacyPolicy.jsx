@@ -1,67 +1,132 @@
-import React from 'react';
-const API_URL = import.meta.env.VITE_APP_API_URL
+import React from "react";
+
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+    <div className="bg-gray-50">
+
+      {/* Hero Section */}
+      <div className="bg-white py-5">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h1 className="text-5xl font-extrabold text-green-900 tracking-wide">
+            Privacy Policy
+          </h1>
         
-        <p className="mb-4">
-          Welcome to our logistics website. We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner.
-        </p>
+        </div>
+      </div>
 
-        <h2 className="text-2xl font-semibold mb-2">1. Information We Collect</h2>
-        <p className="mb-4">
-          We collect information to provide better services to our users. This includes personal information such as your name, email address, and phone number, as well as non-personal information like your browser type and IP address.
-        </p>
+      {/* Content Section */}
+      <div className="max-w-5xl mx-auto px-6 py-10">
+        <div className="bg-white shadow-xl rounded-2xl p-12 space-y-10">
 
-        <h2 className="text-2xl font-semibold mb-2">1.1 Personal Information:</h2>
-        <p className="mb-4">Contact Information: Name, email address, phone number, mailing address.</p>
-        <p className="mb-4">Account Information: Username, password, and other information related to your account.</p>
-        <p className="mb-4">Payment Information: Credit card details, billing address, and transaction history.</p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              1. Information We Collect
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We collect information to provide better services to our users.
+              This includes personal information such as your name, email
+              address, and phone number, as well as non-personal information
+              like browser type and IP address.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">1.2 Non-Personal Information:</h2>
-        <p className="mb-4">Usage Data: Information about how you use our Site and Services, such as IP address, browser type, operating system, pages viewed, and the dates/times of your visits.</p>
-        <p className="mb-4">Cookies and Tracking Technologies: Data collected through cookies, web beacons, and similar technologies to enhance your user experience and for analytics purposes.</p>
-        
+          <section>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              1.1 Personal Information
+            </h3>
+            <ul className="list-disc pl-6 text-gray-600 space-y-2 leading-relaxed">
+              <li>Contact Information: Name, email, phone number, mailing address.</li>
+              <li>Account Information: Username, password and related data.</li>
+              <li>Payment Information: Billing address and transaction history.</li>
+            </ul>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">2. How We Use Your Information</h2>
-        <p className="mb-4">
-          The information we collect is used to improve our services, communicate with you, and enhance your experience on our website. We may also use your information for marketing purposes, but only if you have given us permission to do so.
-        </p>
+          <section>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              1.2 Non-Personal Information
+            </h3>
+            <ul className="list-disc pl-6 text-gray-600 space-y-2 leading-relaxed">
+              <li>Usage Data: IP address, browser type, operating system, pages viewed.</li>
+              <li>Cookies & Tracking: Used to improve experience and analytics.</li>
+            </ul>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">3. Sharing Your Information</h2>
-        <p className="mb-4">
-          We do not share your personal information with third parties without your consent, except as required by law or to protect our rights. We may share non-personal information with our partners to improve our services.
-        </p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              2. How We Use Your Information
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We use your information to improve our services, communicate with
+              you, and enhance your experience. Marketing communication is only
+              sent with your consent.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">4. Security of Your Information</h2>
-        <p className="mb-4">
-          We take the security of your personal information seriously. We implement appropriate technical and organizational measures to protect your data from unauthorized access, use, or disclosure.
-        </p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              3. Sharing Your Information
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We do not sell or share your personal data without consent,
+              except where required by law or necessary to provide our services.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">5. Your Rights</h2>
-        <p className="mb-4">
-          You have the right to access, update, and delete your personal information. If you wish to exercise these rights, please contact us using the contact details provided on our website.
-        </p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              4. Security of Your Information
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We implement technical and organizational security measures to
+              protect your data from unauthorized access or misuse.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">6. Children's Privacy</h2>
-        <p className="mb-4">
-        Our Services are not intended for individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have inadvertently collected such information, we will take steps to delete it.</p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              5. Your Rights
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              You have the right to access, update, or delete your personal
+              information. Contact us to exercise these rights.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">7. Changes to This Privacy Policy</h2>
-        <p className="mb-4">
-          We may update this Privacy Policy from time to time. Any changes will be posted on this page, and we encourage you to review our Privacy Policy periodically to stay informed about how we are protecting your information.
-        </p>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              6. Children's Privacy
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              Our services are not intended for children under 13. We do not
+              knowingly collect personal data from children.
+            </p>
+          </section>
 
-        <h2 className="text-2xl font-semibold mb-2">8. Contact Us</h2>
-        <p className="mb-4">
-          If you have any questions about this Privacy Policy, please contact us at: 
-        </p>
-        <ul className="list-disc list-inside mb-4">
-          <li><strong>Email:</strong> info@shiprunway.com</li>
-          <li><strong>Address:</strong> 19, Nav Vyapar Bhavan, 45 PD Mello Road,<br/> Next to ICICI Bank, Masjid East, Mumbai-400009, Maharashtra</li>
-        </ul>
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              7. Changes to This Policy
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              We may update this Privacy Policy periodically. Updates will be
+              posted on this page.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              8. Contact Us
+            </h2>
+            <div className="bg-gray-50 p-6 rounded-xl border">
+              <p className="text-gray-700"><strong>Email:</strong> info@shiprunway.com</p>
+              <p className="text-gray-700 mt-2">
+                <strong>Address:</strong><br />
+                19, Nav Vyapar Bhavan, 45 PD Mello Road,<br />
+                Next to ICICI Bank, Masjid East, Mumbai - 400009, Maharashtra
+              </p>
+            </div>
+          </section>
+
+        </div>
       </div>
     </div>
   );
