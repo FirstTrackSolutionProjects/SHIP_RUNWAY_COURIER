@@ -149,8 +149,8 @@ const TransactionHistory = () => {
             <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
                 <h1 className='text-2xl font-semibold text-center text-[#145A32]'>Transaction History</h1>
                 <div className='bg-[#145A32] text-white p-4 rounded-lg space-y-4 shadow-sm border-b-4 border-[#F1C40F]'>
-                    <div className='grid md:grid-cols-6 gap-3'>
-                        <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3'>
+                        <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'>
                             <option value='all'>All Types</option>
                             <option value='recharge'>Recharge</option>
                             <option value='manual'>Manual Recharge</option>
@@ -160,10 +160,10 @@ const TransactionHistory = () => {
                             {/* <option value='extra'>Extra Charge</option> */}
                             <option value='rto'>RTO Charge</option>
                         </select>
-                        <input type='text' name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white'/>
-                        <input type='text' name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white'/>
-                        <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
-                        <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
+                        <input type='text' name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white text-sm'/>
+                        <input type='text' name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white text-sm'/>
+                        <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
+                        <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
                         <IconButton
                             onClick={async () => {
                               try {
@@ -188,13 +188,14 @@ const TransactionHistory = () => {
                               }
                             }}
                             sx={{ 
-                              backgroundColor: '#F1C40F',
+                              backgroundColor: 'white',
                               color: '#145A32',
-                              borderRadius: 1,
+                              borderRadius: '8px',
                               '&:hover': {
-                                backgroundColor: '#D4AC0D',
+                                backgroundColor: '#f0f0f0',
                               },
-                              minWidth: '40px'
+                              minWidth: '40px',
+                              height: '40px'
                             }}
                         >
                           <DownloadIcon />

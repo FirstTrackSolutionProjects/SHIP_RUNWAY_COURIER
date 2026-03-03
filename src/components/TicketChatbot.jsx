@@ -151,7 +151,7 @@ export default function TicketChatbot({ onClose }) {
 
   useEffect(() => {
     setTimeout(() => {
-      addBot("👋 Welcome to Shiprunway Support!");
+      addBot("👋 Welcome to Ship Runway Support!");
       setTimeout(() => {
         addBot("How can I help you?");
         setCurrentOptions([

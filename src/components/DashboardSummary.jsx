@@ -9,9 +9,9 @@ const DashboardSummaryCard = ({title, number, Icon, onClick=() => {}}) => {
   return (
     <div 
       onClick={onClick} 
-      className="group rounded-xl flex-1 m-2 min-w-64 h-32 transition-all flex items-center duration-300 text-brand-green font-medium bg-white border border-gray-200 shadow-sm hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:shadow-xl transform hover:-translate-y-1 p-6 cursor-pointer"
+      className="group rounded-xl flex-1 m-2 min-w-64 h-32 transition-all flex items-center duration-300 text-brand-green font-medium bg-white border border-gray-200 shadow-sm hover:bg-yellow-400 hover:text-black hover:border-yellow-400 hover:shadow-xl transform hover:-translate-y-1 active:bg-yellow-400 active:text-black active:border-yellow-400 active:shadow-xl active:-translate-y-1 p-6 cursor-pointer"
     >
-      <Icon className="w-10 h-10 mr-4 transition-all duration-300 text-brand-green group-hover:text-black group-hover:scale-110" />
+      <Icon className="w-10 h-10 mr-4 transition-all duration-300 text-brand-green group-hover:text-black group-hover:scale-110 group-active:text-black group-active:scale-110" />
       <div>
         <div className="text-sm uppercase tracking-wider opacity-70 group-hover:opacity-100">{title}</div>
         <div className="text-2xl font-bold">{number}</div>
