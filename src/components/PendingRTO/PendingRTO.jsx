@@ -98,14 +98,14 @@ const PendingRTO = () => {
             sx={{ 
               whiteSpace: 'nowrap', 
               flexShrink: 0,
-              backgroundColor: '#2e7d32',
-              color: '#fdd835',
+              backgroundColor: '#145A32', // Green color
+              color: '#F1C40F', // Yellow text
               '&:hover': {
-                backgroundColor: '#1b5e20',
+                backgroundColor: '#2E7D32', // Darker green on hover
               }
             }}
           >
-            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} color="inherit" /> : 'Process'}
+            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} sx={{ color: '#F1C40F' }} /> : 'Process'}
           </Button>
         </Box>
       ),
@@ -113,90 +113,104 @@ const PendingRTO = () => {
   ];
 
   return (
-    <Box p={{ xs: 1, sm: 2 }}>
-      <Typography variant="h5" mb={2} sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem' }, color: '#1b5e20', fontWeight: 'bold' }}>
-        Pending RTOs
-      </Typography>
-      <Box sx={{ height: 500, width: '100%', background: 'white', borderRadius: 2, boxShadow: 1, overflowX: 'auto' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          getRowId={(row) => row.ord_id}
-          loading={loading}
-          disableSelectionOnClick
-          pageSize={20}
-          sx={{
-              border: '1px solid #1b5e20',
-              borderRadius: 0,
-              minWidth: 720, // Forces horizontal scroll instead of squashing columns
-              '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid #1b5e20',
-                backgroundColor: '#2e7d32',
-                color: 'white',
-              },
-              '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#2e7d32',
-                fontWeight: 'bold',
-              },
-              '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                borderRight: '1px solid #1b5e20',
-              },
-              '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                borderLeft: '1px solid #1b5e20',
-              },
-              '& .MuiDataGrid-row': {
-                borderBottom: '1px solid #1b5e20',
-              },
-              '& .MuiDataGrid-cell': {
-                whiteSpace: 'nowrap',
-              },
-              '& .MuiDataGrid-footerContainer': {
-                borderTop: '1px solid #1b5e20',
-                backgroundColor: '#f9fbe7',
-              }
-            }}
-          rowsPerPageOptions={[20, 50, 100]}
-        />
-      </Box>
+    <div className='py-10 w-full flex flex-col items-center bg-white'>
+        <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
+            <h1 className='text-2xl font-semibold text-center text-[#145A32]'>Pending RTOs</h1>
+            <Box sx={{ width: '100%', background: 'white', borderRadius: 2, boxShadow: 1, overflowX: 'auto' }} className='rounded-lg border border-[#145A32]'>
+                <DataGrid
+                    autoHeight
+                    rows={rows}
+                    columns={columns}
+                    getRowId={(row) => row.ord_id}
+                    loading={loading}
+                    disableSelectionOnClick
+                    pageSizeOptions={[20]}
+                    initialState={{ pagination: { paginationModel: { pageSize: 20, page: 0 } } }}
+                    pageSize={20}
+                    rowHeight={80} // Consistent row height
+                    disableColumnMenu
+                    disableRowSelectionOnClick
+                    sx={{
+                        border: '1px solid #145A32', // Consistent border
+                        borderRadius: 0,
+                        '& .MuiDataGrid-overlayWrapper': { backgroundColor: '#fff' },
+                        '& .MuiDataGrid-columnHeaders': {
+                          borderBottom: '2px solid #F1C40F',
+                          backgroundColor: '#145A32',
+                          color: '#FFF',
+                        },
+                        '& .MuiDataGrid-columnHeader': {
+                          backgroundColor: '#145A32',
+                          fontWeight: 'bold',
+                        },
+                        '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
+                          borderRight: '1px solid #145A32',
+                        },
+                        '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
+                          borderLeft: '1px solid #145A32',
+                        },
+                        '& .MuiDataGrid-row': {
+                          borderBottom: '1px solid #145A32',
+                          '&:hover': {
+                            backgroundColor: '#fefce8', // Light yellow hover
+                          }
+                        },
+                        // Ensure all cells align well on smaller screens
+                        '& .MuiDataGrid-cell': {
+                            whiteSpace: 'normal !important',
+                            lineHeight: 'normal',
+                            py: 1, // Add some vertical padding
+                            display: 'flex',
+                            alignItems: 'center',
+                        },
+                        '& .MuiDataGrid-footerContainer': { // Styled footer to match theme
+                            borderTop: '1px solid #145A32',
+                            backgroundColor: '#F7F7F7', // Lighter background for footer
+                            color: '#145A32',
+                        }
+                    }}
+                />
+            </Box>
 
-      <Dialog open={processDialogOpen} onClose={closeProcessDialog} maxWidth="xs" fullWidth>
-        <DialogTitle sx={{ color: '#1b5e20', fontWeight: 'bold' }}>Process RTO</DialogTitle>
-        <DialogContent>
-          <Typography variant="body2" sx={{ mb: 1 }}>
-            Order ID: {selectedOrdId || '-'}
-          </Typography>
-          <TextField
-            autoFocus
-            fullWidth
-            label="RTO Amount"
-            type="number"
-            value={rtoAmount}
-            onChange={(e) => setRtoAmount(e.target.value)}
-            inputProps={{ min: 0, step: '0.01' }}
-            sx={{ mt: 1 }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeProcessDialog} disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : false} sx={{ color: '#2e7d32' }}>
-            Cancel
-          </Button>
-          <Button
-            onClick={handleProcessConfirm}
-            variant="contained"
-            disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : true}
-            sx={{ 
-              backgroundColor: '#2e7d32', 
-              color: '#fdd835',
-              '&:hover': {
-                backgroundColor: '#1b5e20',
-              }
-            }}
-          >
-            {selectedOrdId && actionLoading[selectedOrdId] ? <CircularProgress size={18} color="inherit" /> : 'Confirm'}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+            <Dialog open={processDialogOpen} onClose={closeProcessDialog} maxWidth="xs" fullWidth>
+                <DialogTitle sx={{ color: '#145A32', fontWeight: 'bold' }}>Process RTO</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body2" sx={{ mb: 1, color: '#333' }}>
+                    Order ID: <span className='font-medium'>{selectedOrdId || '-'}</span>
+                  </Typography>
+                  <TextField
+                    autoFocus
+                    fullWidth
+                    label="RTO Amount"
+                    type="number"
+                    value={rtoAmount}
+                    onChange={(e) => setRtoAmount(e.target.value)}
+                    inputProps={{ min: 0, step: '0.01' }}
+                    sx={{ mt: 2, '& .MuiOutlinedInput-root': { '&.Mui-focused fieldset': { borderColor: '#145A32' } }, '& .MuiInputLabel-root.Mui-focused': { color: '#145A32' } }}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={closeProcessDialog} disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : false} sx={{ color: '#145A32', '&:hover': { backgroundColor: 'rgba(20, 90, 50, 0.04)' } }}>
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleProcessConfirm}
+                    variant="contained"
+                    disabled={selectedOrdId ? !!actionLoading[selectedOrdId] : true}
+                    sx={{ 
+                      backgroundColor: '#145A32', 
+                      color: '#F1C40F',
+                      '&:hover': {
+                        backgroundColor: '#2E7D32',
+                      }
+                    }}
+                  >
+                    {selectedOrdId && actionLoading[selectedOrdId] ? <CircularProgress size={18} sx={{ color: '#F1C40F' }} /> : 'Confirm'}
+                  </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
+    </div>
   );
 };
 

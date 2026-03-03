@@ -54,34 +54,52 @@ const PendingCancellations = () => {
   };
 
   const columns = [
-    { field: 'ord_id', headerName: 'Order ID', flex: 1 },
-    { field: 'fullName', headerName: 'Merchant', flex: 1 },
-    { field: 'awb', headerName: 'AWB', flex: 1 },
-    { field: 'service_name', headerName: 'Service', flex: 2 },
+    { field: 'ord_id', headerName: 'Order ID', flex: 1, minWidth: 100 },
+    { field: 'fullName', headerName: 'Merchant', flex: 1, minWidth: 150 },
+    { field: 'awb', headerName: 'AWB', flex: 1, minWidth: 150 },
+    { field: 'service_name', headerName: 'Service', flex: 2, minWidth: 200 },
     {
       field: 'actions',
       headerName: 'Actions',
       flex: 1,
+      minWidth: 180, // Increased minWidth to accommodate both buttons
       sortable: false,
       renderCell: (params) => (
-        <Box display="flex" gap={1}>
+        <Box display="flex" gap={1} alignItems="center" height="100%">
           <Button
             variant="contained"
-            color="success"
             size="small"
             disabled={!!actionLoading[params.row.ord_id]}
             onClick={() => handleApprove(params.row.ord_id)}
+            sx={{
+              backgroundColor: '#145A32',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#F1C40F',
+                color: '#145A32',
+              },
+              whiteSpace: 'nowrap',
+              minWidth: '70px',
+            }}
           >
-            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} /> : 'Approve'}
+            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} sx={{ color: 'white' }} /> : 'Approve'}
           </Button>
           <Button
             variant="contained"
-            color="error"
             size="small"
             disabled={!!actionLoading[params.row.ord_id]}
             onClick={() => handleReject(params.row.ord_id)}
+            sx={{
+              backgroundColor: '#D32F2F', // Red color for reject
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#EF5350',
+              },
+              whiteSpace: 'nowrap',
+              minWidth: '70px',
+            }}
           >
-            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} /> : 'Reject'}
+            {actionLoading[params.row.ord_id] ? <CircularProgress size={18} sx={{ color: 'white' }} /> : 'Reject'}
           </Button>
         </Box>
       ),
@@ -89,51 +107,61 @@ const PendingCancellations = () => {
   ];
 
   return (
-    <Box p={2}>
-      <Typography variant="h5" mb={2}>Pending Cancellations</Typography>
-      <Box sx={{ height: 500, width: '100%', background: 'white', borderRadius: 2, boxShadow: 1 }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          getRowId={(row) => row.ord_id}
-          loading={loading}
-          disableSelectionOnClick
-          pageSize={20}
-          sx={{
-              border: '1px solid #000',
-              borderRadius: 0,
-              overflow: 'hidden',
-              backgroundColor: '#fff',
-              '& .MuiDataGrid-columnHeaders': {
-                borderBottom: '1px solid #000',
-                backgroundColor: '#145A32',
-                color: '#FFF',
-                textTransform: 'uppercase',
-                fontSize: '0.75rem',
-                letterSpacing: '0.05em',
-              },
-              '& .MuiDataGrid-columnHeader': {
-                backgroundColor: '#145A32',
-                fontWeight: 600,
-              },
-              '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
-                borderRight: '1px solid #000',
-              },
-              '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
-                borderLeft: '1px solid #000',
-              },
-              '& .MuiDataGrid-row': {
-                borderBottom: '1px solid #000',
-              },
-              '& .MuiDataGrid-row:hover': {
-                backgroundColor: '#f8fafc',
-                transition: 'background-color 0.2s ease',
-              },
-            }}
-          rowsPerPageOptions={[20, 50, 100]}
-        />
-      </Box>
-    </Box>
+    <div className='py-10 w-full flex flex-col items-center bg-white'>
+        <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
+            <h1 className='text-2xl font-semibold text-center text-[#145A32]'>Pending Cancellations</h1>
+            <Box sx={{ width: '100%', background: 'white', borderRadius: 2, boxShadow: 1, overflowX: 'auto' }} className='rounded-lg border border-[#145A32]'>
+                <DataGrid
+                    autoHeight
+                    rows={rows}
+                    columns={columns}
+                    getRowId={(row) => row.ord_id}
+                    loading={loading}
+                    disableSelectionOnClick
+                    pageSizeOptions={[20]}
+                    initialState={{ pagination: { paginationModel: { pageSize: 20, page: 0 } } }}
+                    pageSize={20}
+                    rowHeight={80} // Consistent row height
+                    disableColumnMenu
+                    disableRowSelectionOnClick
+                    sx={{
+                        border: '1px solid #145A32', // Consistent border
+                        borderRadius: 0,
+                        '& .MuiDataGrid-overlayWrapper': { backgroundColor: '#fff' },
+                        '& .MuiDataGrid-columnHeaders': {
+                          borderBottom: '2px solid #F1C40F',
+                          backgroundColor: '#145A32',
+                          color: '#FFF',
+                        },
+                        '& .MuiDataGrid-columnHeader': {
+                          backgroundColor: '#145A32',
+                          fontWeight: 'bold',
+                        },
+                        '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
+                          borderRight: '1px solid #145A32',
+                        },
+                        '& .MuiDataGrid-columnHeader:first-of-type, & .MuiDataGrid-cell:first-of-type': {
+                          borderLeft: '1px solid #145A32',
+                        },
+                        '& .MuiDataGrid-row': {
+                          borderBottom: '1px solid #145A32',
+                          '&:hover': {
+                            backgroundColor: '#fefce8', // Light yellow hover
+                          }
+                        },
+                        // Ensure all cells align well on smaller screens
+                        '& .MuiDataGrid-cell': {
+                            whiteSpace: 'normal !important',
+                            lineHeight: 'normal',
+                            py: 1, // Add some vertical padding
+                            display: 'flex',
+                            alignItems: 'center',
+                        },
+                    }}
+                />
+            </Box>
+        </div>
+    </div>
   );
 };
 
