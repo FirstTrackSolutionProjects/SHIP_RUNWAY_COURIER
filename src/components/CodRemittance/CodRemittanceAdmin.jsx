@@ -301,7 +301,7 @@ const CodRemittanceAdmin = () => {
             scrollbarWidth: 'none',
           }}
         >
-          <Box display="flex" gap={1} sx={{ minWidth: 'fit-content' }}>
+          <Box display="flex" flexWrap="wrap" gap={1} sx={{ minWidth: 'fit-content' }}>
             <TextField
               label="Order ID"
               variant="outlined"
@@ -309,7 +309,7 @@ const CodRemittanceAdmin = () => {
               name="orderId"
               value={filters.orderId}
               onChange={onFilterChange}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }} /* Responsive flex and minWidth */
               InputLabelProps={{
                 sx: {
                   backgroundColor: 'white',
@@ -327,7 +327,7 @@ const CodRemittanceAdmin = () => {
               name="merchant_email"
               value={filters.merchant_email}
               onChange={onFilterChange}
-              sx={{ mr: 1, minWidth: '180px' }}
+              sx={{ flex: '1 1 180px', mr: {xs: 0, sm: 1}, minWidth: '150px' }}
               InputLabelProps={{
                 sx: {
                   backgroundColor: 'white',
@@ -345,7 +345,7 @@ const CodRemittanceAdmin = () => {
               name="merchant_name"
               value={filters.merchant_name}
               onChange={onFilterChange}
-              sx={{ mr: 1, minWidth: '180px' }}
+              sx={{ flex: '1 1 180px', mr: {xs: 0, sm: 1}, minWidth: '150px' }}
               InputLabelProps={{
                 sx: {
                   backgroundColor: 'white',
@@ -356,8 +356,8 @@ const CodRemittanceAdmin = () => {
               }}
             />
 
-            <FormControl size="small" sx={{ minWidth: '150px', mr: 1 }}>
-              <InputLabel id="status-select-label" className="bg-white w-full">Status</InputLabel>
+            <FormControl size="small" sx={{ flex: '1 1 150px', minWidth: '120px', mr: {xs: 0, sm: 1} }}>
+              <InputLabel id="status-select-label" className="bg-white w-full" sx={{ color: 'text.secondary' }}>Status</InputLabel>
               <Select
                 labelId="status-select-label"
                 name="status"
@@ -372,8 +372,8 @@ const CodRemittanceAdmin = () => {
               </Select>
             </FormControl>
 
-            <FormControl size="small" sx={{ minWidth: '150px', mr: 1 }}>
-              <InputLabel id="service-select-label" className="bg-white w-full">Service</InputLabel>
+            <FormControl size="small" sx={{ flex: '1 1 150px', minWidth: '120px', mr: {xs: 0, sm: 1} }}>
+              <InputLabel id="service-select-label" className="bg-white w-full" sx={{ color: 'text.secondary' }}>Service</InputLabel>
               <Select
                 labelId="service-select-label"
                 name="serviceId"
@@ -396,7 +396,7 @@ const CodRemittanceAdmin = () => {
               name="startDate"
               value={filters.startDate}
               onChange={onFilterChange}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
                 sx: {
                   backgroundColor: 'white',
@@ -414,7 +414,7 @@ const CodRemittanceAdmin = () => {
               name="endDate"
               value={filters.endDate}
               onChange={onFilterChange}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
                 sx: {
                   backgroundColor: 'white',

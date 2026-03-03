@@ -36,7 +36,7 @@ const Dashboard = () => {
   };
 return (
     <>
-    <div className='h-[calc(100vh-64px)] sm:h-[calc(100vh-80px)] flex font-inter bg-gray-200'>
+    <div className='h-[calc(100vh-64px)] sm:h-[calc(100vh-80px)] flex font-inter bg-gray-200 relative'>
       <Sidebar2 />
         <main className="flex-grow justify-center items-center overflow-y-auto">
           <Routes>

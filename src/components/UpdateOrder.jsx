@@ -1847,15 +1847,25 @@ const Listing = ({ step, setStep }) => {
         </div>
 
         {/* Filters */}
-        <Paper sx={{ p: 2, width: '100%', overflowX: 'auto' }}>
-          <Box sx={{ display: 'inline-flex', gap: 2, alignItems: 'center', minWidth: '600px', whiteSpace: 'nowrap' }}>
+        <Paper sx={{ p: 2, width: '100%', overflowX: 'auto', bgcolor: '#145A32', borderRadius: 2 }}>
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', /* Allow wrapping for responsiveness */
+              gap: 1.5, 
+              alignItems: 'center', 
+              minWidth: 'fit-content', 
+              '& .MuiTextField-root': {bgcolor: 'background.paper', borderRadius: 1},
+              '& .MuiFormControl-root .MuiInputLabel-root': {color: 'text.secondary'} /* Ensure label color is visible */
+            }}
+          >
             <TextField
               label="Customer Name"
               name="customer_name"
               size="small"
               value={filters.customer_name}
               onChange={handleChange}
-              sx={{ minWidth: 200 }}
+              sx={{ flex: '1 1 180px', minWidth: '120px' }} /* Responsive flex and minWidth */
             />
             <TextField
               label="Customer Email"
@@ -1863,7 +1873,7 @@ const Listing = ({ step, setStep }) => {
               size="small"
               value={filters.customer_email}
               onChange={handleChange}
-              sx={{ minWidth: 200 }}
+              sx={{ flex: '1 1 180px', minWidth: '120px' }}
             />
             <TextField
               label="Order ID"
@@ -1871,10 +1881,10 @@ const Listing = ({ step, setStep }) => {
               size="small"
               value={filters.orderId}
               onChange={handleChange}
-              sx={{ minWidth: 150 }}
+              sx={{ flex: '1 1 120px', minWidth: '100px' }}
             />
-            <FormControl size="small" sx={{ minWidth: '150px', mr: 1 }}>
-              <InputLabel id="status-select-label" className="bg-white w-full">Status</InputLabel>
+            <FormControl size="small" sx={{ flex: '1 1 120px', minWidth: '100px' }}>
+              <InputLabel id="status-select-label" className="bg-white w-full" sx={{ color: 'text.secondary' }}>Status</InputLabel>
               <Select
                 labelId="status-select-label"
                 value={filters.status}
@@ -1904,7 +1914,7 @@ const Listing = ({ step, setStep }) => {
               value={filters.startDate}
               onChange={handleChange}
               InputLabelProps={{ shrink: true }}
-              sx={{ minWidth: 150 }}
+              sx={{ flex: '1 1 120px', minWidth: '100px' }}
             />
             <TextField
               label="End Date"
@@ -1914,7 +1924,7 @@ const Listing = ({ step, setStep }) => {
               value={filters.endDate}
               onChange={handleChange}
               InputLabelProps={{ shrink: true }}
-              sx={{ minWidth: 150 }}
+              sx={{ flex: '1 1 120px', minWidth: '100px' }}
             />
           </Box>
         </Paper>

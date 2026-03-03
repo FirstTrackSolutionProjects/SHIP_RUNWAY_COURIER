@@ -389,8 +389,18 @@ const Warehouse = () => {
 			</div>
 
 			{/* Filters */}
-			<Paper sx={{ p: 2, width: '100%', overflowX: 'auto' }}>
-				<Box sx={{ display: 'inline-flex', gap: 2, alignItems: 'center', minWidth: '900px', whiteSpace: 'nowrap' }}>
+			<Paper sx={{ p: 2, width: '100%', overflowX: 'auto', bgcolor: '#145A32', borderRadius: 2 }}>
+				<Box 
+          sx={{ 
+            display: 'flex', 
+            flexWrap: 'wrap', /* Allow wrapping for responsiveness */
+            gap: 1.5, 
+            alignItems: 'center', 
+            minWidth: 'fit-content', 
+            '& .MuiTextField-root': {bgcolor: 'background.paper', borderRadius: 1},
+            '& .MuiFormControl-root .MuiInputLabel-root': {color: 'text.secondary'} /* Ensure label color is visible */
+          }}
+        >
 					{Object.keys(filterObject).map((key) => {
 						const filterConfig = baseColumns[key].filterConfig || {};
 						const filterType = filterConfig.type || 'text';
@@ -403,6 +413,7 @@ const Warehouse = () => {
 										key={key}
 										formData={filters}
 										handleChange={handleFilterChange}
+                    sx={{ flex: '1 1 180px', minWidth: '120px' }} /* Responsive flex and minWidth */
 									/>
 								);
 							case 'select':
@@ -414,6 +425,7 @@ const Warehouse = () => {
 										formData={filters}
 										handleChange={handleFilterChange}
 										options={filterConfig.options || []}
+                    sx={{ flex: '1 1 180px', minWidth: '120px' }} /* Responsive flex and minWidth */
 									/>
 								);
 							default:

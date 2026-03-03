@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom'; // Import useLocation
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiUser } from "react-icons/fi";
+import { FaDoorOpen, FaHome } from 'react-icons/fa'; // Import FaHome
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import WalletRechargeModal from './WalletRechargeModal';
-import { FaDoorOpen } from 'react-icons/fa';
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
@@ -123,18 +123,31 @@ const Header = () => {
             {/* Mobile Right Section (Visible on small screens) */}
             <div className='md:hidden flex items-center gap-1.5'>
               {!isAuthenticated && (
-                <Link to="/sign-in" className="text-xs font-bold text-gray-700 hover:text-brand-orange transition-colors px-1">
-                  Sign In
+                <Link
+                  to="/sign-in"
+                  className="flex flex-col items-center justify-center bg-brand-green hover:bg-brand-green-dark text-white rounded-lg px-2.5 py-1 shadow-md transition-all active:scale-95 border border-white/10"
+                >
+                  <FiUser className="text-lg" />
+                  <span className="text-[9px] font-black uppercase tracking-tighter leading-none mt-0.5">Sign In</span>
                 </Link>
               )}
               {isAuthenticated && verified && location.pathname.startsWith('/dashboard') && (
-                <div onClick={() => setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-lg px-2 py-1 cursor-pointer border border-brand-green-light shadow-sm`}>
-                  {balance < 250 && <span className="mr-0.5 text-brand-orange animate-pulse text-[10px]">⚠️</span>}
+                <div onClick={() => setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-lg px-2.5 py-1 cursor-pointer border border-brand-green-light shadow-sm`}>
+                  {balance < 250 && <span className="mr-0.5 text-brand-orange animate-pulse text-base">⚠️</span>}
                   <p className="text-xs">{`₹${balance}`}</p>
                 </div>
               )}
+              {isAuthenticated && !location.pathname.startsWith('/dashboard') && (
+                // Button to navigate to dashboard (Home button)
+                <Link
+                  to="/dashboard"
+                  className="flex items-center justify-center bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-lg shadow-md transition-all active:scale-95 border border-white/10"
+                >
+                  <FaHome className="text-lg" />
+                </Link>
+              )}
               {isAuthenticated && (
-                <span className='bg-red-600 hover:bg-red-700 text-white text-sm p-1.5 cursor-pointer rounded-lg transition-all duration-300 shadow-sm' onClick={handleLogout}>
+                <span className='bg-red-600 hover:bg-red-700 text-white text-lg p-2 cursor-pointer rounded-lg transition-all duration-300 shadow-sm' onClick={handleLogout}>
                   <FaDoorOpen />
                 </span>
               )}
@@ -145,7 +158,7 @@ const Header = () => {
               <div className='hidden md:flex items-center space-x-4'>
                 {verified && location.pathname.startsWith('/dashboard') && (
                   <div onClick={() => setShowRecharge(true)} className={`relative bg-brand-green ${balance < 250 ? "text-brand-orange" : "text-white"} flex items-center font-bold rounded-xl px-4 py-2 cursor-pointer border border-brand-green-light shadow-sm transition-all duration-300`}>
-                    {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse">⚠️</span>}
+                    {balance < 250 && <span className="mr-1 text-brand-orange animate-pulse text-lg">⚠️</span>}
                     <p>{`₹${balance}`}</p>
                   </div>
                 )}
@@ -159,14 +172,6 @@ const Header = () => {
                 </div>
               </div>
             )}
-
-            {/* Mobile menu toggle button (Visible on small screens) */}
-            {/* <button
-              className="md:hidden text-gray-700 text-2xl flex items-center ml-1"
-              onClick={toggleSidebar}
-            >
-              {isOpen ? <FiX /> : <FiMenu />}
-            </button> */}
           </div>
         </div>
 

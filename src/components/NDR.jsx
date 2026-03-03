@@ -408,16 +408,6 @@ const Listing = () => {
   const [selection, setSelection] = useState({ ids: new Set() });
   const apiRef = useGridApiRef();
 
-  // Dynamic DataGrid height
-  const [dataGridHeight, setDataGridHeight] = useState(Math.round(window.innerHeight * 0.65));
-  useEffect(() => {
-    const handleResize = () => {
-      setDataGridHeight(Math.round(window.innerHeight * 0.65));
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const selectedOrderIds = useMemo(() => {
     if (apiRef.current) {
       return [...apiRef.current.getSelectedRows().keys()]
@@ -633,9 +623,10 @@ const Listing = () => {
         >
           <Box
             display="flex"
+            flexWrap="wrap" /* Allow wrapping for responsiveness */
             gap={1}
             sx={{
-              minWidth: 'fit-content',  // Prevents wrapping
+              minWidth: 'fit-content',
             }}
           >
             <TextField
@@ -645,9 +636,8 @@ const Listing = () => {
               name="ord_id"
               value={filters.ord_id}
               onChange={(e) => setFilters({ ...filters, ord_id: e.target.value })}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
-                // shrink: true,
                 sx: {
                   backgroundColor: 'white',
                   px: 0.5,
@@ -663,9 +653,8 @@ const Listing = () => {
               name="awb"
               value={filters.awb}
               onChange={(e) => setFilters({ ...filters, awb: e.target.value })}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
-                // shrink: true,
                 sx: {
                   backgroundColor: 'white',
                   px: 0.5,
@@ -674,8 +663,8 @@ const Listing = () => {
                 },
               }}
             />
-            <FormControl size="small" sx={{ minWidth: '150px', mr: 1 }}>
-              <InputLabel id="status-select-label" className="bg-white w-full">Status</InputLabel>
+            <FormControl size="small" sx={{ flex: '1 1 150px', minWidth: '120px', mr: {xs: 0, sm: 1} }}>
+              <InputLabel id="status-select-label" className="bg-white w-full" sx={{ color: 'text.secondary' }}>Status</InputLabel>
               <Select
                 labelId="status-select-label"
                 value={filters.status}
@@ -704,9 +693,8 @@ const Listing = () => {
               name="startDate"
               value={filters.startDate}
               onChange={(e) => setFilters({ ...filters, startDate: e.target.value })}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
-                // shrink: true,
                 sx: {
                   backgroundColor: 'white',
                   px: 0.5,
@@ -723,9 +711,8 @@ const Listing = () => {
               name="endDate"
               value={filters.endDate}
               onChange={(e) => setFilters({ ...filters, endDate: e.target.value })}
-              sx={{ mr: 1, minWidth: '150px' }}
+              sx={{ flex: '1 1 150px', mr: {xs: 0, sm: 1}, minWidth: '120px' }}
               InputLabelProps={{
-                // shrink: true,
                 sx: {
                   backgroundColor: 'white',
                   px: 0.5,
@@ -734,8 +721,8 @@ const Listing = () => {
                 },
               }}
             />
-            <FormControl size="small" sx={{ minWidth: '150px', mr: 1 }}>
-              <InputLabel id="service-select-label" className="bg-white w-full">Service</InputLabel>
+            <FormControl size="small" sx={{ flex: '1 1 150px', minWidth: '120px', mr: {xs: 0, sm: 1} }}>
+              <InputLabel id="service-select-label" className="bg-white w-full" sx={{ color: 'text.secondary' }}>Service</InputLabel>
               <Select
                 labelId="service-select-label"
                 value={filters.serviceId}
@@ -805,7 +792,7 @@ const Listing = () => {
           </Box>
         </Box>
 
-        <Box sx={{ height: `${dataGridHeight}px`, width: '100%' }}>
+        <Box sx={{ height: 600, width: '100%' }}>
           <DataGrid
             apiRef={apiRef}
             rows={reports}

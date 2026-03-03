@@ -27,12 +27,13 @@ const SidebarItem = ({ item, setShowRecharge, toggleSidebar = () => {}, sidebarE
         <div className="w-full">
             <div
                 onClick={item.isDropdown ? () => setIsOpen(!isOpen) : (item.name === "Wallet Recharge" ? () => setShowRecharge(true) : () => { navigate(`/dashboard/${item.url}`); toggleSidebar(); })}
-                className={`cursor-pointer w-full min-h-[56px] py-2 my-1 rounded-lg transition-all duration-300 group relative flex items-center 
+                className={`cursor-pointer w-full min-h-[48px] md:min-h-[56px] py-2 my-1 rounded-lg transition-all duration-300 group relative flex items-center 
                     ${isCurrentMenu 
-                        ? 'bg-gradient-to-r from-yellow-500/10 to-transparent text-yellow-500 border-l-[4px] border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.1)]' 
+                        ? 'bg-yellow-500/20 text-yellow-500 border-l-[4px] border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.1)]' 
                         : 'text-white hover:bg-yellow-500/5 hover:text-yellow-500'} 
                     ${sidebarExpanded ? 'justify-start px-4' : 'justify-center px-0'}
-                    ${isSubItem && sidebarExpanded ? 'pl-8' : ''}`}
+                    ${isSubItem && sidebarExpanded ? 'pl-8' : ''}
+                    active:bg-yellow-500/10 transition-colors`}
             >
                 {item.icon && item.icon !== "/image/logo-nobg.png" && (
                     <item.icon className={`text-2xl flex-shrink-0 transition-all duration-200 

@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
+import { toast } from "react-toastify"
 
 const API_URL = import.meta.env.VITE_APP_API_URL
+
 const ComparePrices = ({method, boxes, status, origin, dest, payMode, codAmount, isB2B, invoiceAmount, setShowCompare}) => {
   const [prices,setPrices] = useState([])
   const [loading, setLoading] = useState(true)
@@ -80,7 +81,7 @@ const ComparePrices = ({method, boxes, status, origin, dest, payMode, codAmount,
                     <button 
                       type="button" 
                       onClick={handleShip} 
-                      className="bg-brand-green hover:bg-brand-green-dark text-white px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-xl text-xs sm:text-base font-bold transition-all shadow-lg shadow-brand-green/10 active:scale-95 whitespace-nowrap"
+                      className="bg-brand-green hover:bg-brand-green-light text-white px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-2xl text-xs sm:text-base font-bold transition-all shadow-lg shadow-brand-green/10 active:scale-95 whitespace-nowrap"
                     >
                       Ship Now
                     </button>
@@ -167,7 +168,7 @@ const Domestic = () => {
     <div className="w-full max-w-4xl mx-auto">
       {showCompare && <ComparePrices {...formData} boxes={boxes} setShowCompare={setShowCompare} />}
       
-      <form onSubmit={handleSubmit} className="bg-white shadow-xl shadow-gray-200/50 rounded-3xl md:rounded-[2.5rem] p-4 sm:p-8 md:p-12 border border-gray-100 space-y-6 sm:space-y-8 md:space-y-10">
+      <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-3xl p-4 sm:p-8 md:p-12 border border-gray-100 space-y-6 sm:space-y-8 md:space-y-10">
         
         {/* Core Details Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6">
@@ -175,7 +176,7 @@ const Domestic = () => {
             <label className="text-xs sm:text-sm font-bold text-brand-accent ml-1">Shipping Method</label>
             <select
               name="method"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.method}
               onChange={handleChange}
             >
@@ -188,7 +189,7 @@ const Domestic = () => {
             <label className="text-xs sm:text-sm font-bold text-brand-accent ml-1">Status</label>
             <select
               name="status"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.status}
               onChange={handleChange}
             >
@@ -204,7 +205,7 @@ const Domestic = () => {
               type="text"
               name="origin"
               placeholder="Ex. 813210"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.origin}
               onChange={handleChange}
             />
@@ -216,7 +217,7 @@ const Domestic = () => {
               type="text"
               name="dest"
               placeholder="Ex. 845401"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.dest}
               onChange={handleChange}
             />
@@ -226,7 +227,7 @@ const Domestic = () => {
             <label className="text-xs sm:text-sm font-bold text-brand-accent ml-1">Payment Mode</label>
             <select
               name="payMode"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.payMode}
               onChange={handleChange}
             >
@@ -243,7 +244,7 @@ const Domestic = () => {
               name="codAmount"
               placeholder="0"
               disabled={formData.payMode !== 'COD'}
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all disabled:opacity-50 text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all disabled:opacity-50 text-sm sm:text-base text-gray-800 font-medium"
               value={formData.codAmount}
               onChange={handleChange}
             />
@@ -253,7 +254,7 @@ const Domestic = () => {
             <label className="text-xs sm:text-sm font-bold text-brand-accent ml-1">Shipment Type</label>
             <select
               name="isB2B"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.isB2B}
               onChange={handleChange}
             >
@@ -268,7 +269,7 @@ const Domestic = () => {
               type="text"
               name="invoiceAmount"
               placeholder="0"
-              className="w-full h-11 sm:h-12 px-3 sm:px-4 bg-brand-gray border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green transition-all text-sm sm:text-base"
+              className="w-full h-12 px-3 sm:px-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 focus:border-brand-green transition-all text-sm sm:text-base text-gray-800 font-medium"
               value={formData.invoiceAmount}
               onChange={handleChange}
             />
@@ -282,7 +283,7 @@ const Domestic = () => {
             <button 
               type="button" 
               onClick={addBox}
-              className="text-sm font-bold text-brand-orange hover:text-brand-orange-dark transition-colors flex items-center gap-1"
+              className="text-sm font-bold text-brand-orange hover:text-brand-orange-light transition-colors flex items-center gap-1.5 px-4 py-2 bg-brand-gray rounded-xl border border-gray-200 shadow-sm"
             >
               <span className="text-lg">+</span> Add Box
             </button>
@@ -290,11 +291,11 @@ const Domestic = () => {
 
           <div className="space-y-4">
             {boxes.map((box, index) => (
-              <div key={index} className="relative bg-brand-gray/50 border border-gray-100 rounded-xl sm:rounded-3xl p-3 sm:p-6 transition-all hover:bg-white hover:shadow-md hover:border-brand-green/10">
+              <div key={index} className="relative bg-brand-gray border border-gray-100 rounded-2xl p-3 sm:p-6 transition-all hover:bg-white hover:shadow-md hover:border-brand-green/10">
                 {boxes.length > 1 && (
                   <button 
                     type="button" 
-                    className="absolute -top-1.5 -right-1.5 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs shadow-lg hover:bg-red-600 transition-colors" 
+                    className="absolute -top-3 -right-3 w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center text-sm shadow-lg hover:bg-red-600 transition-colors z-10" 
                     onClick={() => removeBox(index)}
                   >
                     &times;
@@ -310,13 +311,13 @@ const Domestic = () => {
                         type="text"
                         name="weight"
                         placeholder="0.00"
-                        className="flex-1 h-9 sm:h-11 px-2 sm:px-4 bg-white border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-green/20 text-xs sm:text-base"
+                        className="flex-1 h-11 px-2 sm:px-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-green/10 text-xs sm:text-base text-gray-800 font-medium"
                         value={box.weight}
                         onChange={(e)=>handleBoxes(index,e)}
                       />
                       <select
                         name="weight_unit"
-                        className="w-14 sm:w-20 h-9 sm:h-11 px-1 sm:px-2 bg-white border border-gray-200 rounded-lg sm:rounded-xl focus:outline-none text-xs sm:text-base"
+                        className="w-14 sm:w-20 h-11 px-1 sm:px-2 bg-white border border-gray-200 rounded-xl focus:outline-none text-xs sm:text-base text-gray-800 font-medium"
                         value={box.weight_unit}
                         onChange={(e)=>handleBoxes(index,e)}
                       >
@@ -329,21 +330,21 @@ const Domestic = () => {
                   <div className="grid grid-cols-3 lg:col-span-2 gap-1 sm:gap-2">
                     <div className="space-y-1">
                       <label className="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold text-gray-400 block truncate">L (cm)</label>
-                      <input required type="text" name="length" className="w-full h-9 sm:h-11 px-1 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-center focus:ring-2 focus:ring-brand-green/20 outline-none text-xs sm:text-base" value={box.length} onChange={(e)=>handleBoxes(index,e)} />
+                      <input required type="text" name="length" className="w-full h-11 px-1 bg-white border border-gray-200 rounded-xl text-center focus:ring-4 focus:ring-brand-green/10 outline-none text-xs sm:text-base text-gray-800 font-medium" value={box.length} onChange={(e)=>handleBoxes(index,e)} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold text-gray-400 block truncate">B (cm)</label>
-                      <input required type="text" name="breadth" className="w-full h-9 sm:h-11 px-1 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-center focus:ring-2 focus:ring-brand-green/20 outline-none text-xs sm:text-base" value={box.breadth} onChange={(e)=>handleBoxes(index,e)} />
+                      <input required type="text" name="breadth" className="w-full h-11 px-1 bg-white border border-gray-200 rounded-xl text-center focus:ring-4 focus:ring-brand-green/10 outline-none text-xs sm:text-base text-gray-800 font-medium" value={box.breadth} onChange={(e)=>handleBoxes(index,e)} />
                     </div>
                     <div className="space-y-1">
                       <label className="text-[9px] sm:text-[11px] uppercase tracking-wider font-bold text-gray-400 block truncate">H (cm)</label>
-                      <input required type="text" name="height" className="w-full h-9 sm:h-11 px-1 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-center focus:ring-2 focus:ring-brand-green/20 outline-none text-xs sm:text-base" value={box.height} onChange={(e)=>handleBoxes(index,e)} />
+                      <input required type="text" name="height" className="w-full h-11 px-1 bg-white border border-gray-200 rounded-xl text-center focus:ring-4 focus:ring-brand-green/10 outline-none text-xs sm:text-base text-gray-800 font-medium" value={box.height} onChange={(e)=>handleBoxes(index,e)} />
                     </div>
                   </div>
 
                   <div className="space-y-1">
                     <label className="text-[10px] sm:text-[11px] uppercase tracking-wider font-bold text-gray-400">Qty</label>
-                    <input required type="number" name="quantity" min="1" className="w-full h-9 sm:h-11 px-2 sm:px-4 bg-white border border-gray-200 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-brand-green/20 outline-none text-xs sm:text-base" value={box.quantity} onChange={(e)=>handleBoxes(index,e)} />
+                    <input required type="number" name="quantity" min="1" className="w-full h-11 px-2 sm:px-4 bg-white border border-gray-200 rounded-xl focus:ring-4 focus:ring-brand-green/10 outline-none text-xs sm:text-base text-gray-800 font-medium" value={box.quantity} onChange={(e)=>handleBoxes(index,e)} />
                   </div>
                 </div>
               </div>
@@ -354,7 +355,7 @@ const Domestic = () => {
         <div className="pt-6">
           <button 
             type="submit" 
-            className="w-full h-14 bg-brand-green hover:bg-brand-green-dark text-white rounded-[1.25rem] font-bold text-lg transition-all shadow-xl shadow-brand-green/20 active:scale-[0.98]"
+            className="w-full h-14 bg-brand-green hover:bg-brand-green-light text-white rounded-2xl font-bold text-lg transition-all shadow-xl shadow-brand-green/20 active:scale-95"
           >
             Submit and Compare Rates
           </button>
@@ -363,8 +364,6 @@ const Domestic = () => {
     </div>
   )
 }
-
-
 
 
 const PriceCalc = () => {

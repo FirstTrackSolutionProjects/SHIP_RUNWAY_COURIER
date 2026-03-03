@@ -310,42 +310,47 @@ const FullDetails = () => {
 
   return (
     <div className="w-full p-4 flex flex-col items-center bg-white">
-      <div className="text-3xl font-bold text-green-700 text-center my-8">Enter Shipping Details</div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="text-3xl font-bold text-green-700 text-center my-8 text-xl sm:text-3xl">Enter Shipping Details</div>
+      <form onSubmit={handleSubmit} className="w-full max-w-4xl px-2 sm:px-4 space-y-4">
         <div className="w-full flex mb-2 px-2 flex-wrap">
-          <WarehouseSelect
-            onChange={(wid)=>setValue("wid", wid)}
-            value={watch("wid")}
-          />
-          {errors.wid && <span className='text-red-500'>{errors.wid.message}</span>}
+          <div className="flex-1 w-full sm:w-auto mx-0 sm:mx-2 mb-2 min-w-[280px] space-y-2"> {/* Added responsive width */}
+            <label htmlFor="wid" className="block text-sm font-medium text-gray-700">Pickup Warehouse Name</label>
+            <WarehouseSelect
+              onChange={(wid)=>setValue("wid", wid)}
+              value={watch("wid")}
+            />
+            {errors.wid && <span className='text-red-500 text-sm'>{errors.wid.message}</span>}
+          </div>
         </div>
 
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="pickupDate">Pickup Date</label>
+        <div className="w-full flex flex-wrap -mx-2"> {/* Added flex-wrap and negative margin for consistency */}
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="pickupDate" className="block text-sm font-medium text-gray-700">Pickup Date</label>
             <input required
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="date"
               min={getTodaysDate()}
               id="pickupDate"
               {...register("pickupDate")}
             />
+            {errors.pickupDate && <span className='text-red-500 text-sm'>{errors.pickupDate.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="pickupTime">Pickup Time</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="pickupTime" className="block text-sm font-medium text-gray-700">Pickup Time</label>
             <input required
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="time"
               id="pickupTime"
               {...register("pickupTime")}
             />
+            {errors.pickupTime && <span className='text-red-500 text-sm'>{errors.pickupTime.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="payMode">Payment Method</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="payMode" className="block text-sm font-medium text-gray-700">Payment Method</label>
             <select
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               id="payMode"
               {...register("payMode")}
             >
@@ -353,547 +358,550 @@ const FullDetails = () => {
               <option value="Pre-paid">Prepaid</option>
               <option value="topay">To Pay</option>
             </select>
-            {errors.payMode && <span className='text-red-500'>{errors.payMode.message}</span>}
+            {errors.payMode && <span className='text-red-500 text-sm'>{errors.payMode.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="name">Buyer's Name</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Buyer's Name</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="name"
               {...register("name")}
               placeholder="Ex. John Doe"
             />
-            {errors.name && <span className='text-red-500'>{errors.name.message}</span>}
+            {errors.name && <span className='text-red-500 text-sm'>{errors.name.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="email">Email</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="email"
               id="email"
               {...register("email")}
               placeholder="Ex. john@example.com"
             />
-            {errors.email && <span className='text-red-500'>{errors.email.message}</span>}
+            {errors.email && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="phone">Phone Number</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="phone"
               {...register("phone")}
               placeholder="Ex. 9876543210"
             />
-            {errors.phone && <span className='text-red-500'>{errors.phone.message}</span>}
+            {errors.phone && <span className='text-red-500 text-sm'>{errors.phone.message}</span>}
           </div>
         </div>
 
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="address">Shipping Address</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700">Shipping Address</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               maxLength={100}
               id="address"
               {...register("address")}
               placeholder="Ex. 123 Street"
             />
-            {errors.address && <span className='text-red-500'>{errors.address.message}</span>}
+            {errors.address && <span className='text-red-500 text-sm'>{errors.address.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="addressType">Shipping Address Type</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="addressType" className="block text-sm font-medium text-gray-700">Shipping Address Type</label>
             <select
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               id="addressType"
               {...register("addressType")}
             >
               <option value="home">Home</option>
               <option value="office">Office</option>
             </select>
-            {errors.addressType && <span className='text-red-500'>{errors.addressType.message}</span>}
+            {errors.addressType && <span className='text-red-500 text-sm'>{errors.addressType.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="postcode">Shipping Pincode</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="postcode" className="block text-sm font-medium text-gray-700">Shipping Pincode</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="postcode"
               pattern='^\d{6}$'
               {...register("postcode")}
               placeholder="Ex. 123456"
             />
-            {errors.postcode && <span className='text-red-500'>{errors.postcode.message}</span>}
+            {errors.postcode && <span className='text-red-500 text-sm'>{errors.postcode.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="city">Shipping City</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="city" className="block text-sm font-medium text-gray-700">Shipping City</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="city"
               {...register("city")}
               placeholder="Ex. New York"
             />
-            {errors.city && <span className='text-red-500'>{errors.city.message}</span>}
+            {errors.city && <span className='text-red-500 text-sm'>{errors.city.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="state">Shipping State</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="state" className="block text-sm font-medium text-gray-700">Shipping State</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="state"
               {...register("state")}
               placeholder="Ex. NY"
             />
-            {errors.state && <span className='text-red-500'>{errors.state.message}</span>}
+            {errors.state && <span className='text-red-500 text-sm'>{errors.state.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="country">Shipping Country</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="country" className="block text-sm font-medium text-gray-700">Shipping Country</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="country"
               value={"India"}
               {...register("country")}
               placeholder="Ex. USA"
             />
-            {errors.country && <span className='text-red-500'>{errors.country.message}</span>}
+            {errors.country && <span className='text-red-500 text-sm'>{errors.country.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 items-center">
+        <div className="w-full flex mb-2 items-center px-2"> {/* Added px-2 for consistency */}
           <input
-            className="mr-2"
+            className="mr-2 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
             type="checkbox"
             id="same"
             {...register("same")}
           />
-          <label htmlFor="same">Billing Address same as Shipping Address</label>
+          <label htmlFor="same" className="text-sm font-medium text-gray-700">Billing Address same as Shipping Address</label>
         </div>
         {/* Additional Billing Address Fields if 'same' is not checked */}
         {!watch("same") && (
           <>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="Baddress">Billing Address</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="Baddress" className="block text-sm font-medium text-gray-700">Billing Address</label>
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   maxLength={100}
                   id="Baddress"
                   {...register("Baddress")}
                   placeholder="Ex. 123 Street"
                 />
-                {errors.Baddress && <span className='text-red-500'>{errors.Baddress.message}</span>}
+                {errors.Baddress && <span className='text-red-500 text-sm'>{errors.Baddress.message}</span>}
               </div>
             </div>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="BaddressType">Billing Address Type</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="BaddressType" className="block text-sm font-medium text-gray-700">Billing Address Type</label>
                 <select
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   id="BaddressType"
                   {...register("BaddressType")}
                 >
                   <option value="home">Home</option>
                   <option value="office">Office</option>
                 </select>
-                {errors.BaddressType && <span className='text-red-500'>{errors.BaddressType.message}</span>}
+                {errors.BaddressType && <span className='text-red-500 text-sm'>{errors.BaddressType.message}</span>}
               </div>
             </div>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="Bpostcode">Billing Pincode</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="Bpostcode" className="block text-sm font-medium text-gray-700">Billing Pincode</label>
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   id="Bpostcode"
                   pattern='^\d{6}$'
                   {...register("Bpostcode")}
                   placeholder="Ex. 123456"
                 />
-                {errors.Bpostcode && <span className='text-red-500'>{errors.Bpostcode.message}</span>}
+                {errors.Bpostcode && <span className='text-red-500 text-sm'>{errors.Bpostcode.message}</span>}
               </div>
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="Bcity">Billing City</label>
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="Bcity" className="block text-sm font-medium text-gray-700">Billing City</label>
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   id="Bcity"
                   {...register("Bcity")}
                   placeholder="Ex. New York"
                 />
-                {errors.Bcity && <span className='text-red-500'>{errors.Bcity.message}</span>}
+                {errors.Bcity && <span className='text-red-500 text-sm'>{errors.Bcity.message}</span>}
               </div>
             </div>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="Bstate">Billing State</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="Bstate" className="block text-sm font-medium text-gray-700">Billing State</label>
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   id="Bstate"
                   {...register("Bstate")}
                   placeholder="Ex. NY"
                 />
-                {errors.Bstate && <span className='text-red-500'>{errors.Bstate.message}</span>}
+                {errors.Bstate && <span className='text-red-500 text-sm'>{errors.Bstate.message}</span>}
               </div>
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="Bcountry">Billing Country</label>
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="Bcountry" className="block text-sm font-medium text-gray-700">Billing Country</label>
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   id="Bcountry"
                   value={"India"}
                   {...register("Bcountry")}
                   placeholder="Ex. USA"
                 />
-                {errors.Bcountry && <span className='text-red-500'>{errors.Bcountry.message}</span>}
+                {errors.Bcountry && <span className='text-red-500 text-sm'>{errors.Bcountry.message}</span>}
               </div>
             </div>
           </>
         )}
         <div className="w-full flex mb-2 flex-wrap">
-          <div className="w-full mb-2 border-b-2 border-yellow-400 pb-2 mb-6">
-            <div className="text-2xl font-semibold text-green-700">Order Details</div>
+          <div className="w-full mb-2 border-b-2 border-yellow-400 pb-2 mb-6 px-2">
+            <div className="text-2xl font-semibold text-green-700 text-xl sm:text-2xl">Order Details</div>
           </div>
           {boxes.fields.map((field, index) => (
-            <div key={field.id} className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2  space-y-2">
-                <label htmlFor={`boxes[${index}].box_no`}>Box No.</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].box_no`}
-                  value={index + 1}
-                  disabled
-                  {...register(`boxes[${index}].box_no`)}
-                />
-                {errors.boxes?.[index]?.box_no && <span className='text-red-500'>{errors.boxes?.[index]?.box_no.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2 space-y-2">
-                <label htmlFor={`boxes[${index}].length`}>Length (in cm)</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].length`}
-                  {...register(`boxes[${index}].length`)}
-                />
-                {errors.boxes?.[index]?.length && <span className='text-red-500'>{errors.boxes?.[index]?.length.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2  space-y-2">
-                <label htmlFor={`boxes[${index}].breadth`}>Width (in cm)</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].breadth`}
-                  {...register(`boxes[${index}].breadth`)}
-                />
-                {errors.boxes?.[index]?.breadth && <span className='text-red-500'>{errors.boxes?.[index]?.breadth.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2 space-y-2">
-                <label htmlFor={`boxes[${index}].height`}>Height (in cm)</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].height`}
-                  {...register(`boxes[${index}].height`)}
-                />
-                {errors.boxes?.[index]?.height && <span className='text-red-500'>{errors.boxes?.[index]?.height.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2  space-y-2">
-                <label htmlFor={`boxes[${index}].weight`}>Weight</label>
-                <div className='w-full flex space-x-2'>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].weight`}
-                  {...register(`boxes[${index}].weight`)}
-                />
-                <select
-                  className="w-full border py-2 px-4 rounded"
-                  id={`boxes[${index}].weight_unit`}
-                  {...register(`boxes[${index}].weight_unit`)}
-                >
-                  <option value="g">gm</option>
-                  <option value="kg">kg</option>
-                </select>
+            <div key={field.id} className="w-full flex flex-wrap -mx-2 mb-2 border-b border-gray-200 pb-4">
+              <div className="w-full flex flex-wrap items-end mb-2">
+                <div className="flex-1 px-2 mb-2 max-w-[150px] min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].box_no`} className="block text-sm font-medium text-gray-700">Box No.</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md bg-gray-100 text-sm"
+                    type="text"
+                    id={`boxes[${index}].box_no`}
+                    value={index + 1}
+                    disabled
+                    {...register(`boxes[${index}].box_no`)}
+                  />
+                  {errors.boxes?.[index]?.box_no && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.box_no.message}</span>}
                 </div>
-                {errors.boxes?.[index]?.weight && <span className='text-red-500'>{errors.boxes?.[index]?.weight.message}</span>}
+                <div className="flex-1 px-2 mb-2 min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].length`} className="block text-sm font-medium text-gray-700">Length (cm)</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`boxes[${index}].length`}
+                    {...register(`boxes[${index}].length`)}
+                  />
+                  {errors.boxes?.[index]?.length && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.length.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].breadth`} className="block text-sm font-medium text-gray-700">Width (cm)</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`boxes[${index}].breadth`}
+                    {...register(`boxes[${index}].breadth`)}
+                  />
+                  {errors.boxes?.[index]?.breadth && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.breadth.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].height`} className="block text-sm font-medium text-gray-700">Height (cm)</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`boxes[${index}].height`}
+                    {...register(`boxes[${index}].height`)}
+                  />
+                  {errors.boxes?.[index]?.height && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.height.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].weight`} className="block text-sm font-medium text-gray-700">Weight</label>
+                  <div className='w-full flex space-x-2'>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`boxes[${index}].weight`}
+                    {...register(`boxes[${index}].weight`)}
+                  />
+                  <select
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    id={`boxes[${index}].weight_unit`}
+                    {...register(`boxes[${index}].weight_unit`)}
+                  >
+                    <option value="g">gm</option>
+                    <option value="kg">kg</option>
+                  </select>
+                  </div>
+                  {errors.boxes?.[index]?.weight && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.weight.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 min-w-[100px] space-y-2">
+                  <label htmlFor={`boxes[${index}].quantity`} className="block text-sm font-medium text-gray-700">Qty</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`boxes[${index}].quantity`}
+                    {...register(`boxes[${index}].quantity`)}
+                  />
+                  {errors.boxes?.[index]?.quantity && <span className='text-red-500 text-sm'>{errors.boxes?.[index]?.quantity.message}</span>}
+                </div>
               </div>
-              <div className="flex-1 mx-2 mb-2 space-y-2">
-                <label htmlFor={`boxes[${index}].quantity`}>Quantity</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`boxes[${index}].quantity`}
-                  {...register(`boxes[${index}].quantity`)}
-                />
-                {errors.boxes?.[index]?.quantity && <span className='text-red-500'>{errors.boxes?.[index]?.quantity.message}</span>}
-              </div>
-              {watch('boxes').length > 1 ? <div className="w-full text-right">
-                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700" onClick={() => boxes.remove(index)}>Remove</button>
+              {watch('boxes').length > 1 ? <div className="w-full text-right px-2">
+                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700 text-sm" onClick={() => boxes.remove(index)}>Remove Box</button>
               </div> : null}
             </div>
           ))}
-          <div className="w-full text-right mt-2">
+          <div className="w-full text-right mt-2 px-2">
             <button
               type="button"
-              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors shadow-sm"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-colors shadow-sm text-sm"
               onClick={() => boxes.append({ box_no: watch('boxes').length + 1, product_name: '', product_quantity: 0, selling_price: 0, discount: '', tax_in_percentage: 0 })}
             >
-              + Add Boxes
+              + Add Box
             </button>
           </div>
           {fields.map((field, index) => (
-            <div key={field.id} className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2  max-w-[150px] min-w-[150px] space-y-2">
-                <label htmlFor={`orders[${index}].box_no`}>Box No</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`orders[${index}].box_no`}
-                  defaultValue={1}
-                  {...register(`orders[${index}].box_no`)}
-                />
-                {errors.orders?.[index]?.box_no && <span className='text-red-500'>{errors.orders[index].box_no.message}</span>}
+            <div key={field.id} className="w-full flex flex-wrap -mx-2 mb-2 border-b border-gray-100 pb-4">
+              <div className="w-full flex flex-wrap items-end mb-2">
+                <div className="flex-1 px-2 mb-2 max-w-[150px] min-w-[100px] space-y-2">
+                  <label htmlFor={`orders[${index}].box_no`} className="block text-sm font-medium text-gray-700">Box No</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`orders[${index}].box_no`}
+                    defaultValue={1}
+                    {...register(`orders[${index}].box_no`)}
+                  />
+                  {errors.orders?.[index]?.box_no && <span className='text-red-500 text-sm'>{errors.orders[index].box_no.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 min-w-[180px] space-y-2">
+                  <label htmlFor={`orders[${index}].product_name`} className="block text-sm font-medium text-gray-700">Product Name</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="text"
+                    id={`orders[${index}].product_name`}
+                    {...register(`orders[${index}].product_name`)}
+                  />
+                  {errors.orders?.[index]?.product_name && <span className='text-red-500 text-sm'>{errors.orders[index].product_name.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 max-w-[150px] min-w-[100px] space-y-2">
+                  <label htmlFor={`orders[${index}].product_quantity`} className="block text-sm font-medium text-gray-700">Quantity</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="number"
+                    id={`orders[${index}].product_quantity`}
+                    {...register(`orders[${index}].product_quantity`)}
+                  />
+                  {errors.orders?.[index]?.product_quantity && <span className='text-red-500 text-sm'>{errors.orders[index].product_quantity.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 max-w-[150px] min-w-[100px] space-y-2">
+                  <label htmlFor={`orders[${index}].selling_price`} className="block text-sm font-medium text-gray-700">Price</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="number"
+                    id={`orders[${index}].selling_price`}
+                    {...register(`orders[${index}].selling_price`)}
+                  />
+                  {errors.orders?.[index]?.selling_price && <span className='text-red-500 text-sm'>{errors.orders[index].selling_price.message}</span>}
+                </div>
+                <div className="flex-1 px-2 mb-2 max-w-[150px] min-w-[100px] space-y-2">
+                  <label htmlFor={`orders[${index}].tax_in_percentage`} className="block text-sm font-medium text-gray-700">Tax (%)</label>
+                  <input
+                    className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
+                    type="number"
+                    id={`orders[${index}].tax_in_percentage`}
+                    {...register(`orders[${index}].tax_in_percentage`)}
+                  />
+                  {errors.orders?.[index]?.tax_in_percentage && <span className='text-red-500 text-sm'>{errors.orders[index].tax_in_percentage.message}</span>}
+                </div>
               </div>
-              <div className="flex-1 mx-2 mb-2 min-w-[200px] space-y-2">
-                <label htmlFor={`orders[${index}].product_name`}>Product Name</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="text"
-                  id={`orders[${index}].product_name`}
-                  {...register(`orders[${index}].product_name`)}
-                />
-                {errors.orders?.[index]?.product_name && <span className='text-red-500'>{errors.orders[index].product_name.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2 max-w-[150px] min-w-[150px] space-y-2">
-                <label htmlFor={`orders[${index}].product_quantity`}>Quantity</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="number"
-                  id={`orders[${index}].product_quantity`}
-                  {...register(`orders[${index}].product_quantity`)}
-                />
-                {errors.orders?.[index]?.product_quantity && <span className='text-red-500'>{errors.orders[index].product_quantity.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2 max-w-[150px] min-w-[150px] space-y-2">
-                <label htmlFor={`orders[${index}].selling_price`}>Price</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="number"
-                  id={`orders[${index}].selling_price`}
-                  {...register(`orders[${index}].selling_price`)}
-                />
-                {errors.orders?.[index]?.selling_price && <span className='text-red-500'>{errors.orders[index].selling_price.message}</span>}
-              </div>
-              <div className="flex-1 mx-2 mb-2 max-w-[150px] min-w-[150px] space-y-2">
-                <label htmlFor={`orders[${index}].tax_in_percentage`}>Tax (in %)</label>
-                <input
-                  className="w-full border py-2 px-4 rounded"
-                  type="number"
-                  id={`orders[${index}].tax_in_percentage`}
-                  {...register(`orders[${index}].tax_in_percentage`)}
-                />
-                {errors.orders?.[index]?.tax_in_percentage && <span className='text-red-500'>{errors.orders[index].tax_in_percentage.message}</span>}
-              </div>
-              {watch('orders').length > 1 ? <div className="w-full text-right">
-                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700" onClick={() => remove(index)}>Remove</button>
+              {watch('orders').length > 1 ? <div className="w-full text-right px-2">
+                <button type="button" className="text-yellow-600 font-medium hover:text-yellow-700 text-sm" onClick={() => remove(index)}>Remove Product</button>
               </div> : null}
             </div>
           ))}
-          <div className="w-full text-right mt-2">
+          <div className="w-full text-right mt-2 px-2">
             <button
               type="button"
-              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors shadow-sm"
+              className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition-colors shadow-sm text-sm"
               onClick={() => append({ box_no: 1, product_name: '', product_quantity: 0, selling_price: 0, discount: '', tax_in_percentage: 0 })}
             >
               + Add Product
             </button>
           </div>
         </div>
-        <div className="w-full flex mb-2 items-center">
+        <div className="w-full flex mb-2 items-center px-2">
           <input
-            className="mr-2"
+            className="mr-2 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
             type="checkbox"
             id="isB2B"
             {...register("isB2B")}
           />
-          <label htmlFor="isB2B">Is this a B2B shipment?</label>
+          <label htmlFor="isB2B" className="text-sm font-medium text-gray-700">Is this a B2B shipment?</label>
         </div>
         {
           watch("isB2B") ? <>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="invoiceNumber">Invoice Number</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="invoiceNumber" className="block text-sm font-medium text-gray-700">Invoice Number</label>
                 <input required={watch("isB2B")}
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="text"
                   id="invoiceNumber"
                   {...register("invoiceNumber")}
                 />
-                {errors.invoiceNumber && <span className='text-red-500'>{errors.invoiceNumber.message}</span>}
+                {errors.invoiceNumber && <span className='text-red-500 text-sm'>{errors.invoiceNumber.message}</span>}
               </div>
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="invoiceDate">Invoice Date</label>
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="invoiceDate" className="block text-sm font-medium text-gray-700">Invoice Date</label>
                 <input required={watch("isB2B")}
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="date"
                   id="invoiceDate"
                   {...register("invoiceDate")}
                 />
-                {errors.invoiceDate && <span className='text-red-500'>{errors.invoiceDate.message}</span>}
+                {errors.invoiceDate && <span className='text-red-500 text-sm'>{errors.invoiceDate.message}</span>}
               </div>
             </div>
-            <div className="w-full flex mb-2 flex-wrap">
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="invoiceAmount">Invoice Amount</label>
+            <div className="w-full flex flex-wrap -mx-2">
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="invoiceAmount" className="block text-sm font-medium text-gray-700">Invoice Amount</label>
                 <input required={watch("isB2B")}
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="number"
                   id="invoiceAmount"
                   {...register("invoiceAmount")}
                 />
-                {errors.invoiceAmount && <span className='text-red-500'>{errors.invoiceAmount.message}</span>}
+                {errors.invoiceAmount && <span className='text-red-500 text-sm'>{errors.invoiceAmount.message}</span>}
               </div>
-              <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-                <label htmlFor="invoice">Invoice</label>
+              <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+                <label htmlFor="invoice" className="block text-sm font-medium text-gray-700">Invoice</label>
 
                 <input
-                  className="w-full border py-2 px-4 rounded"
+                  className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
                   type="file"
                   id="invoice"
                   onChange={handleInvoice}
                 />
-                {errors.invoiceUrl && <span className='text-red-500'>{errors.invoiceUrl.message}</span>}
+                {errors.invoiceUrl && <span className='text-red-500 text-sm'>{errors.invoiceUrl.message}</span>}
                 <button
                   type='button'
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-colors"
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md transition-colors text-sm"
                   onClick={handleInvoiceUpload}
                 >
                   Upload Invoice
                 </button>
-                {errors.cod && <span className='text-red-500'>{errors.cod.message}</span>}
+                {errors.cod && <span className='text-red-500 text-sm'>{errors.cod.message}</span>}
               </div>
             </div>
           </> : null
         }
-        <div className="flex-1 mb-2 min-w-[300px] space-y-2 flex items-center">
+        <div className="flex-1 mb-2 min-w-[280px] space-y-2 flex items-center px-2">
             <div>
               <input
-                className="mr-2"
+                className="mr-2 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                 type="checkbox"
                 id="insurance"
                 {...register("insurance")}
               />
-              <label htmlFor="insurance">Do you want insurance?</label>
+              <label htmlFor="insurance" className="text-sm font-medium text-gray-700">Do you want insurance?</label>
             </div>
           </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="shipmentValue">Shipment Value</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="shipmentValue" className="block text-sm font-medium text-gray-700">Shipment Value</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="number"
               id="shipmentValue"
               {...register("shipmentValue")}
             />
-            {errors.shipmentValue && <span className='text-red-500'>{errors.shipmentValue.message}</span>}
+            {errors.shipmentValue && <span className='text-red-500 text-sm'>{errors.shipmentValue.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="ewaybill">E-Waybill</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="ewaybill" className="block text-sm font-medium text-gray-700">E-Waybill</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="ewaybill"
               {...register("ewaybill")}
             />
-            {errors.ewaybill && <span className='text-red-500'>{errors.ewaybill.message}</span>}
+            {errors.ewaybill && <span className='text-red-500 text-sm'>{errors.ewaybill.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="discount">Discount</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="discount" className="block text-sm font-medium text-gray-700">Discount</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="number"
               id="discount"
               {...register("discount")}
             />
-            {errors.discount && <span className='text-red-500'>{errors.discount.message}</span>}
+            {errors.discount && <span className='text-red-500 text-sm'>{errors.discount.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="cod">COD</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="cod" className="block text-sm font-medium text-gray-700">COD</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="number"
               min={watch("payMode") == "Pre-paid" ? 0 : 1}
               id="cod"
               {...register("cod")}
             />
-            {errors.cod && <span className='text-red-500'>{errors.cod.message}</span>}
+            {errors.cod && <span className='text-red-500 text-sm'>{errors.cod.message}</span>}
           </div>
         </div>
-        <div className="w-full flex mb-2 flex-wrap">
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="shippingType">Shipping Type</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="shippingType" className="block text-sm font-medium text-gray-700">Shipping Type</label>
             <select
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               id="shippingType"
               {...register("shippingType")}
             >
               <option value="Surface">Surface</option>
               <option value="Express">Express</option>
             </select>
-            {errors.shippingType && <span className='text-red-500'>{errors.shippingType.message}</span>}
+            {errors.shippingType && <span className='text-red-500 text-sm'>{errors.shippingType.message}</span>}
           </div>
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="customer_reference_number">Customer Reference Number</label>
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="customer_reference_number" className="block text-sm font-medium text-gray-700">Customer Reference Number</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="customer_reference_number"
               {...register("customer_reference_number")}
             />
-            {errors.customer_reference_number && <span className='text-red-500'>{errors.customer_reference_number.message}</span>}
+            {errors.customer_reference_number && <span className='text-red-500 text-sm'>{errors.customer_reference_number.message}</span>}
           </div>
         </div>
 
-        <div className="w-full flex mb-2 flex-wrap">
-
-          <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-            <label htmlFor="gst">Seller GSTIN</label>
+        <div className="w-full flex flex-wrap -mx-2">
+          <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+            <label htmlFor="gst" className="block text-sm font-medium text-gray-700">Seller GSTIN</label>
             <input
-              className="w-full border py-2 px-4 rounded"
+              className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
               type="text"
               id="gst"
               {...register("gst")}
             />
-            {errors.gst && <span className='text-red-500'>{errors.gst.message}</span>}
+            {errors.gst && <span className='text-red-500 text-sm'>{errors.gst.message}</span>}
           </div>
 
         </div>
-        <div className="flex-1 mx-2 mb-2 min-w-[300px] space-y-2">
-          <label htmlFor="Cgst">Customer GSTIN(For B2B)</label>
+        <div className="flex-1 px-2 mb-2 min-w-[280px] space-y-2">
+          <label htmlFor="Cgst" className="block text-sm font-medium text-gray-700">Customer GSTIN (For B2B)</label>
           <input
-            className="w-full border py-2 px-4 rounded"
+            className="w-full border border-gray-300 py-2 px-4 rounded-md focus:ring-green-500 focus:border-green-500 text-sm"
             type="text"
             id="Cgst"
             {...register("Cgst")}
           />
-          {errors.Cgst && <span className='text-red-500'>{errors.Cgst.message}</span>}
+          {errors.Cgst && <span className='text-red-500 text-sm'>{errors.Cgst.message}</span>}
         </div>
-        <div className="w-full flex justify-center mt-10">
+        <div className="w-full flex justify-center mt-10 px-2">
           <button
-            className="bg-green-600 hover:bg-green-700 text-white px-12 py-3 rounded-lg font-bold text-lg transition-all shadow-md transform hover:scale-105"
+            className="bg-green-600 hover:bg-green-700 text-white px-8 sm:px-12 py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg transition-all shadow-md transform hover:scale-105"
             type="submit"
           >
             Create Shipment

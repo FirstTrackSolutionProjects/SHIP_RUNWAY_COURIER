@@ -165,9 +165,9 @@ const AllTransactions = () => {
     <div className='py-10 w-full flex flex-col items-center bg-white'>
       <div className='w-full max-w-7xl px-4 flex flex-col gap-4'>
         <h1 className='text-2xl font-semibold text-center text-green-800'>Admin Transactions</h1>
-        <div className='bg-yellow-50 border border-yellow-200 p-6 rounded-2xl space-y-4'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4'>
-            <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'>
+        <div className='bg-[#145A32] border border-green-700 p-4 rounded-lg space-y-4 shadow-sm'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-3'>
+            <select name='type' value={filters.type} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'>
               <option value='all'>All Types</option>
               <option value='recharge'>Recharge</option>
               <option value='manual'>Manual Recharge</option>
@@ -177,13 +177,13 @@ const AllTransactions = () => {
               {/* <option value='extra'>Extra Charge</option> */}
               <option value='rto'>RTO Charge</option>
             </select>
-            <input name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white'/>
-            <input name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white'/>
-            <input name='merchant_email' value={filters.merchant_email} onChange={handleFilterChange} placeholder='Merchant Email' className='p-2 rounded text-black bg-white'/>
-            <input name='merchant_name' value={filters.merchant_name} onChange={handleFilterChange} placeholder='Merchant Name' className='p-2 rounded text-black bg-white'/>
-            <input name='merchant_business_name' value={filters.merchant_business_name} onChange={handleFilterChange} placeholder='Business Name' className='p-2 rounded text-black bg-white'/>
-            <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
-            <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
+            <input name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white text-sm'/>
+            <input name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white text-sm'/>
+            <input name='merchant_email' value={filters.merchant_email} onChange={handleFilterChange} placeholder='Merchant Email' className='p-2 rounded text-black bg-white text-sm'/>
+            <input name='merchant_name' value={filters.merchant_name} onChange={handleFilterChange} placeholder='Merchant Name' className='p-2 rounded text-black bg-white text-sm'/>
+            <input name='merchant_business_name' value={filters.merchant_business_name} onChange={handleFilterChange} placeholder='Business Name' className='p-2 rounded text-black bg-white text-sm'/>
+            <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
+            <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
             <IconButton
               onClick={async () => {
                 try {
@@ -211,13 +211,14 @@ const AllTransactions = () => {
                 }
               }}
               sx={{ 
-                backgroundColor: '#15803d',
-                color: 'white',
-                borderRadius: 1,
+                backgroundColor: 'white',
+                color: '#145A32',
+                borderRadius: '8px',
                 '&:hover': {
-                  backgroundColor: '#166534',
+                  backgroundColor: '#f0f0f0',
                 },
-                minWidth: '40px'
+                minWidth: '40px',
+                height: '40px'
               }}
             >
               <DownloadIcon />
