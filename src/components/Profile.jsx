@@ -89,10 +89,16 @@ const Profile = () => {
 
   // Effect to fetch profile data
   useEffect(() => {
+    console.log("Profile.jsx: Current token:", token ? "Exists" : "Null/Undefined");
+    console.log("Profile.jsx: User role:", userRole);
+    console.log("Profile.jsx: isAdminOrAdminEmployee:", isAdminOrAdminEmployee);
+    console.log("Profile.jsx: isMerchant:", isMerchant);
+
     const fetchProfile = async () => {
       setLoading(true);
       try {
         const endpoint = isMerchant ? 'merchant' : 'admin'; // Correct endpoint based on user role
+        console.log(`Profile.jsx: Fetching profile from: ${API_URL}/${endpoint}/profile`);
         const response = await fetch(`${API_URL}/${endpoint}/profile`, {
           method: 'POST', // Assuming /admin/profile and /merchant/profile are POST
           headers: {
@@ -102,8 +108,11 @@ const Profile = () => {
           }
         });
         const result = await response.json();
+        console.log("Profile.jsx: API response result:", result);
+
         if (result.success && result.data) {
           const data = result.data;
+          console.log("Profile.jsx: Data received from API:", data);
           setProfileData({
             name: data.fullName,
             business_name: data.businessName,
@@ -140,10 +149,11 @@ const Profile = () => {
             });
           }
         } else {
+          console.error("Profile.jsx: API response not successful or data missing:", result);
           toast.error(result.message || "Failed to fetch profile data.");
         }
       } catch (error) {
-        console.error("Error fetching profile:", error);
+        console.error("Profile.jsx: Error fetching profile:", error);
         toast.error("Error fetching profile data.");
       } finally {
         setLoading(false);
@@ -151,6 +161,8 @@ const Profile = () => {
     };
     if (token) {
       fetchProfile();
+    } else {
+      console.warn("Profile.jsx: No token found, not fetching profile.");
     }
   }, [token, isMerchant, isAdminOrAdminEmployee]); // Added isMerchant to dependencies
 
@@ -349,13 +361,19 @@ const Profile = () => {
                   </>
                 ) : (
                   <>
-                    {/* Display business name only if available for the role */}
-                    {profileData.business_name && (isAdminOrAdminEmployee ? profileData.designation === '' || profileData.designation === null : true) && (
-                        <p className='font-medium text-xl'>{profileData.business_name}</p>
+                    {isAdminOrAdminEmployee ? (
+                      <>
+                        {profileData.business_name && <p className='font-medium text-xl'>{profileData.business_name}</p>}
+                        {profileData.name && <p className='font-medium text-sm text-gray-600'>{profileData.name}</p>}
+                      </>
+                    ) : ( // isMerchant or other roles (keeping original merchant behavior for clarity)
+                      <>
+                        {profileData.business_name && <p className='font-medium text-xl'>{profileData.business_name}</p>}
+                        {profileData.name && <p className='font-medium text-sm text-gray-600'>({profileData.name})</p>}
+                      </>
                     )}
-                    <p className='font-medium text-sm text-gray-600'>({profileData.name})</p>
-                    <p className='font-medium text-sm text-gray-600'>{profileData.email}</p>
-                    <p className='font-medium text-sm text-gray-600'>{profileData.phone}</p>
+                    {profileData.email && <p className='font-medium text-sm text-gray-600'>{profileData.email}</p>}
+                    {profileData.phone && <p className='font-medium text-sm text-gray-600'>{profileData.phone}</p>}
                   </>
                 )}
                 {isMerchant && <p className='font-medium text-sm text-green-400'>Balance(Coming Soon)</p>}
@@ -400,10 +418,10 @@ const Profile = () => {
               ) : (
                 <>
                   {(isAdminOrAdminEmployee && profileData.designation) ? <p>Designation : {profileData.designation}</p> : null}
-                  {profileData.address && <p>Address : {profileData.address}</p>}
-                  {profileData.city && <p>City : {profileData.city}</p>}
-                  {profileData.state && <p>State : {profileData.state}</p>}
-                  {profileData.pin && <p>Pincode : {profileData.pin}</p>}
+                  <p>Address : {profileData.address || 'N/A'}</p>
+                  <p>City : {profileData.city || 'N/A'}</p>
+                  <p>State : {profileData.state || 'N/A'}</p>
+                  <p>Pincode : {profileData.pin || 'N/A'}</p>
                   {isMerchant && (
                     <div className='w-full'>
                       {profileData.gstin && <p>GSTIN : {profileData.gstin}</p>}
