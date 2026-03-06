@@ -80,8 +80,8 @@ const Sidebar2 = () => {
               }}
           > {/* Adjusted height calculation */}
             {sidebarItems.map((item) => {
-              if (item.admin && !admin) {
-                return;
+              if ((item.admin && !admin) || (item.merchantOnly && admin)) {
+                return null;
               }
               return (
                 <SidebarItem
