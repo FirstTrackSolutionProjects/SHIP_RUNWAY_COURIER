@@ -63,10 +63,19 @@ const generateMonthlyInvoiceHtml = (data) => {
   const breakups = data?.BREAKUPS || {}
   const total = Number(data?.TOTAL_AMOUNT || 0)
 
-  const companyName = escapeHtml(from.NAME || 'Ship Runway')
-  const companyShort = escapeHtml((from.NAME || 'Ship Runway').split(' ').map(w => w[0]).join('').slice(0,4).toUpperCase())
-  const logoUrl = `${(typeof window !== 'undefined' ? window.location.origin : '')}/logo 1.png`
-  const companyTagline = 'Monthly Merchant Invoice'
+  // 1. New variable for the consistent 'Ship Runway' brand name at the top
+  const headerBrandName = 'Ship Runway';
+  // Derive short name for logo fallback from headerBrandName
+  const headerBrandShort = headerBrandName.split(' ').map(w => w[0]).join('').slice(0,4).toUpperCase();
+
+  // Variable for the owner's business name (for the "From" section)
+  const ownerBusinessName = escapeHtml(from.NAME || '');
+
+  // Variable for the merchant's business name (for the "To" section)
+  const merchantBusinessName = escapeHtml(to.NAME || '');
+
+  const logoUrl = `${(typeof window !== 'undefined' ? window.location.origin : '')}/logo 1.png`;
+  const companyTagline = 'Monthly Merchant Invoice';
 
   const invoiceNumber = escapeHtml(details.INVOICE_NUMBER || '')
   const invoiceDate = escapeHtml(details.INVOICE_DATE || '')
@@ -78,7 +87,6 @@ const generateMonthlyInvoiceHtml = (data) => {
   const fromGstin = escapeHtml(from.GSTIN || '')
   const fromPan = escapeHtml(from.PAN || '')
 
-  const toName = escapeHtml(to.NAME || '')
   const toAddress = escapeHtml(`${to.ADDRESS}, ${to.CITY}, ${to.STATE}, ${to.COUNTRY} - ${to.ZIP}`)
   const toContact = escapeHtml(to.CONTACT || '')
   const toEmail = escapeHtml(to.EMAIL || '')
@@ -112,7 +120,7 @@ const generateMonthlyInvoiceHtml = (data) => {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Invoice - ${companyName}</title>
+  <title>Invoice - ${headerBrandName}</title>
   <style>
     :root{
       --primary-green:#145A32;
@@ -161,9 +169,11 @@ const generateMonthlyInvoiceHtml = (data) => {
   <div class="sheet">
     <header>
       <div class="brand">
-  <div class="logo"><img src="${logoUrl}" alt="${companyName} Logo" crossorigin="anonymous" onerror="this.style.display='none'; this.parentElement.textContent='${companyShort}';"/></div>
+        <!-- Use headerBrandName for logo alt and fallback -->
+        <div class="logo"><img src="${logoUrl}" alt="${headerBrandName} Logo" crossorigin="anonymous" onerror="this.style.display='none'; this.parentElement.textContent='${headerBrandShort}';"/></div>
         <div>
-          <h1>${companyName}</h1>
+          <!-- Use headerBrandName for the main heading -->
+          <h1>${headerBrandName}</h1>
           <div class="muted">${companyTagline}</div>
         </div>
       </div>
@@ -178,6 +188,8 @@ const generateMonthlyInvoiceHtml = (data) => {
       <div class="col">
         <h3>From</h3>
         <p>
+          <!-- Use ownerBusinessName and keep it bold -->
+          <strong>${ownerBusinessName}</strong><br>
           ${fromAddress}<br><br>
           Contact No: ${fromContact}<br>
           Email Id: ${fromEmail}<br>
@@ -188,7 +200,8 @@ const generateMonthlyInvoiceHtml = (data) => {
       <div class="col">
         <h3>To</h3>
         <p>
-          ${toName}<br>
+          <!-- Use merchantBusinessName and make it bold -->
+          <strong>${merchantBusinessName}</strong><br>
           ${toAddress}<br>
           Contact No: ${toContact}<br>
           Email: ${toEmail}<br>
