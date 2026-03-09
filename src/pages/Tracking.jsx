@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { Search, MapPin, Package, BellRing } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
 const Form = () => {
     const [isTracking, setIsTracking] = useState(false);
+    const location = useLocation();
     const [formData, setFormData] = useState({
         awb: ''
     });
 
     useEffect(() => {
-        const storedTrack = localStorage.getItem('track');
-        if (storedTrack) {
-            setFormData({ awb: storedTrack });
-            localStorage.setItem('track', '');
+        const queryParams = new URLSearchParams(location.search);
+        const awbFromUrl = queryParams.get('awb');
+
+        if (awbFromUrl) {
+            setFormData({ awb: awbFromUrl });
+        } else if (localStorage.getItem('track')) {
+            setFormData({ awb: localStorage.getItem('track') });
+            localStorage.removeItem('track'); // Clear it once used
         }
-    }, []);
+    }, [location.search]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,11 +48,11 @@ const Form = () => {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({ id: formData.awb, isWaybill: true })
+                body: JSON.stringify({ awb: formData.awb })
             }).then(response => response.json());
             setTrackingData(data);
         } catch (e) {
-            console.log(e);
+            console.error("Tracking error:", e);
         } finally {
             setIsTracking(false);
         }
@@ -81,6 +87,7 @@ const Form = () => {
                                         placeholder="Enter AWB / Tracking ID"
                                         className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all text-gray-800 font-medium"
                                         required
+                                        disabled={isTracking}
                                     />
                                 </div>
                                 <button
@@ -88,7 +95,7 @@ const Form = () => {
                                     disabled={isTracking}
                                     className="h-14 px-8 bg-brand-green text-white rounded-2xl font-bold hover:bg-brand-green-light transition-all active:scale-95 disabled:opacity-50 disabled:scale-100 shadow-lg shadow-brand-green/20"
                                 >
-                                    {isTracking ? 'Tracking...' : 'Track Now'}
+                                    {isTracking ? 'Tracking...' : 'TRACK'}
                                 </button>
                             </form>
 

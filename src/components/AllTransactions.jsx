@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import getFilterStartDate from '../helpers/getFilterStartDate';
 import getTodaysDate from '../helpers/getTodaysDate';
@@ -85,8 +85,6 @@ const AllTransactions = () => {
   });
   const [debouncedFilters, setDebouncedFilters] = useState(filters);
 
-    const [totalPages, setTotalPages] = useState(1);
-
   // Debounce
   useEffect(() => {
     const t = setTimeout(() => setDebouncedFilters(filters), 500);
@@ -98,6 +96,8 @@ const AllTransactions = () => {
     setFilters(prev => ({ ...prev, [name]: value }));
     setPage(1);
   };
+
+    const [totalPages, setTotalPages] = useState(1);
 
   // Fetch
   const fetchData = useCallback(async () => {
@@ -127,6 +127,7 @@ const AllTransactions = () => {
   }, [page, debouncedFilters]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
+
 
   // Pagination component (same as TransactionHistory)
   const Pagination = ({ currentPage, totalPages, onPageChange }) => {
@@ -197,13 +198,13 @@ const AllTransactions = () => {
               {/* <option value='extra'>Extra Charge</option> */}
               <option value='rto'>RTO Charge</option>
             </select>
-            <input name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white text-sm'/>
-            <input name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white text-sm'/>
-            <input name='merchant_email' value={filters.merchant_email} onChange={handleFilterChange} placeholder='Merchant Email' className='p-2 rounded text-black bg-white text-sm'/>
-            <input name='merchant_name' value={filters.merchant_name} onChange={handleFilterChange} placeholder='Merchant Name' className='p-2 rounded text-black bg-white text-sm'/>
-            <input name='merchant_business_name' value={filters.merchant_business_name} onChange={handleFilterChange} placeholder='Business Name' className='p-2 rounded text-black bg-white text-sm'/>
-            <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
-            <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
+            <input name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white'/>
+            <input name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white'/>
+            <input name='merchant_email' value={filters.merchant_email} onChange={handleFilterChange} placeholder='Merchant Email' className='p-2 rounded text-black bg-white'/>
+            <input name='merchant_name' value={filters.merchant_name} onChange={handleFilterChange} placeholder='Merchant Name' className='p-2 rounded text-black bg-white'/>
+            <input name='merchant_business_name' value={filters.merchant_business_name} onChange={handleFilterChange} placeholder='Business Name' className='p-2 rounded text-black bg-white'/>
+            <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
+            <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
             <IconButton
               onClick={async () => {
                 try {

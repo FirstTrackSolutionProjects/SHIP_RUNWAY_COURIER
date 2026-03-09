@@ -107,6 +107,7 @@ const TransactionHistory = () => {
 
     useEffect(()=> { fetchData(); }, [fetchData]);
 
+
     // Advanced pagination component (mirrors UpdateOrder.jsx style)
     const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         const pages = [];
@@ -180,10 +181,10 @@ const TransactionHistory = () => {
                             {/* <option value='extra'>Extra Charge</option> */}
                             <option value='rto'>RTO Charge</option>
                         </select>
-                        <input type='text' name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white text-sm'/>
-                        <input type='text' name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white text-sm'/>
-                        <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
-                        <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white text-sm'/>
+                        <input type='text' name='order_id' value={filters.order_id} onChange={handleFilterChange} placeholder='Order ID' className='p-2 rounded text-black bg-white'/>
+                        <input type='text' name='awb' value={filters.awb} onChange={handleFilterChange} placeholder='AWB' className='p-2 rounded text-black bg-white'/>
+                        <input type='date' name='startDate' value={filters.startDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
+                        <input type='date' name='endDate' value={filters.endDate} onChange={handleFilterChange} className='p-2 rounded text-black bg-white'/>
                         <IconButton
                             onClick={async () => {
                               try {
