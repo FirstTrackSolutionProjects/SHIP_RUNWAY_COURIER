@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import WarehouseSelect from './UiComponents/WarehouseSelect';
+import { toast } from 'react-toastify';
 const API_URL = import.meta.env.VITE_APP_API_URL
 
 const getTodaysDate = () => {
@@ -272,9 +273,16 @@ const FullDetails = () => {
       return;
     }
     const invoiceUuid = uuidv4();
-    const key = `invoice/${invoiceUuid}`;
     const filetype = invoice.type;
+    const fileName = invoice.name;
 
+    const allowedMimes = ['application/pdf', 'image/jpeg', 'image/png'];
+    if (!allowedMimes.includes(filetype)) {
+        toast.error('Only PDF and Image files (PNG, JPG) are allowed for invoice');
+        return;
+    }
+
+    const key = `invoice/${invoiceUuid}-${fileName}`;
 
     const putUrlReq = await fetch(`${API_URL}/s3/putUrl`, {
       method: "POST",
@@ -311,7 +319,7 @@ const FullDetails = () => {
   return (
     <div className="w-full p-4 flex flex-col items-center bg-white">
       <div className="text-3xl font-bold text-green-700 text-center my-8 text-xl sm:text-3xl">Enter Shipping Details</div>
-      <form onSubmit={handleSubmit} className="w-full max-w-4xl px-2 sm:px-4 space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-4xl px-2 sm:px-4 space-y-4">
         <div className="w-full flex mb-2 px-2 flex-wrap">
           <div className="flex-1 w-full sm:w-auto mx-0 sm:mx-2 mb-2 min-w-[280px] space-y-2"> {/* Added responsive width */}
             <label htmlFor="wid" className="block text-sm font-medium text-gray-700">Pickup Warehouse Name</label>
